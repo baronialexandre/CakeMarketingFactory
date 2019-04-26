@@ -1,33 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <android.support.design.widget.AppBarLayout
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:orientation="vertical"
+    tools:context="l3info.projet.cakemarketingfactory.MainActivity"
+    android:background="@color/black">
+    <!-- RECUP -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:orientation="horizontal">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="30dp"
+            android:text="@string/login_email_text"
+            android:textColor="@color/white"
+            />
+
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="match_parent"
+            android:id="@+id/login_email"
+            android:textColor="@color/white"
+            />
 
-    </android.support.design.widget.AppBarLayout>
+    </LinearLayout>
 
-    <include layout="@layout/content_main" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:orientation="horizontal">
 
-</android.support.design.widget.CoordinatorLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/login_password_text"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/login_password"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:onClick="onRegisterButtonClicked"
+            android:text="@string/login_button_register_text"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/login_button_submit_text"
+            android:id="@+id/login_submit_button"
+            android:onClick="onSubmitButtonClicked"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="60dp"
+        android:visibility="invisible"
+        android:id="@+id/login_feedback_message"/>
+
+    <!-- fin RECUP -->
+</LinearLayout>

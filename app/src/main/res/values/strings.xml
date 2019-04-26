@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">CakeMarketingFactory</string>
     <string name="action_settings">Settings</string>
+    <string name="login_email_text">Username</string>
+    <string name="login_password_text">Mot de passe</string>
+    <string name="login_button_register_text">S\'inscrire</string>
+    <string name="login_button_submit_text">Connection</string>
 </resources>
