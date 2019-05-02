@@ -86,17 +86,17 @@
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="104dp"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/factory_robot_1"
+                            android:layout_marginTop="20dp"
                             android:contentDescription="@string/plus"
                             android:id="@+id/ivFactoryRobotLine1" />
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="104dp"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/factory_oven_1"
-                            android:layout_marginBottom="50dp"
-                            android:layout_marginTop="25dp"
+                            android:layout_marginTop="20dp"
                             android:contentDescription="@string/plus"
                             android:id="@+id/ivFactoryOvenLine1" />
 
@@ -112,7 +112,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="50dp"
+                            android:layout_marginTop="20dp"
                             android:text="@string/plus"
                             android:textColor="@color/factoryButtonGreenText"
                             android:id="@+id/bFactoryTravelatorLine1" />
@@ -121,7 +121,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="95dp"
+                            android:layout_marginTop="85dp"
                             android:text="@string/plus"
                             android:textColor="@color/factoryButtonGreenText"
                             android:id="@+id/bFactoryRobotLine1" />
@@ -130,7 +130,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="115dp"
+                            android:layout_marginTop="85dp"
                             android:text="@string/plus"
                             android:textColor="@color/factoryButtonGreenText"
                             android:id="@+id/bFactoryOvenLine1" />
@@ -194,17 +194,17 @@
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="104dp"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/factory_robot_1"
+                            android:layout_marginTop="20dp"
                             android:contentDescription="@string/plus"
                             android:id="@+id/ivFactoryRobotLine2" />
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="104dp"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/factory_oven_1"
-                            android:layout_marginBottom="50dp"
-                            android:layout_marginTop="25dp"
+                            android:layout_marginTop="20dp"
                             android:contentDescription="@string/plus"
                             android:id="@+id/ivFactoryOvenLine2" />
 
@@ -220,7 +220,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="50dp"
+                            android:layout_marginTop="20dp"
                             android:text="@string/plus"
                             android:textColor="@color/factoryButtonGreenText"
                             android:id="@+id/bFactoryTravelatorLine2" />
@@ -229,7 +229,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="95dp"
+                            android:layout_marginTop="85dp"
                             android:text="@string/plus"
                             android:textColor="@color/factoryButtonGreenText"
                             android:id="@+id/bFactoryRobotLine2" />
@@ -238,7 +238,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="115dp"
+                            android:layout_marginTop="85dp"
                             android:text="@string/plus"
                             android:textColor="@color/factoryButtonGreenText"
                             android:id="@+id/bFactoryOvenLine2" />
@@ -302,17 +302,17 @@
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="104dp"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/factory_robot_1"
+                            android:layout_marginTop="20dp"
                             android:contentDescription="@string/plus"
                             android:id="@+id/ivFactoryRobotLine3" />
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="104dp"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/factory_oven_1"
-                            android:layout_marginBottom="50dp"
-                            android:layout_marginTop="25dp"
+                            android:layout_marginTop="20dp"
                             android:contentDescription="@string/plus"
                             android:id="@+id/ivFactoryOvenLine3" />
 
@@ -328,7 +328,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="50dp"
+                            android:layout_marginTop="20dp"
                             android:text="@string/plus"
                             android:textColor="@color/factoryButtonGreenText"
                             android:id="@+id/bFactoryTravelatorLine3" />
@@ -337,7 +337,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="95dp"
+                            android:layout_marginTop="85dp"
                             android:text="@string/plus"
                             android:textColor="@color/factoryButtonGreenText"
                             android:id="@+id/bFactoryRobotLine3" />
@@ -346,7 +346,7 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginStart="10dp"
-                            android:layout_marginTop="115dp"
+                            android:layout_marginTop="85dp"
                             android:text="@string/plus"
                             android:textColor="@color/factoryButtonGreenText"
                             android:id="@+id/bFactoryOvenLine3" />
