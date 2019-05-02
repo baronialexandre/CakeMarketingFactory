@@ -77,7 +77,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="65dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:background="@drawable/factory_travelator_1"
@@ -85,14 +85,14 @@
                         android:id="@+id/llFactoryTravelatorLine1" >
 
                         <ImageView
-                            android:layout_width="65dp"
+                            android:layout_width="match_parent"
                             android:layout_height="104dp"
                             android:src="@drawable/factory_robot_1"
                             android:contentDescription="@string/plus"
                             android:id="@+id/ivFactoryRobotLine1" />
 
                         <ImageView
-                            android:layout_width="65dp"
+                            android:layout_width="match_parent"
                             android:layout_height="104dp"
                             android:src="@drawable/factory_oven_1"
                             android:layout_marginBottom="50dp"
@@ -185,7 +185,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="65dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:background="@drawable/factory_travelator_1"
@@ -193,14 +193,14 @@
                         android:id="@+id/llFactoryTravelatorLine2" >
 
                         <ImageView
-                            android:layout_width="65dp"
+                            android:layout_width="match_parent"
                             android:layout_height="104dp"
                             android:src="@drawable/factory_robot_1"
                             android:contentDescription="@string/plus"
                             android:id="@+id/ivFactoryRobotLine2" />
 
                         <ImageView
-                            android:layout_width="65dp"
+                            android:layout_width="match_parent"
                             android:layout_height="104dp"
                             android:src="@drawable/factory_oven_1"
                             android:layout_marginBottom="50dp"
@@ -293,7 +293,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="65dp"
+                        android:layout_width="55dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
                         android:background="@drawable/factory_travelator_1"
@@ -301,14 +301,14 @@
                         android:id="@+id/llFactoryTravelatorLine3" >
 
                         <ImageView
-                            android:layout_width="65dp"
+                            android:layout_width="match_parent"
                             android:layout_height="104dp"
                             android:src="@drawable/factory_robot_1"
                             android:contentDescription="@string/plus"
                             android:id="@+id/ivFactoryRobotLine3" />
 
                         <ImageView
-                            android:layout_width="65dp"
+                            android:layout_width="match_parent"
                             android:layout_height="104dp"
                             android:src="@drawable/factory_oven_1"
                             android:layout_marginBottom="50dp"
@@ -370,7 +370,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_disabled"
+                android:background="@drawable/simple_button_disabled"
                 android:padding="10dp">
 
                 <TextView
