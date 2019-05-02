@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape  android:shape="rectangle">
+            <solid android:color="@color/popupSideExt" />
+            <padding
+                android:top="4px"
+                android:left="4px"
+                android:right="4px" />
+        </shape>
+    </item>
+    <item>
+        <shape  android:shape="rectangle">
+            <solid android:color="@color/popupSideInt" />
+            <padding
+                android:top="4px"
+                android:left="4px"
+                android:right="4px" />
+        </shape>
+    </item>
+    <item>
+        <shape  android:shape="rectangle">
+            <solid android:color="@color/popupSideExt" />
+            <padding
+                android:top="4px"
+                android:left="4px"
+                android:right="4px" />
+        </shape>
+    </item>
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/darkFrameBackground" />
+                </shape>
+            </item>
+            <item>
+                <bitmap android:src="@drawable/stroke2"
+                    android:tileMode="repeat" />
+            </item>
+        </layer-list>
+    </item>
+
+</layer-list>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/popup_background"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup"
+    android:gravity="center" >
+
+    <ImageView
+        android:id="@+id/popup_ivSettingsMusic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_music"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/empty" />
+
+    <ImageView
+        android:id="@+id/popup_ivSettingsSound"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_sound"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/empty" />
+
+    <ImageView
+        android:id="@+id/popup_ivSettingsFlag"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/flag_fr"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/empty" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <Button
+            android:id="@+id/popup_bSettingsOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="7dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="7dp"
+            android:text="@string/ok"/>
+    </LinearLayout>
+
+</LinearLayout>

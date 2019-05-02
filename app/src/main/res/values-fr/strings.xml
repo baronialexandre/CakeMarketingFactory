@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">C M F</string>
-    <string name="action_settings">Settings</string>
-    <string name="langue_test">This is a test</string>
-    <string name="langue_test2" translatable="false">Message message message message message message\nMessage message message message message\nMessage message message message message message\nMessage message message\nMessage message message message message</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="langue_test">Ceci est un test</string>
     <string name="plus">+</string>
     <string name="unitPerSec">u/s</string>
     <string name="stock">Stock :</string>
@@ -11,14 +10,13 @@
     <string name="sign_up">Sign up</string>
     <string name="sign_in">Sign in</string>
     <string name="empty" />
-    <string name="loading">LOADING</string>
+    <string name="loading">CHARGEMENT</string>
     <string name="pseudo">Pseudo</string>
     <string name="mail">Mail</string>
     <string name="abort">Abort</string>
     <string name="validate">Validate</string>
-    <string name="cash">$$$$$</string>
+    <string name="cash">€€€€€</string>
     <string name="messages">Messages</string>
     <string name="ok">Ok</string>
-    <string name="Hours" translatable="false">13:37</string>
     <string name="advertising">Advertising</string>
 </resources>

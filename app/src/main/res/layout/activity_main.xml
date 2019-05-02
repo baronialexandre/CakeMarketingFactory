@@ -1,92 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:orientation="vertical"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp"
-    android:orientation="vertical"
-    tools:context="l3info.projet.cakemarketingfactory.MainActivity"
-    android:background="@color/black">
-    <!-- RECUP -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    tools:context=".MainActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="30dp"
-            android:text="@string/login_email_text"
-            android:textColor="@color/white"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/login_email"
-            android:textColor="@color/white"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/login_password_text"
-            android:textColor="@color/white"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/login_password"
-            android:textColor="@color/white"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
-            android:onClick="onRegisterButtonClicked"
-            android:text="@string/login_button_register_text"
-            android:textColor="@color/white"/>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/login_button_submit_text"
-            android:id="@+id/login_submit_button"
-            android:onClick="onSubmitButtonClicked"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/white"
-            />
-
-    </LinearLayout>
-
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_height="60dp"
-        android:visibility="invisible"
-        android:id="@+id/login_feedback_message"/>
+        android:layout_height="100dp"
+        android:src="@drawable/title"
+        android:contentDescription="@string/empty"
+        android:layout_marginBottom="100dp"/>
 
-    <!-- fin RECUP -->
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:id="@+id/etMainLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/login"
+            tools:ignore="Autofill" />
+
+        <EditText
+            android:id="@+id/etMainPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:hint="@string/password"
+            tools:ignore="Autofill" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/bMainSignUp"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="15dp"
+            android:text="@string/sign_up"
+            tools:ignore="ButtonStyle" />
+
+        <Button
+            android:id="@+id/bMailSignIn"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            android:text="@string/sign_in"
+            tools:ignore="ButtonStyle" />
+
+    </LinearLayout>
+
+
+
+
+
 </LinearLayout>
