@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     Context context;
 
-    Button bSignUp, bSignIn;
+    Button bRegister, bConnection;
     EditText etLogin, etPassword;
 
 
@@ -30,27 +30,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         context = this;
-        bSignUp = findViewById(R.id.bMainSignUp);
-        bSignIn = findViewById(R.id.bMailSignIn);
+        bRegister = findViewById(R.id.bMainRegister);
+        bConnection = findViewById(R.id.bMailConnection);
         etLogin = findViewById(R.id.etMainLogin);
         etPassword = findViewById(R.id.etMainPassword);
 
 
-        bSignIn.setOnClickListener(new View.OnClickListener() {
+        bConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 //Changer d'activity
                 Intent intentApp = new Intent(MainActivity.this, LoadingActivity.class);
                 MainActivity.this.startActivity(intentApp);
-
             }
         });
 
-        bSignUp.setOnClickListener(new View.OnClickListener() {
+        bRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Changer d'activity
+                Intent intentApp = new Intent(MainActivity.this, RegisterActivity.class);
+                MainActivity.this.startActivity(intentApp);
             }
         });
 
