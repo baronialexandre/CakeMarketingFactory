@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <ImageView
+            android:id="@+id/ivMarketBack"
+            android:padding="5dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_button_back"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:contentDescription="@string/empty" />
+
+
+        <FrameLayout android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_row="0"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+            <TextView
+                android:id="@+id/tvMarketHours"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/hours_frame2"
+                android:text="@string/Hours"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textColor="@color/text_color_states"
+                android:enabled="false"/>
+        </FrameLayout>
+
+
+    </GridLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:gravity ="center">
+                <TextView
+                    android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_color_states"
+                android:text="7.5 $/u"
+                android:textAlignment="center"
+                    android:background="@drawable/popup"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:gravity ="center">
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_states"
+                    android:text="5 $/u"
+                    android:textAlignment="center"
+                    android:background="@drawable/popup"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:gravity ="center">
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_states"
+                    android:text="2.5 $/u"
+                    android:textAlignment="center"
+                    android:background="@drawable/popup"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/popup_side">
+            <!-- Graph -->
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/tvMarketSelectedPrice"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/hours_frame"
+            android:text="@string/cash"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="@color/text_color_states"
+            android:enabled="false"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="10dp">
+
+        <ImageButton
+            android:id="@+id/bMarketCookie"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_cookie" />
+        <ImageButton
+            android:id="@+id/bMarketCupcake"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_cupcake" />
+        <ImageButton
+            android:id="@+id/bMarketDonut"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_donut" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/bMarketAdvertising"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:text="@string/advertising"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

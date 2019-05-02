@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/world_background"
+    android:orientation="vertical">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:id="@+id/ivWorldSettings"
+            android:padding="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_setting"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:contentDescription="@string/empty" />
+
+
+        <ImageView
+            android:id="@+id/ivWorldLetter"
+            android:padding="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/message_letter"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:contentDescription="@string/empty" />
+
+    </GridLayout>
+
+    <!-- Zone du ciel -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/cloud_4"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/empty" />
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/cloud_2"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="30dp"
+            android:contentDescription="@string/empty" />
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/cloud_1"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/empty" />
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/cloud_4"
+            android:layout_marginStart="20dp"
+            android:contentDescription="@string/empty" />
+    </LinearLayout>
+
+    <!-- Fin de la zone ciel -->
+    <!-- Zone verte -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp">
+
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="235dp"
+            android:layout_marginTop="0dp">
+            <ImageView
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/world_factory_area"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldSign1"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/world_dollard_sign"
+                android:visibility="invisible"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldFactory1"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/factory_1"
+                android:visibility="visible"
+                android:contentDescription="@string/empty" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="25dp">
+            <ImageView
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/world_factory_area"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldSign2"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/world_dollard_sign"
+                android:visibility="visible"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldFactory2"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/factory_1"
+                android:visibility="invisible"
+                android:contentDescription="@string/empty" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="275dp"
+            android:layout_marginTop="100dp">
+            <ImageView
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/world_factory_area"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldSign3"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/world_dollard_sign"
+                android:visibility="visible"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldFactory3"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/factory_1"
+                android:visibility="invisible"
+                android:contentDescription="@string/empty" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="125dp">
+            <ImageView
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/world_factory_area"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldSign4"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/world_dollard_sign"
+                android:visibility="visible"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldFactory4"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/factory_1"
+                android:visibility="invisible"
+                android:contentDescription="@string/empty" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="215dp"
+            android:layout_marginTop="200dp">
+            <ImageView
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/world_factory_area"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldSign5"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/world_dollard_sign"
+                android:visibility="visible"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldFactory5"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/factory_1"
+                android:visibility="invisible"
+                android:contentDescription="@string/empty" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="255dp">
+            <ImageView
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:src="@drawable/world_factory_area"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldSign6"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/world_dollard_sign"
+                android:visibility="visible"
+                android:contentDescription="@string/empty" />
+            <ImageView
+                android:id="@+id/ivWorldFactory6"
+                android:layout_gravity="bottom"
+                android:paddingBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/factory_1"
+                android:visibility="invisible"
+                android:contentDescription="@string/empty" />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <!-- Fin de la zone verte -->
+    <!-- Zone bottom -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="@drawable/popup"
+            android:gravity="center"
+            tools:ignore="UselessParent">
+
+            <ImageView
+                android:id="@+id/ivWorldMarket"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_market"
+                android:contentDescription="@string/empty" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="90dp"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:src="@drawable/ic_profil"
+                android:id="@+id/ivWorldProfile"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:contentDescription="@string/empty" />
+
+            <EditText
+                android:id="@+id/etWorldCapital"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:enabled="false"
+                android:text="@string/cash"
+                android:textAlignment="textEnd"
+                android:textColor="@color/text_color_states"
+                android:inputType="textNoSuggestions"
+                tools:ignore="Autofill,LabelFor"
+                android:background="@drawable/hours_frame"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

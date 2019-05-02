@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#00000000</color>
+    <color name="colorPrimaryDark">#00000000</color>
+    <color name="colorAccent">#00FFFFFF</color>
+
+   <color name="background">#323232</color>
+
+   <color name="titleColorRed">#cf1f39</color>
+   <color name="titleColorYellow">#fbdf00</color>
+   <color name="titleColorBlue">#00a8ee</color>
+
+   <color name="factoryButtonGreen">#60ce54</color>
+   <color name="factoryButtonGreenShadow">#507a4b</color>
+   <color name="factoryButtonGreenText">#b3ffaa</color>
+   <color name="factoryButtonYellow">#e2b810</color>
+   <color name="factoryButtonYellowShadow">#837232</color>
+   <color name="factoryButtonYellowText">#fff07b</color>
+   <color name="factoryButtonRed">#ce6054</color>
+   <color name="factoryButtonRedShadow">#7a4f4b</color>
+   <color name="factoryButtonRedText">#ffb2aa</color>
+
+   <color name="transparent">#00000000</color>
+
+   <color name="buttonColor">#6A6A6A</color>
+   <color name="buttonColorShadow">#3C3C3C</color>
+   <color name="buttonText">#00FF00</color>
+   <color name="buttonTextDisable">#008C00</color>
+
+   <color name="editText">#2C2C2C</color>
+   <color name="editTextDisabled">#212121</color>
+   <color name="editTextSide">#525252</color>
+
+   <color name="darkFrameBackground">#2a2a2a</color>
+
+   <color name="popupBackground">#404040</color>
+   <color name="popupSideInt">#787878</color>
+   <color name="popupSideExt">#636363</color>
 </resources>
