@@ -24,5 +24,6 @@
         <activity android:name=".MessagesActivity" />
         <activity android:name=".MarketActivity" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

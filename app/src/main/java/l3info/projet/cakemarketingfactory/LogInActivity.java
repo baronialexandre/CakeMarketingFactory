@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import l3info.projet.cakemarketingfactory.task.AuthenticationTask;
 
 public class LogInActivity extends AppCompatActivity {
 
@@ -14,6 +17,7 @@ public class LogInActivity extends AppCompatActivity {
 
     Button bRegister, bConnection;
     EditText etLogin, etPassword;
+    TextView feedbackTextView;
 
 
     @Override
@@ -26,11 +30,15 @@ public class LogInActivity extends AppCompatActivity {
         bConnection = findViewById(R.id.bMailConnection);
         etLogin = findViewById(R.id.etMainLogin);
         etPassword = findViewById(R.id.etMainPassword);
-
-
+        feedbackTextView = findViewById(R.id.login_feedback_message);
         bConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Authentification Task
+                AuthenticationTask task = new AuthenticationTask(etLogin.getText().toString(), etPassword.getText().toString(), feedbackTextView, context);
+                task.execute();
+
+
                 //Changer d'activity
                 Intent intentApp = new Intent(LogInActivity.this, LoadingActivity.class);
                 LogInActivity.this.startActivity(intentApp);
