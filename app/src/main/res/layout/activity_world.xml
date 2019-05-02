@@ -282,25 +282,21 @@
                 android:id="@+id/ivWorldMarket"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:padding="10dp"
                 android:src="@drawable/ic_market"
                 android:contentDescription="@string/empty" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="90dp"
-                android:layout_height="match_parent" />
 
             <ImageView
                 android:src="@drawable/ic_profil"
                 android:id="@+id/ivWorldProfile"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
+                android:padding="5dp"
                 android:contentDescription="@string/empty" />
 
             <EditText
                 android:id="@+id/etWorldCapital"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:enabled="false"
                 android:text="@string/cash"
@@ -308,7 +304,8 @@
                 android:textColor="@color/text_color_states"
                 android:inputType="textNoSuggestions"
                 tools:ignore="Autofill,LabelFor"
-                android:background="@drawable/hours_frame"/>
+                android:background="@drawable/hours_frame"
+                android:padding="10dp"/>
 
         </LinearLayout>
 
