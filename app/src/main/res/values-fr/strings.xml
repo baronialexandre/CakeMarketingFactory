@@ -7,8 +7,8 @@
     <string name="stock">Stock :</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
-    <string name="sign_up">Sign up</string>
-    <string name="sign_in">Sign in</string>
+    <string name="register">S\'enregistrer</string>
+    <string name="connection">Se connecter</string>
     <string name="empty" />
     <string name="loading">CHARGEMENT</string>
     <string name="pseudo">Pseudo</string>

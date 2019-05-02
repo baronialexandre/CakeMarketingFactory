@@ -8,8 +8,8 @@
     <string name="stock">Stock :</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
-    <string name="sign_up">Sign up</string>
-    <string name="sign_in">Sign in</string>
+    <string name="register">Register</string>
+    <string name="connection">Connection</string>
     <string name="empty" />
     <string name="loading">LOADING</string>
     <string name="pseudo">Pseudo</string>

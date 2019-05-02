@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".LoadingActivity" />
         <activity android:name=".FactoryActivity" />
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".WorldActivity" />
         <activity android:name=".MessagesActivity" />
         <activity android:name=".MarketActivity" />
