@@ -20,5 +20,8 @@
     <string name="messages">Messages</string>
     <string name="ok">Ok</string>
     <string name="Hours" translatable="false">13:37</string>
+    <string name="date">00/00/0000</string>
+    <string name="cancel">Cancel</string>
+    <string name="level">Level : </string>
     <string name="advertising">Advertising</string>
 </resources>

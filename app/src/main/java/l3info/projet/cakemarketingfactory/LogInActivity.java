@@ -7,13 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LogInActivity extends AppCompatActivity {
 
     Context context;
 
-    Button bRegister, bConnection;
-    EditText etLogin, etPassword;
+    Button loginRegister, loginConnection;
+    EditText loginLogin, loginPassword;
 
 
     @Override
@@ -22,13 +23,13 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         context = this;
-        bRegister = findViewById(R.id.bMainRegister);
-        bConnection = findViewById(R.id.bMailConnection);
-        etLogin = findViewById(R.id.etMainLogin);
-        etPassword = findViewById(R.id.etMainPassword);
+        loginRegister = findViewById(R.id.loginRegister);
+        loginConnection = findViewById(R.id.loginConnection);
+        loginLogin = findViewById(R.id.loginLogin);
+        loginPassword = findViewById(R.id.loginPassword);
 
 
-        bConnection.setOnClickListener(new View.OnClickListener() {
+        loginConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Changer d'activity
@@ -37,7 +38,7 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
-        bRegister.setOnClickListener(new View.OnClickListener() {
+        loginRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Changer d'activity
@@ -45,6 +46,7 @@ public class LogInActivity extends AppCompatActivity {
                 LogInActivity.this.startActivity(intentApp);
             }
         });
+
 
     }
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="270dp" >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/popup"
+        android:gravity="bottom">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="110dp">
+            <TextView
+                android:id="@+id/popupNotificationMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/langue_test2"
+                android:layout_gravity="center_horizontal"/>
+        </ScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+            <Button
+                android:id="@+id/popupNotificationOk"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="7dp"
+                android:textAlignment="center"
+                android:text="@string/ok"
+                android:textColor="@color/buttonGreenText"
+                android:background="@drawable/green_button_selector"/>
+        </LinearLayout>
+    </LinearLayout>
+    <!-- TOP IMAGE -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/popup"
+            android:padding="7dp"
+            android:layout_gravity="center"
+            tools:ignore="UselessParent">
+            <ImageView
+                android:id="@+id/popupNotificationImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/title"
+                tools:layout_editor_absoluteX="5dp"
+                tools:layout_editor_absoluteY="5dp"
+                android:contentDescription="@string/empty" />
+        </FrameLayout>
+    </FrameLayout>
+</FrameLayout>

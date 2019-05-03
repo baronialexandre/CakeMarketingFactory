@@ -13,10 +13,13 @@
     <string name="loading">CHARGEMENT</string>
     <string name="pseudo">Pseudo</string>
     <string name="mail">Mail</string>
-    <string name="abort">Abort</string>
+    <string name="abort">Annuler</string>
     <string name="validate">Validate</string>
     <string name="cash">€€€€€</string>
     <string name="messages">Messages</string>
     <string name="ok">Ok</string>
-    <string name="advertising">Advertising</string>
+    <string name="date">00/00/0000</string>
+    <string name="cancel">Annuler</string>
+    <string name="level">Niveau :</string>
+    <string name="advertising">Publicité</string>
 </resources>

@@ -5,7 +5,6 @@
         <shape  android:shape="rectangle">
             <stroke android:color="@color/popupSideExt"
                 android:width="5dp" />
-            <corners android:radius="7dp" />
             <padding
                 android:bottom="4px"
                 android:top="4px"
@@ -17,7 +16,6 @@
         <shape  android:shape="rectangle">
             <stroke android:color="@color/popupSideInt"
                 android:width="2dp" />
-            <corners android:radius="7dp" />
             <padding
                 android:bottom="4px"
                 android:top="4px"
