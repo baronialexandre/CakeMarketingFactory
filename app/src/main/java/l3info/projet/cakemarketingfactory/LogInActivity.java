@@ -43,8 +43,8 @@ public class LogInActivity extends AppCompatActivity {
 
 
                 //Changer d'activity
-                Intent intentApp = new Intent(LogInActivity.this, LoadingActivity.class);
-                LogInActivity.this.startActivity(intentApp);
+                //Intent intentApp = new Intent(LogInActivity.this, LoadingActivity.class);
+                //LogInActivity.this.startActivity(intentApp);
             }
         });
 

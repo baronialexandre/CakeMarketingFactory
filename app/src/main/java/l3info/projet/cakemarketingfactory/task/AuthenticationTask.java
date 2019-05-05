@@ -1,7 +1,6 @@
 package l3info.projet.cakemarketingfactory.task;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -39,26 +38,27 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
         try {
 
             OkHttpClient client = new OkHttpClient();
-            Log.i("BANDOL","OKHTTP");
-            Log.i("BANDOL",Contants.API_URL + Contants.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contants.API_PASS);
+            Log.i("BANDOL", "OKHTTP");
+            Log.i("BANDOL", Contants.API_URL + Contants.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contants.API_PASS);
             Request request = new Request.Builder()
                     .url(Contants.API_URL + Contants.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contants.API_PASS)
                     .build();
 
             Response response = client.newCall(request).execute();
             String rawJson = response.body().string();
-            Log.i("BANDOL",rawJson);
+            Log.i("BANDOL", rawJson);
             JSONObject jsonObj = new JSONObject(rawJson);
 
 
             return jsonObj.getBoolean("auth");
-        } catch(IOException | JSONException e) {
+        } catch (IOException | JSONException e) {
             Log.e(TAG, "Error while authenticating ... : " + e.getMessage(), e);
             return false;
         }
     }
 
-    protected void onPostExecute(boolean authenticationResponse) {
+    @Override
+    protected void onPostExecute(Boolean authenticationResponse) {
         super.onPostExecute(authenticationResponse);
         Log.i("BANDOL","IF");
         if(authenticationResponse) {
