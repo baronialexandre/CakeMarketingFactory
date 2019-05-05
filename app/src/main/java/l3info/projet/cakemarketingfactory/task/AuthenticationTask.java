@@ -40,12 +40,14 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
 
             OkHttpClient client = new OkHttpClient();
             Log.i("BANDOL","OKHTTP");
+            Log.i("BANDOL",Contants.API_URL + Contants.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contants.API_PASS);
             Request request = new Request.Builder()
                     .url(Contants.API_URL + Contants.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contants.API_PASS)
                     .build();
 
             Response response = client.newCall(request).execute();
             String rawJson = response.body().string();
+            Log.i("BANDOL",rawJson);
             JSONObject jsonObj = new JSONObject(rawJson);
 
 
@@ -58,11 +60,11 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
 
     protected void onPostExecute(boolean authenticationResponse) {
         super.onPostExecute(authenticationResponse);
-
+        Log.i("BANDOL","IF");
         if(authenticationResponse) {
             feedbackTextView.setText(R.string.login_feedback_success);
             feedbackTextView.setTextColor(Color.GREEN);
-
+            Log.i("BANDOL","true green");
 
             //Redirect to main user activity
             Intent intent;
@@ -82,6 +84,7 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
         } else {
             feedbackTextView.setText(R.string.login_feedback_failed);
             feedbackTextView.setTextColor(Color.RED);
+            Log.i("BANDOL","wrong red");
         }
     }
 }
