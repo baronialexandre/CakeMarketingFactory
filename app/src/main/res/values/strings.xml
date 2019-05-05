@@ -26,4 +26,7 @@
     <string name="advertising">Advertising</string>
     <string name="login_feedback_success">Connecting</string>
     <string name="login_feedback_failed">Connection failed</string>
+    <string name="registration_feedback_success">Registration successful</string>
+    <string name="registration_feedback_already_used">Username already used!</string>
+    <string name="registration_feedback_failed">Registration failed</string>
 </resources>

@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".LogInActivity"
+        <activity android:name=".LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".FactoryActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".RegisterActivity"
+        <activity android:name=".RegistrationActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".WorldActivity"
             android:screenOrientation="portrait"/>

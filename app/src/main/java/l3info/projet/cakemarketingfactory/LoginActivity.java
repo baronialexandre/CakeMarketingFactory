@@ -10,9 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import l3info.projet.cakemarketingfactory.task.AuthenticationTask;
-import android.widget.Toast;
 
-public class LogInActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     Context context;
 
@@ -43,8 +42,8 @@ public class LogInActivity extends AppCompatActivity {
 
 
                 //Changer d'activity
-                //Intent intentApp = new Intent(LogInActivity.this, LoadingActivity.class);
-                //LogInActivity.this.startActivity(intentApp);
+                //Intent intentApp = new Intent(LoginActivity.this, LoadingActivity.class);
+                //LoginActivity.this.startActivity(intentApp);
             }
         });
 
@@ -52,8 +51,8 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Changer d'activity
-                Intent intentApp = new Intent(LogInActivity.this, RegisterActivity.class);
-                LogInActivity.this.startActivity(intentApp);
+                Intent intentApp = new Intent(LoginActivity.this, RegistrationActivity.class);
+                LoginActivity.this.startActivity(intentApp);
             }
         });
 

@@ -24,4 +24,7 @@
     <string name="cancel">Annuler</string>
     <string name="level">Niveau :</string>
     <string name="advertising">Publicité</string>
+    <string name="registration_feedback_success">Inscription réussie</string>
+    <string name="registration_feedback_already_used">Pseudo déja utilisé!</string>
+    <string name="registration_feedback_failed">Erreur d\'inscription</string>
 </resources>
