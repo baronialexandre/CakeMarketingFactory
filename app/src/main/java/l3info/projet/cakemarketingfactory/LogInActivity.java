@@ -17,8 +17,8 @@ public class LogInActivity extends AppCompatActivity {
     Context context;
 
 
-    Button loginRegister, loginConnection;
-    EditText loginLogin, loginPassword;
+    Button register, connection;
+    EditText loginUsername, loginPassword;
     TextView feedbackTextView;
 
 
@@ -28,17 +28,17 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         context = this;
-        loginRegister = findViewById(R.id.loginRegister);
-        loginConnection = findViewById(R.id.loginConnection);
-        loginLogin = findViewById(R.id.loginLogin);
+        register = findViewById(R.id.loginRegister);
+        connection = findViewById(R.id.loginConnection);
+        loginUsername = findViewById(R.id.loginUsername);
         loginPassword = findViewById(R.id.loginPassword);
-        feedbackTextView = findViewById(R.id.login_feedback_message);
+        feedbackTextView = findViewById(R.id.loginFeedbackMessage);
 
-        loginConnection.setOnClickListener(new View.OnClickListener() {
+        connection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Authentification Task
-                AuthenticationTask task = new AuthenticationTask(etLogin.getText().toString(), etPassword.getText().toString(), feedbackTextView, context);
+                AuthenticationTask task = new AuthenticationTask(loginUsername.getText().toString(), loginPassword.getText().toString(), feedbackTextView, context);
                 task.execute();
 
 
@@ -48,7 +48,7 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
-        loginRegister.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Changer d'activity

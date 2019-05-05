@@ -18,7 +18,6 @@
     <string name="cash">€€€€€</string>
     <string name="messages">Messages</string>
     <string name="ok">Ok</string>
-    <string name="advertising">Advertising</string>
     <string name="login_feedback_success">Connexion réussie</string>
     <string name="login_feedback_failed">Echec de connexion</string>
     <string name="date">00/00/0000</string>
