@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/factoryBackground"
     android:background="@drawable/factory_background_1">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,393 +11,341 @@
         android:gravity="center"
         android:orientation="vertical"
         tools:ignore="UselessParent">
-    <LinearLayout
-        android:orientation="vertical"
-        android:gravity="top"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="55dp">
-
-            <ImageView
-                android:id="@+id/ivFactoryBack"
-                android:padding="5dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/ic_button_back"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:contentDescription="@string/empty" />
-        </GridLayout>
-
-
         <LinearLayout
+            android:orientation="vertical"
+            android:gravity="top"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="100dp"
-                android:layout_height="450dp"
-                android:layout_margin="5dp"
-                android:gravity="center_horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="@drawable/popup">
-
-                    <TextView
-                        android:id="@+id/tvFactoryProductionLine1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/unitPerSec"
-                        android:textColor="@color/text_color_states" />
-
-                    <ImageButton
-                        android:id="@+id/bFactoryProductionLine1"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="5dp"
-                        android:src="@drawable/ic_cadena"
-                        android:contentDescription="@string/empty" />
-
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="55dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="@drawable/factory_travelator_1"
-                        android:gravity="center_vertical"
-                        android:id="@+id/llFactoryTravelatorLine1" >
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="104dp"
-                            android:src="@drawable/factory_robot_1"
-                            android:contentDescription="@string/plus"
-                            android:id="@+id/ivFactoryRobotLine1" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="104dp"
-                            android:src="@drawable/factory_oven_1"
-                            android:layout_marginBottom="50dp"
-                            android:layout_marginTop="25dp"
-                            android:contentDescription="@string/plus"
-                            android:id="@+id/ivFactoryOvenLine1" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="top">
-
-                        <Button
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="50dp"
-                            android:text="@string/plus"
-                            android:textColor="@color/factoryButtonGreenText"
-                            android:id="@+id/bFactoryTravelatorLine1" />
-
-                        <Button
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="95dp"
-                            android:text="@string/plus"
-                            android:textColor="@color/factoryButtonGreenText"
-                            android:id="@+id/bFactoryRobotLine1" />
-
-                        <Button
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="115dp"
-                            android:text="@string/plus"
-                            android:textColor="@color/factoryButtonGreenText"
-                            android:id="@+id/bFactoryOvenLine1" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="7dp"
-                android:layout_height="450dp"
-                android:src="@drawable/factory_wall_1"
-                android:id="@+id/aaa"
-                android:contentDescription="@string/plus" />
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="100dp"
-                android:layout_height="450dp"
-                android:layout_margin="5dp"
-                android:gravity="center_horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="@drawable/popup">
-
-                <TextView
-                    android:id="@+id/tvFactoryProductionLine2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/unitPerSec"
-                    android:textColor="@color/text_color_states" />
-
-                <ImageButton
-                    android:id="@+id/bFactoryProductionLine2"
+            android:layout_height="match_parent">
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="55dp">
+                <ImageView
+                    android:id="@+id/factoryBack"
+                    android:padding="5dp"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginBottom="5dp"
-                    android:src="@drawable/ic_cadena"
+                    android:src="@drawable/ic_button_back"
+                    android:layout_row="0"
+                    android:layout_column="0"
                     android:contentDescription="@string/empty" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="55dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="@drawable/factory_travelator_1"
-                        android:gravity="center_vertical"
-                        android:id="@+id/llFactoryTravelatorLine2" >
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="104dp"
-                            android:src="@drawable/factory_robot_1"
-                            android:contentDescription="@string/plus"
-                            android:id="@+id/ivFactoryRobotLine2" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="104dp"
-                            android:src="@drawable/factory_oven_1"
-                            android:layout_marginBottom="50dp"
-                            android:layout_marginTop="25dp"
-                            android:contentDescription="@string/plus"
-                            android:id="@+id/ivFactoryOvenLine2" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="top">
-
-                        <Button
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="50dp"
-                            android:text="@string/plus"
-                            android:textColor="@color/factoryButtonGreenText"
-                            android:id="@+id/bFactoryTravelatorLine2" />
-
-                        <Button
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="95dp"
-                            android:text="@string/plus"
-                            android:textColor="@color/factoryButtonGreenText"
-                            android:id="@+id/bFactoryRobotLine2" />
-
-                        <Button
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="115dp"
-                            android:text="@string/plus"
-                            android:textColor="@color/factoryButtonGreenText"
-                            android:id="@+id/bFactoryOvenLine2" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="7dp"
-                android:layout_height="450dp"
-                android:src="@drawable/factory_wall_1"
-                android:id="@+id/aaca"
-                android:contentDescription="@string/plus"/>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="100dp"
-                android:layout_height="450dp"
-                android:layout_margin="5dp"
-                android:gravity="center_horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:background="@drawable/popup">
-
-                <TextView
-                    android:id="@+id/tvFactoryProductionLine3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/unitPerSec"
-                    android:textColor="@color/text_color_states" />
-
-                <ImageButton
-                    android:id="@+id/bFactoryProductionLine3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginBottom="5dp"
-                    android:src="@drawable/ic_cadena"
-                    android:contentDescription="@string/empty" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="55dp"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:background="@drawable/factory_travelator_1"
-                        android:gravity="center_vertical"
-                        android:id="@+id/llFactoryTravelatorLine3" >
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="104dp"
-                            android:src="@drawable/factory_robot_1"
-                            android:contentDescription="@string/plus"
-                            android:id="@+id/ivFactoryRobotLine3" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="104dp"
-                            android:src="@drawable/factory_oven_1"
-                            android:layout_marginBottom="50dp"
-                            android:layout_marginTop="25dp"
-                            android:contentDescription="@string/plus"
-                            android:id="@+id/ivFactoryOvenLine3" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="top">
-
-                        <Button
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="50dp"
-                            android:text="@string/plus"
-                            android:textColor="@color/factoryButtonGreenText"
-                            android:id="@+id/bFactoryTravelatorLine3" />
-
-                        <Button
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="95dp"
-                            android:text="@string/plus"
-                            android:textColor="@color/factoryButtonGreenText"
-                            android:id="@+id/bFactoryRobotLine3" />
-
-                        <Button
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="115dp"
-                            android:text="@string/plus"
-                            android:textColor="@color/factoryButtonGreenText"
-                            android:id="@+id/bFactoryOvenLine3" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="50dp"
-            android:paddingRight="50dp"
-            android:gravity="center">
-
+            </GridLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/simple_button_disabled"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/stock"
-                    android:textColor="@color/text_color_states"
-                    android:id="@+id/tvFactoryStock"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/text_color_states"
-                    android:id="@+id/tvFactoryStockNumer"/>
-
+                android:gravity="center"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="100dp"
+                    android:layout_height="450dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/popup">
+                        <TextView
+                            android:id="@+id/factoryUnitPerSecondLine1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/unitPerSec"
+                            android:textColor="@color/text_color_states" />
+                        <ImageButton
+                            android:id="@+id/factoryProductionButtonLine1"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/ic_cadena"
+                            android:contentDescription="@string/empty" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:id="@+id/factoryTravelatorLine1"
+                            android:layout_width="55dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:background="@drawable/factory_travelator_1"
+                            android:gravity="center_vertical">
+                            <ImageView
+                                android:id="@+id/factoryRobotLine1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/factory_robot_1"
+                                android:layout_marginTop="20dp"
+                                android:contentDescription="@string/empty"/>
+                            <ImageView
+                                android:id="@+id/factoryOvenLine1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/factory_oven_1"
+                                android:layout_marginTop="20dp"
+                                android:contentDescription="@string/empty"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="top">
+                            <Button
+                                android:id="@+id/factoryTravelatorButtonLine1"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/plus"
+                                android:textAlignment="center"
+                                android:textColor="@color/buttonGreenText"
+                                android:background="@drawable/green_button_selector"/>
+                            <Button
+                                android:id="@+id/factoryRobotButtonLine1"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="85dp"
+                                android:text="@string/plus"
+                                android:textAlignment="center"
+                                android:textColor="@color/buttonGreenText"
+                                android:background="@drawable/green_button_selector" />
+                            <Button
+                                android:id="@+id/factoryOvenButtonLine1"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="85dp"
+                                android:text="@string/plus"
+                                android:textAlignment="center"
+                                android:textColor="@color/buttonGreenText"
+                                android:background="@drawable/green_button_selector" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="7dp"
+                    android:layout_height="450dp"
+                    android:src="@drawable/factory_wall_1"
+                    android:id="@+id/aaa"
+                    android:contentDescription="@string/plus" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="100dp"
+                    android:layout_height="450dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/popup">
+                        <TextView
+                            android:id="@+id/factoryUnitPerSecondLine2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/unitPerSec"
+                            android:textColor="@color/text_color_states" />
+                        <ImageButton
+                            android:id="@+id/factoryProductionButtonLine2"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/ic_cadena"
+                            android:contentDescription="@string/empty" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:id="@+id/factoryTravelatorLine2"
+                            android:layout_width="55dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:background="@drawable/factory_travelator_1"
+                            android:gravity="center_vertical" >
+                            <ImageView
+                                android:id="@+id/factoryRobotLine2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/factory_robot_1"
+                                android:layout_marginTop="20dp"
+                                android:contentDescription="@string/empty" />
+                            <ImageView
+                                android:id="@+id/factoryOvenLine2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/factory_oven_1"
+                                android:layout_marginTop="20dp"
+                                android:contentDescription="@string/empty" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="top">
+                            <Button
+                                android:id="@+id/factoryTravelatorButtonLine2"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/plus"
+                                android:textAlignment="center"
+                                android:textColor="@color/buttonGreenText"
+                                android:background="@drawable/green_button_selector" />
+                            <Button
+                                android:id="@+id/factoryRobotButtonLine2"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="85dp"
+                                android:text="@string/plus"
+                                android:textAlignment="center"
+                                android:textColor="@color/buttonGreenText"
+                                android:background="@drawable/green_button_selector" />
+                            <Button
+                                android:id="@+id/factoryOvenButtonLine2"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="85dp"
+                                android:text="@string/plus"
+                                android:textAlignment="center"
+                                android:textColor="@color/buttonGreenText"
+                                android:background="@drawable/green_button_selector"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="7dp"
+                    android:layout_height="450dp"
+                    android:src="@drawable/factory_wall_1"
+                    android:id="@+id/aaca"
+                    android:contentDescription="@string/plus"/>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="100dp"
+                    android:layout_height="450dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center_horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/popup">
+                        <TextView
+                            android:id="@+id/factoryUnitPerSecondLine3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/unitPerSec"
+                            android:textColor="@color/text_color_states" />
+                        <ImageButton
+                            android:id="@+id/factoryProductionButtonLine3"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginBottom="5dp"
+                            android:src="@drawable/ic_cadena"
+                            android:contentDescription="@string/empty" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:id="@+id/factoryTravelatorLine3"
+                            android:layout_width="55dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:background="@drawable/factory_travelator_1"
+                            android:gravity="center_vertical" >
+                            <ImageView
+                                android:id="@+id/factoryRobotLine3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/factory_robot_1"
+                                android:layout_marginTop="20dp"
+                                android:contentDescription="@string/empty" />
+                            <ImageView
+                                android:id="@+id/factoryOvenLine3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/factory_oven_1"
+                                android:layout_marginTop="20dp"
+                                android:contentDescription="@string/empty" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="top">
+                            <Button
+                                android:id="@+id/factoryTravelatorButtonLine3"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/plus"
+                                android:textAlignment="center"
+                                android:textColor="@color/buttonGreenText"
+                                android:background="@drawable/green_button_selector" />
+                            <Button
+                                android:id="@+id/factoryRobotButtonLine3"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="85dp"
+                                android:text="@string/plus"
+                                android:textAlignment="center"
+                                android:textColor="@color/buttonGreenText"
+                                android:background="@drawable/green_button_selector" />
+                            <Button
+                                android:id="@+id/factoryOvenButtonLine3"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="85dp"
+                                android:text="@string/plus"
+                                android:textAlignment="center"
+                                android:textColor="@color/buttonGreenText"
+                                android:background="@drawable/green_button_selector" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-
-            <Button
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="10dp"
-                android:text="@string/plus"
-                android:textColor="@color/factoryButtonGreenText"
-                android:id="@+id/bFactoryStock" />
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/simple_button_disabled"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/factoryStockText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stock"
+                        android:textColor="@color/text_color_states"/>
+                </LinearLayout>
+                <Button
+                    android:id="@+id/factoryButtonStock"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="10dp"
+                    android:textAlignment="center"
+                    android:text="@string/plus"
+                    android:textColor="@color/buttonGreenText"
+                    android:background="@drawable/green_button_selector" />
+            </LinearLayout>
         </LinearLayout>
-
-    </LinearLayout>
     </RelativeLayout>
 </FrameLayout>

@@ -6,36 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LogInActivity">
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:src="@drawable/title"
         android:contentDescription="@string/empty"
         android:layout_marginBottom="100dp"/>
-
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="20dp">
-
         <EditText
-            android:id="@+id/etMainLogin"
+            android:id="@+id/loginLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="@string/login"
+            android:background="@drawable/edittext_selector"
             tools:ignore="Autofill" />
-
         <EditText
-            android:id="@+id/etMainPassword"
+            android:id="@+id/loginPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
             android:hint="@string/password"
+            android:background="@drawable/edittext_selector"
             tools:ignore="Autofill" />
 
         <TextView
@@ -45,33 +43,24 @@
             android:visibility="invisible"/>
 
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="20dp">
-
         <Button
-            android:id="@+id/bMainRegister"
+            android:id="@+id/loginRegister"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginEnd="15dp"
             android:text="@string/register"
             tools:ignore="ButtonStyle" />
-
         <Button
-            android:id="@+id/bMailConnection"
+            android:id="@+id/loginConnection"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_marginStart="15dp"
             android:text="@string/connection"
             tools:ignore="ButtonStyle" />
-
     </LinearLayout>
-
-
-
-
-
 </LinearLayout>

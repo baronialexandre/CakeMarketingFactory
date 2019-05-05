@@ -10,15 +10,15 @@
    <color name="titleColorYellow">#fbdf00</color>
    <color name="titleColorBlue">#00a8ee</color>
 
-   <color name="factoryButtonGreen">#60ce54</color>
+   <color name="factoryButtonGreen">#60CE54</color>
    <color name="factoryButtonGreenShadow">#507a4b</color>
-   <color name="factoryButtonGreenText">#b3ffaa</color>
+   <color name="buttonGreenText">#C8FFC8</color>
    <color name="factoryButtonYellow">#e2b810</color>
    <color name="factoryButtonYellowShadow">#837232</color>
-   <color name="factoryButtonYellowText">#fff07b</color>
+   <color name="buttonYellowText">#fff07b</color>
    <color name="factoryButtonRed">#ce6054</color>
    <color name="factoryButtonRedShadow">#7a4f4b</color>
-   <color name="factoryButtonRedText">#ffb2aa</color>
+   <color name="buttonRedText">#ffb2aa</color>
 
    <color name="transparent">#00000000</color>
 

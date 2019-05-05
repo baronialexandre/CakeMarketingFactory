@@ -10,13 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import l3info.projet.cakemarketingfactory.task.AuthenticationTask;
+import android.widget.Toast;
 
 public class LogInActivity extends AppCompatActivity {
 
     Context context;
 
-    Button bRegister, bConnection;
-    EditText etLogin, etPassword;
+
+    Button loginRegister, loginConnection;
+    EditText loginLogin, loginPassword;
     TextView feedbackTextView;
 
 
@@ -26,12 +28,13 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         context = this;
-        bRegister = findViewById(R.id.bMainRegister);
-        bConnection = findViewById(R.id.bMailConnection);
-        etLogin = findViewById(R.id.etMainLogin);
-        etPassword = findViewById(R.id.etMainPassword);
+        loginRegister = findViewById(R.id.loginRegister);
+        loginConnection = findViewById(R.id.loginConnection);
+        loginLogin = findViewById(R.id.loginLogin);
+        loginPassword = findViewById(R.id.loginPassword);
         feedbackTextView = findViewById(R.id.login_feedback_message);
-        bConnection.setOnClickListener(new View.OnClickListener() {
+
+        loginConnection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Authentification Task
@@ -45,7 +48,7 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
 
-        bRegister.setOnClickListener(new View.OnClickListener() {
+        loginRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Changer d'activity
@@ -53,6 +56,7 @@ public class LogInActivity extends AppCompatActivity {
                 LogInActivity.this.startActivity(intentApp);
             }
         });
+
 
     }
 }

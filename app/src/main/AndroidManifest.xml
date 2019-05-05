@@ -5,24 +5,31 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_donut"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_donut"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".LogInActivity">
+        <activity android:name=".LogInActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoadingActivity" />
-        <activity android:name=".FactoryActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".WorldActivity" />
-        <activity android:name=".MessagesActivity" />
-        <activity android:name=".MarketActivity" />
+        <activity android:name=".LoadingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FactoryActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".WorldActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MessagesActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MarketActivity"
+            android:screenOrientation="portrait"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

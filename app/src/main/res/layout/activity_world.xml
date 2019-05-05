@@ -6,13 +6,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/world_background"
     android:orientation="vertical">
-
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="40dp">
-
         <ImageView
-            android:id="@+id/ivWorldSettings"
+            android:id="@+id/worldSettings"
             android:padding="5dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -20,10 +18,8 @@
             android:layout_row="0"
             android:layout_column="0"
             android:contentDescription="@string/empty" />
-
-
         <ImageView
-            android:id="@+id/ivWorldLetter"
+            android:id="@+id/worldLetter"
             android:padding="5dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
@@ -33,7 +29,6 @@
             android:contentDescription="@string/empty" />
 
     </GridLayout>
-
     <!-- Zone du ciel -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,13 +61,11 @@
             android:layout_marginStart="20dp"
             android:contentDescription="@string/empty" />
     </LinearLayout>
-
     <!-- Fin de la zone ciel -->
     <!-- Zone verte -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="380dp">
-
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -85,7 +78,7 @@
                 android:src="@drawable/world_factory_area"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldSign1"
+                android:id="@+id/worldSign1"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -94,7 +87,7 @@
                 android:visibility="invisible"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldFactory1"
+                android:id="@+id/worldFactory1"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -103,8 +96,6 @@
                 android:visibility="visible"
                 android:contentDescription="@string/empty" />
         </FrameLayout>
-
-
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -117,7 +108,7 @@
                 android:src="@drawable/world_factory_area"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldSign2"
+                android:id="@+id/worldSign2"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -126,7 +117,7 @@
                 android:visibility="visible"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldFactory2"
+                android:id="@+id/worldFactory2"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -135,7 +126,6 @@
                 android:visibility="invisible"
                 android:contentDescription="@string/empty" />
         </FrameLayout>
-
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -148,7 +138,7 @@
                 android:src="@drawable/world_factory_area"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldSign3"
+                android:id="@+id/worldSign3"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -157,7 +147,7 @@
                 android:visibility="visible"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldFactory3"
+                android:id="@+id/worldFactory3"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -166,7 +156,6 @@
                 android:visibility="invisible"
                 android:contentDescription="@string/empty" />
         </FrameLayout>
-
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -179,7 +168,7 @@
                 android:src="@drawable/world_factory_area"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldSign4"
+                android:id="@+id/worldSign4"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -188,7 +177,7 @@
                 android:visibility="visible"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldFactory4"
+                android:id="@+id/worldFactory4"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -197,7 +186,6 @@
                 android:visibility="invisible"
                 android:contentDescription="@string/empty" />
         </FrameLayout>
-
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -210,7 +198,7 @@
                 android:src="@drawable/world_factory_area"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldSign5"
+                android:id="@+id/worldSign5"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -219,7 +207,7 @@
                 android:visibility="visible"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldFactory5"
+                android:id="@+id/worldFactory5"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -228,7 +216,6 @@
                 android:visibility="invisible"
                 android:contentDescription="@string/empty" />
         </FrameLayout>
-
         <FrameLayout
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -241,7 +228,7 @@
                 android:src="@drawable/world_factory_area"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldSign6"
+                android:id="@+id/worldSign6"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -250,7 +237,7 @@
                 android:visibility="visible"
                 android:contentDescription="@string/empty" />
             <ImageView
-                android:id="@+id/ivWorldFactory6"
+                android:id="@+id/worldFactory6"
                 android:layout_gravity="bottom"
                 android:paddingBottom="15dp"
                 android:layout_width="match_parent"
@@ -259,43 +246,37 @@
                 android:visibility="invisible"
                 android:contentDescription="@string/empty" />
         </FrameLayout>
-
     </RelativeLayout>
-
     <!-- Fin de la zone verte -->
     <!-- Zone bottom -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
             android:orientation="horizontal"
             android:background="@drawable/popup"
             android:gravity="center"
             tools:ignore="UselessParent">
-
             <ImageView
-                android:id="@+id/ivWorldMarket"
+                android:id="@+id/worldMarket"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:padding="10dp"
                 android:src="@drawable/ic_market"
                 android:contentDescription="@string/empty" />
-
             <ImageView
+                android:id="@+id/worldProfile"
                 android:src="@drawable/ic_profil"
-                android:id="@+id/ivWorldProfile"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="5dp"
                 android:contentDescription="@string/empty" />
-
             <EditText
-                android:id="@+id/etWorldCapital"
+                android:id="@+id/worldCapital"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:enabled="false"
@@ -306,9 +287,6 @@
                 tools:ignore="Autofill,LabelFor"
                 android:background="@drawable/hours_frame"
                 android:padding="10dp"/>
-
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

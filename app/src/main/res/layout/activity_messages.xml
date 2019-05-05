@@ -5,22 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:padding="5dp"
         android:orientation="horizontal"
         tools:ignore="UseCompoundDrawables">
-
         <ImageView
-            android:id="@+id/ivMessagesBack"
+            android:id="@+id/messagesBack"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_button_back"
             android:contentDescription="@string/empty"
             />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,16 +28,16 @@
             android:textColor="@color/text_color_states"
             android:background="@drawable/popup"
             android:enabled="false"/>
-
     </LinearLayout>
-
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvMessages"
-        android:padding="10dp"
+        android:id="@+id/messages"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/popup_side"
         android:orientation="vertical"
         android:gravity="top"/>
-
 </LinearLayout>

@@ -4,13 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/market_background">
-
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="55dp">
-
         <ImageView
-            android:id="@+id/ivMarketBack"
+            android:id="@+id/marketBack"
             android:padding="5dp"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -18,44 +16,38 @@
             android:layout_row="0"
             android:layout_column="0"
             android:contentDescription="@string/empty" />
-
-
-        <FrameLayout android:layout_width="120dp"
+        <RelativeLayout
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:layout_column="1"
             android:layout_row="0"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"
+            android:background="@drawable/hours_frame2">
             <TextView
-                android:id="@+id/tvMarketHours"
+                android:id="@+id/marketHours"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/hours_frame2"
+                android:layout_height="wrap_content"
                 android:text="@string/Hours"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:textColor="@color/text_color_states"
                 android:enabled="false"/>
-        </FrameLayout>
-
-
+        </RelativeLayout>
     </GridLayout>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="10dp">
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
@@ -68,7 +60,6 @@
                     android:textAlignment="center"
                     android:background="@drawable/popup"/>
             </RelativeLayout>
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
@@ -81,7 +72,6 @@
                     android:textAlignment="center"
                     android:background="@drawable/popup"/>
             </RelativeLayout>
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
@@ -94,7 +84,6 @@
                     android:textAlignment="center"
                     android:background="@drawable/popup"/>
             </RelativeLayout>
-
         </LinearLayout>
         <FrameLayout
             android:layout_width="match_parent"
@@ -104,28 +93,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/market_graph_background">
-
             </FrameLayout>
+            <!-- Graph -->
+            <!-- Graph -->
+            <!-- Graph -->
+            <!-- Graph -->
             <!-- Graph -->
         </FrameLayout>
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_margin="10dp">
-        <TextView
-            android:id="@+id/tvMarketSelectedPrice"
+        <RelativeLayout
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:background="@drawable/hours_frame"
-            android:text="@string/cash"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textColor="@color/text_color_states"
-            android:enabled="false"/>
+            android:gravity="center">
+            <TextView
+                android:id="@+id/marketSelectedPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/hours_frame"
+                android:text="@string/cash"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textColor="@color/text_color_states"
+                android:enabled="false"/>
+        </RelativeLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -134,23 +130,30 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_margin="10dp">
-
         <ImageButton
-            android:id="@+id/bMarketCookie"
+            android:id="@+id/marketCookie"
+            android:layout_margin="5dp"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_cookie" />
+            android:src="@drawable/ic_cookie"
+            android:background="@drawable/simple_button_enabled"
+            android:contentDescription="@string/empty" />
         <ImageButton
-            android:id="@+id/bMarketCupcake"
+            android:id="@+id/marketCupcake"
+            android:layout_margin="5dp"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_cupcake" />
+            android:src="@drawable/ic_cupcake"
+            android:background="@drawable/simple_button_disabled"
+            android:contentDescription="@string/empty" />
         <ImageButton
-            android:id="@+id/bMarketDonut"
+            android:id="@+id/marketDonut"
+            android:layout_margin="5dp"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_donut" />
-
+            android:src="@drawable/ic_donut"
+            android:background="@drawable/simple_button_disabled"
+            android:contentDescription="@string/empty" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -158,10 +161,10 @@
         android:orientation="horizontal"
         android:gravity="center">
         <Button
-            android:id="@+id/bMarketAdvertising"
+            android:id="@+id/marketAdvertising"
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:text="@string/advertising"/>
+            android:text="@string/advertising" />
     </LinearLayout>
 
 

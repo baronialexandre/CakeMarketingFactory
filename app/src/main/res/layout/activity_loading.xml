@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,14 +13,12 @@
         android:layout_margin="20dp"
         android:padding="20dp"
         tools:ignore="UselessParent">
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:src="@drawable/title"
             android:contentDescription="@string/empty"
             android:layout_marginBottom="100dp"/>
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -31,15 +28,13 @@
             android:layout_marginLeft="20dp"
             android:padding="10dp"
             android:gravity="center">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/loading"
                 android:textColor="@color/text_color_states"/>
-
             <ProgressBar
-                android:id="@+id/pbLoading"
+                android:id="@+id/loading"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="250dp"
                 android:layout_height="10dp"
@@ -48,35 +43,21 @@
                 android:max="100"
                 android:progress="00"
                 android:progressDrawable="@color/buttonText" />
-
         </LinearLayout>
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/popup"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:padding="10dp"
-            android:layout_marginTop="20dp">
-
+            android:layout_margin="10dp"
+            android:padding="10dp">
+            <!-- Optionnel -->
             <TextView
-                android:id="@+id/tvLoadingMessage"
+                android:id="@+id/loadingMessage"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
                 android:text="@string/langue_test2"
                 android:textAlignment="center"
                 android:textColor="@color/buttonTextDisable"/>
-
         </FrameLayout>
-
-
-
     </LinearLayout>
-
-
-
 </RelativeLayout>
