@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 
 import l3info.projet.cakemarketingfactory.LoginActivity;
 import l3info.projet.cakemarketingfactory.R;
@@ -23,19 +24,20 @@ public class RegistrationTask extends AsyncTask<String, Void, Boolean>{
 
     private static final String TAG = "RegistrationTask";
 
-    private final Context ctx;
     private final String email;
     private final String username;
     private final String password;
-    private final TextView feedbackTextView;
+    private final WeakReference<TextView> feedbackTextView;
+    private final WeakReference<Context> ctx;
     private Boolean alreadyUsed;
 
     public RegistrationTask(String email, String username, String password, TextView feedbackTextView, Context ctx) {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.feedbackTextView = feedbackTextView;
-        this.ctx = ctx;
+
+        this.feedbackTextView = new WeakReference<>(feedbackTextView);
+        this.ctx = new WeakReference<>(ctx);
         alreadyUsed = false;
     }
 
@@ -51,7 +53,10 @@ public class RegistrationTask extends AsyncTask<String, Void, Boolean>{
                     .build();
 
             Response response = client.newCall(request).execute();
-            String rawJson = response.body().string();
+            String rawJson = null;
+            if (response.body() != null) {
+                rawJson = response.body().string();
+            }
             Log.i("BANDOL", rawJson);
             JSONObject jsonObj = new JSONObject(rawJson);
             if (jsonObj.has("alreadyUsed"))
@@ -71,6 +76,8 @@ public class RegistrationTask extends AsyncTask<String, Void, Boolean>{
     @Override
     protected void onPostExecute(Boolean registrationResponse) {
         super.onPostExecute(registrationResponse);
+        Context ctx = this.ctx.get();
+        TextView feedbackTextView = this.feedbackTextView.get();
         Log.i("BANDOL","IF");
         if(registrationResponse) {
             feedbackTextView.setText(R.string.registration_feedback_success);

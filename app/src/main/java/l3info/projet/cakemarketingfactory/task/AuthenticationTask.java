@@ -7,7 +7,9 @@ import android.util.Log;
 import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.WorldActivity;
@@ -22,15 +24,15 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
 
     private final String username;
     private final String password;
-    private final TextView feedbackTextView;
-    private final Context ctx;
+    private final WeakReference<TextView> feedbackTextView;
+    private final WeakReference<Context> ctx;
 
     public AuthenticationTask(String username, String password, TextView feedbackTextView, Context ctx) {
         this.username = username;
         this.password = password;
 
-        this.feedbackTextView = feedbackTextView;
-        this.ctx = ctx;
+        this.feedbackTextView = new WeakReference<>(feedbackTextView);
+        this.ctx = new WeakReference<>(ctx);
     }
 
     @Override
@@ -45,7 +47,10 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
                     .build();
 
             Response response = client.newCall(request).execute();
-            String rawJson = response.body().string();
+            String rawJson = null;
+            if (response.body() != null) {
+                rawJson = response.body().string();
+            }
             Log.i("BANDOL", rawJson);
             JSONObject jsonObj = new JSONObject(rawJson);
 
@@ -60,6 +65,8 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
     @Override
     protected void onPostExecute(Boolean authenticationResponse) {
         super.onPostExecute(authenticationResponse);
+        Context ctx = this.ctx.get();
+        TextView feedbackTextView = this.feedbackTextView.get();
         Log.i("BANDOL","IF");
         if(authenticationResponse) {
             feedbackTextView.setText(R.string.login_feedback_success);
