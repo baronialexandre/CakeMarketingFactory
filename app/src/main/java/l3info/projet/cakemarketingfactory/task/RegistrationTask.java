@@ -2,6 +2,7 @@ package l3info.projet.cakemarketingfactory.task;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,7 +16,7 @@ import java.lang.ref.WeakReference;
 
 import l3info.projet.cakemarketingfactory.LoginActivity;
 import l3info.projet.cakemarketingfactory.R;
-import l3info.projet.cakemarketingfactory.utils.Contants;
+import l3info.projet.cakemarketingfactory.utils.Contents;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -47,9 +48,9 @@ public class RegistrationTask extends AsyncTask<String, Void, Boolean>{
         try {
             OkHttpClient client = new OkHttpClient();
             Log.i("BANDOL", "OKHTTP");
-            Log.i("BANDOL", Contants.API_URL + Contants.AUTH_API_URL + "?username=" + username + "&email=" + email + "&password=" + password + "&apipass=" + Contants.API_PASS);
+            Log.i("BANDOL", Contents.API_URL + Contents.AUTH_API_URL + "?username=" + username + "&email=" + email + "&password=" + password + "&apipass=" + Contents.API_PASS);
             Request request = new Request.Builder()
-                    .url(Contants.API_URL + Contants.REG_API_URL + "?username=" + username + "&email=" + email + "&password=" + password + "&apipass=" + Contants.API_PASS)
+                    .url(Contents.API_URL + Contents.REG_API_URL + "?username=" + username + "&email=" + email + "&password=" + password + "&apipass=" + Contents.API_PASS)
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -85,6 +86,13 @@ public class RegistrationTask extends AsyncTask<String, Void, Boolean>{
             Log.i("BANDOL","true green");
 
             // validation du compte???
+
+            //Store username and pwd into shared preferences
+            SharedPreferences shr = ctx.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+            SharedPreferences.Editor ed = shr.edit();
+            ed.putString("username",username);
+            ed.putString("password",password);
+            ed.apply();
 
             //Redirect to main user activity
             Intent intent;
