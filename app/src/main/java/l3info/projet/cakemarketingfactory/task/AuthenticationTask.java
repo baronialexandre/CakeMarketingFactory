@@ -42,7 +42,6 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
         try {
 
             OkHttpClient client = new OkHttpClient();
-            Log.i("BANDOL", "OKHTTP");
             Log.i("BANDOL", Contents.API_URL + Contents.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contents.API_PASS);
             Request request = new Request.Builder()
                     .url(Contents.API_URL + Contents.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contents.API_PASS)
@@ -69,24 +68,30 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
         super.onPostExecute(authenticationResponse);
         Context ctx = this.ctx.get();
         TextView feedbackTextView = this.feedbackTextView.get();
-        Log.i("BANDOL","IF");
         if(authenticationResponse) {
             feedbackTextView.setText(R.string.login_feedback_success);
             feedbackTextView.setTextColor(Color.GREEN);
             Log.i("BANDOL","true green");
 
             //Store id into shared preferences
+            //Store username and pwd into shared preferences
+
             SharedPreferences shr = ctx.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
             SharedPreferences.Editor ed = shr.edit();
             ed.putLong("userId",userId);
+            ed.putString("username",username);
+            ed.putString("password",password);
             ed.apply();
 
-            //Enter world requete ici ou dans on create world activity?
+            //Enter world Task ici ou dans on create world activity?
+            EnterWorldTask task = new EnterWorldTask(userId, ctx);
+            task.execute();
+
 
             //Redirect to main user activity
-            Intent intent;
-            intent = new Intent(ctx, WorldActivity.class);
-            ctx.startActivity(intent);
+            //Intent intent;
+            //intent = new Intent(ctx, WorldActivity.class);
+            //ctx.startActivity(intent);
 
         } else {
             feedbackTextView.setText(R.string.login_feedback_failed);

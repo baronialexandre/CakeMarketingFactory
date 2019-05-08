@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.task.EnterWorldTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 
 public class WorldActivity  extends AppCompatActivity {
@@ -26,9 +27,13 @@ public class WorldActivity  extends AppCompatActivity {
         context = this;
 
         //access to the userId in shared preferences
-        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-        long id = shr.getLong("userId",0L);
-        Log.i("BANDOL","world sharedprefid:"+id );
+        //SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        //long id = shr.getLong("userId",0L);
+        //Log.i("BANDOL","world sharedprefid:"+id );
+        //EnterWorldTask ici ou dans auth task
+        //EnterWorldTask task = new EnterWorldTask(id, context);
+        //task.execute();
+
 
 
         ImageView worldFactory1 = findViewById(R.id.worldFactory1);

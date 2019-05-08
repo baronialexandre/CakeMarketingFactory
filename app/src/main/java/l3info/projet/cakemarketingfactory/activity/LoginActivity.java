@@ -46,8 +46,6 @@ public class LoginActivity extends AppCompatActivity {
             AuthenticationTask task = new AuthenticationTask(loginUsername.getText().toString(), loginPassword.getText().toString(), feedbackTextView, context);
             task.execute();
         }
-        Log.i("BANDOL","login sharedprefid user:"+username );
-        Log.i("BANDOL","login sharedprefid pass:"+password );
 
         connection.setOnClickListener(view -> {
             //Authentification Task

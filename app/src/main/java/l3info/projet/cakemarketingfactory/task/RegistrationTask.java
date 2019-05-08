@@ -47,7 +47,6 @@ public class RegistrationTask extends AsyncTask<String, Void, Boolean>{
 
         try {
             OkHttpClient client = new OkHttpClient();
-            Log.i("BANDOL", "OKHTTP");
             Log.i("BANDOL", Contents.API_URL + Contents.AUTH_API_URL + "?username=" + username + "&email=" + email + "&password=" + password + "&apipass=" + Contents.API_PASS);
             Request request = new Request.Builder()
                     .url(Contents.API_URL + Contents.REG_API_URL + "?username=" + username + "&email=" + email + "&password=" + password + "&apipass=" + Contents.API_PASS)
@@ -79,7 +78,6 @@ public class RegistrationTask extends AsyncTask<String, Void, Boolean>{
         super.onPostExecute(registrationResponse);
         Context ctx = this.ctx.get();
         TextView feedbackTextView = this.feedbackTextView.get();
-        Log.i("BANDOL","IF");
         if(registrationResponse) {
             feedbackTextView.setText(R.string.registration_feedback_success);
             feedbackTextView.setTextColor(Color.GREEN);
