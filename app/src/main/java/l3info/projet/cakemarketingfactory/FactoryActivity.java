@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.Objects;
 
+import l3info.projet.cakemarketingfactory.utils.ImageContent;
+
 public class FactoryActivity extends AppCompatActivity {
     Context context;
     @Override
@@ -22,45 +24,65 @@ public class FactoryActivity extends AppCompatActivity {
         context = this;
 
         ImageView factoryBack = findViewById(R.id.factoryBack);
-        factoryBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Changer d'activity
-                Intent intentApp = new Intent(FactoryActivity.this, WorldActivity.class);
-                FactoryActivity.this.startActivity(intentApp);
-            }
+        factoryBack.setOnClickListener(view -> {
+            //Changer d'activity
+            Intent intentApp = new Intent(FactoryActivity.this, WorldActivity.class);
+            FactoryActivity.this.startActivity(intentApp);
         });
 
-
-        Button factoryTravelatorButtonLine1 = findViewById(R.id.factoryTravelatorButtonLine1);
-        factoryTravelatorButtonLine1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openPopupUpgrade();
-            }
+        Button factoryBeltButtonLine1 = findViewById(R.id.factoryBeltButtonLine1);
+        factoryBeltButtonLine1.setOnClickListener(view -> {
+            int level = 0;
+            openPopupUpgrade(level, ImageContent.beltImagesID[level]);
         });
+        Button factoryRobotButtonLine2 = findViewById(R.id.factoryRobotButtonLine1);
+        factoryRobotButtonLine2.setOnClickListener(view -> {
+            int level = 0;
+            openPopupUpgrade(level, ImageContent.robotImagesID[level]);
+        });
+
+        Button factoryButtonStock = findViewById(R.id.factoryButtonStock);
+        factoryButtonStock.setOnClickListener(v -> {
+            int level = 0;
+            openPopupUpgrade(level, R.drawable.title);
+        });
+
+        Button sell = findViewById(R.id.factorySell);
+        sell.setOnClickListener(v -> openPopupSell(context));
+
     }
 
-    void openPopupUpgrade()
+    //exemple
+    void openPopupUpgrade(int level, int res)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_upgrade);
         Button popupUpgradeCancel = dialog.findViewById(R.id.popupUpgradeCancel);
-        popupUpgradeCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        popupUpgradeCancel.setOnClickListener(v -> dialog.dismiss());
 
         TextView popupUpgradeMessage = dialog.findViewById(R.id.popupUpgradeMessage);
-        popupUpgradeMessage.setText("Le prix c'est le prix !\nSi tu veux acheter... vend\nDU GATEAU !");
+        popupUpgradeMessage.setText("");
 
         TextView popupUpgradeLevel = dialog.findViewById(R.id.popupUpgradeLevel);
-        popupUpgradeLevel.setText(getString(R.string.level) + " 1");
+        String levelText = getString(R.string.level) + level;
+        popupUpgradeLevel.setText(levelText);
+
 
         ImageView popupUpgradeImage = dialog.findViewById(R.id.popupUpgradeImage);
-        popupUpgradeImage.setImageResource(R.drawable.factory_travelator_1);
+        popupUpgradeImage.setImageResource(res);
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    //exemple
+    void openPopupSell(Context context)
+    {
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.popup_market_sell);
+        ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
+        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);

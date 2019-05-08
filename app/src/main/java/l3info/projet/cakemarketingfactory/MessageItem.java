@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Créé par Loïc Forestier le 02/05/2019 !
  */
-public class MessageItem {
+class MessageItem {
     private int imageResource;
     private String title;
     private String message;

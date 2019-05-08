@@ -30,13 +30,10 @@ public class MessagesActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_messages);
 
         ImageView ivBack = findViewById(R.id.messagesBack);
-        ivBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Changer d'activity
-                Intent intentApp = new Intent(MessagesActivity.this, WorldActivity.class);
-                MessagesActivity.this.startActivity(intentApp);
-            }
+        ivBack.setOnClickListener(view -> {
+            //Changer d'activity
+            Intent intentApp = new Intent(MessagesActivity.this, WorldActivity.class);
+            MessagesActivity.this.startActivity(intentApp);
         });
 
         initMessageList();
@@ -85,12 +82,9 @@ public class MessagesActivity  extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(new MessageAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                itemRead(position); //lu
-                itemOpen(position); //open large
-            }
+        adapter.setOnItemClickListener(position -> {
+            itemRead(position); //lu
+            itemOpen(position); //open large
         });
     }
 
@@ -108,12 +102,7 @@ public class MessagesActivity  extends AppCompatActivity {
         dialog.setContentView(R.layout.popup_message);
 
         ImageView ivPopupMessageClose = dialog.findViewById(R.id.popupMessageClose);
-        ivPopupMessageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        ivPopupMessageClose.setOnClickListener(v -> dialog.dismiss());
 
         TextView tvPopupMessageTitle = dialog.findViewById(R.id.popupMessageTitle);
         tvPopupMessageTitle.setText(title);

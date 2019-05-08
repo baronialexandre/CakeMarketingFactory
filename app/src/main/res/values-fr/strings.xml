@@ -27,4 +27,11 @@
     <string name="registration_feedback_success">Inscription réussie</string>
     <string name="registration_feedback_already_used">Pseudo déja utilisé!</string>
     <string name="registration_feedback_failed">Erreur d\'inscription</string>
+    <string name="sell">Vendre</string>
+    <string name="selling">Selling</string>
+    <string name="SellCookies">Sell all the cookies</string>
+    <string name="sellDonuts">Sell all the donuts</string>
+    <string name="sellCupcakes">Sell all the cupcakes</string>
+    <string name="number">000</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

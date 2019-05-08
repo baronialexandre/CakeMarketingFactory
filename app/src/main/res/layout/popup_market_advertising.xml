@@ -22,6 +22,19 @@
                 android:src="@drawable/ic_button_back"
                 android:contentDescription="@string/empty"
                 />
+
+            <FrameLayout
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:padding="5dp">
+                <ImageButton
+                    android:id="@+id/popupMarketAdvertisingInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@android:drawable/ic_menu_info_details"
+                    android:contentDescription="@string/empty" />
+            </FrameLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -51,8 +64,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <RelativeLayout
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:gravity="center"
                     android:rotation="90">
                     <ProgressBar
@@ -62,15 +75,14 @@
                         android:layout_height="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:max="100"
-                        android:progress="0"
-                        android:progressDrawable="@color/buttonText"/>
+                        android:max="100"/>
                 </RelativeLayout>
                 <ImageButton
                     android:id="@+id/popupMarketAdvertisingCookie"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/ic_cookie"/>
+                    android:src="@drawable/ic_cookie"
+                    android:contentDescription="@string/empty" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -78,8 +90,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <RelativeLayout
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:gravity="center"
                     android:rotation="90">
                     <ProgressBar
@@ -89,15 +101,14 @@
                         android:layout_height="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:max="100"
-                        android:progress="00"
-                        android:progressDrawable="@color/buttonText"/>
+                        android:max="100"/>
                 </RelativeLayout>
                 <ImageButton
                     android:id="@+id/popupMarketAdvertisingCupcake"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/ic_cupcake"/>
+                    android:src="@drawable/ic_cupcake"
+                    android:contentDescription="@string/empty" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -105,8 +116,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <RelativeLayout
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:gravity="center"
                     android:rotation="90">
                     <ProgressBar
@@ -116,26 +127,14 @@
                         android:layout_height="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:max="100"
-                        android:progress="00"
-                        android:progressDrawable="@color/buttonText"/>
+                        android:max="100"/>
                 </RelativeLayout>
                 <ImageButton
                     android:id="@+id/popupMarketAdvertisingDonut"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/ic_donut"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
-                <ImageButton
-                    android:id="@+id/popupMarketAdvertisingInfo"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@android:drawable/ic_menu_info_details" />
+                    android:src="@drawable/ic_donut"
+                    android:contentDescription="@string/empty" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

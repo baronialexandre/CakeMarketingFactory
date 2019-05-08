@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -110,7 +111,8 @@
         <RelativeLayout
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            tools:ignore="UselessParent">
             <TextView
                 android:id="@+id/marketSelectedPrice"
                 android:layout_width="wrap_content"
@@ -136,7 +138,6 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_cookie"
-            android:background="@drawable/simple_button_enabled"
             android:contentDescription="@string/empty" />
         <ImageButton
             android:id="@+id/marketCupcake"
@@ -144,7 +145,6 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_cupcake"
-            android:background="@drawable/simple_button_disabled"
             android:contentDescription="@string/empty" />
         <ImageButton
             android:id="@+id/marketDonut"
@@ -152,7 +152,6 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_donut"
-            android:background="@drawable/simple_button_disabled"
             android:contentDescription="@string/empty" />
     </LinearLayout>
     <LinearLayout
@@ -164,9 +163,18 @@
             android:id="@+id/marketAdvertising"
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:text="@string/advertising" />
+            android:text="@string/advertising"
+            android:layout_margin="5dp"
+            android:textColor="@color/buttonGreenText"
+            android:background="@drawable/green_button_selector"/>
+        <Button
+            android:id="@+id/marketSell"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:text="@string/sell"
+            android:layout_margin="5dp"
+            android:textColor="@color/buttonGreenText"
+            android:background="@drawable/green_button_selector"/>
     </LinearLayout>
-
-
 
 </LinearLayout>

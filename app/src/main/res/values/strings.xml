@@ -18,7 +18,7 @@
     <string name="validate">Validate</string>
     <string name="cash">$$$$$</string>
     <string name="messages">Messages</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="Hours" translatable="false">13:37</string>
     <string name="date">00/00/0000</string>
     <string name="cancel">Cancel</string>
@@ -29,4 +29,11 @@
     <string name="registration_feedback_success">Registration successful</string>
     <string name="registration_feedback_already_used">Username already used!</string>
     <string name="registration_feedback_failed">Registration failed</string>
+    <string name="sell">Sell</string>
+    <string name="selling">Selling</string>
+    <string name="SellCookies">Sell all the cookies</string>
+    <string name="sellDonuts">Sell all the donuts</string>
+    <string name="sellCupcakes">Sell all the cupcakes</string>
+    <string name="number">000</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

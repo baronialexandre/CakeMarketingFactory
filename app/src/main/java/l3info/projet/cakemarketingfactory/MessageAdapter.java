@@ -47,14 +47,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             title = itemView.findViewById(R.id.messageItemTitle);
             message = itemView.findViewById(R.id.messageItemMessage);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(listener != null) {
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION)
-                            listener.onItemClick(position); //renvoie l'id du message cliqué
-                    }
+            itemView.setOnClickListener(view -> {
+                if(listener != null) {
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION)
+                        listener.onItemClick(position); //renvoie l'id du message cliqué
                 }
             });
         }

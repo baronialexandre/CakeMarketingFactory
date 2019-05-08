@@ -21,75 +21,57 @@ public class WorldActivity  extends AppCompatActivity {
         context = this;
 
         ImageView worldFactory1 = findViewById(R.id.worldFactory1);
-        worldFactory1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Changer d'activity
-                Intent intentApp = new Intent(WorldActivity.this, FactoryActivity.class);
-                WorldActivity.this.startActivity(intentApp);
-            }
+        worldFactory1.setOnClickListener(view -> {
+            //Changer d'activity
+            Intent intentApp = new Intent(WorldActivity.this, FactoryActivity.class);
+            WorldActivity.this.startActivity(intentApp);
         });
 
         ImageView worldDollardSign2 = findViewById(R.id.worldSign2);
-        worldDollardSign2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Changer d'activity
-                openPopupSign();
-            }
+        worldDollardSign2.setOnClickListener(view -> {
+            //Changer d'activity
+            openPopupSign();
         });
 
 
 
 
         ImageView market = findViewById(R.id.worldMarket);
-        market.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Changer d'activity
-                Intent intentApp = new Intent(WorldActivity.this, MarketActivity.class);
-                WorldActivity.this.startActivity(intentApp);
-            }
+        market.setOnClickListener(view -> {
+            //Changer d'activity
+            Intent intentApp = new Intent(WorldActivity.this, MarketActivity.class);
+            WorldActivity.this.startActivity(intentApp);
         });
 
         ImageView messages = findViewById(R.id.worldLetter);
-        messages.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Changer d'activity
-                Intent intentApp = new Intent(WorldActivity.this, MessagesActivity.class);
-                WorldActivity.this.startActivity(intentApp);
-            }
+        messages.setOnClickListener(view -> {
+            //Changer d'activity
+            Intent intentApp = new Intent(WorldActivity.this, MessagesActivity.class);
+            WorldActivity.this.startActivity(intentApp);
         });
 
         ImageView settings = findViewById(R.id.worldSettings);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openSettingsPopup();
-            }
-        });
+        settings.setOnClickListener(view -> openSettingsPopup());
 
         ImageView profile = findViewById(R.id.worldProfile);
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openProfilePopup();
-            }
-        });
+        profile.setOnClickListener(view -> openProfilePopup());
     }
 
     void openSettingsPopup()
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_settings);
-        Button popupMessageClose = dialog.findViewById(R.id.popupSettingsOk);
-        popupMessageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
+        Button close = dialog.findViewById(R.id.popupSettingsOk);
+        close.setOnClickListener(v -> dialog.dismiss());
+
+        Button disconnect = dialog.findViewById(R.id.popupSettingsDisconnect);
+        disconnect.setOnClickListener(v -> {
+            //Changer d'activity
+            Intent intentApp = new Intent(WorldActivity.this, LoginActivity.class);
+            WorldActivity.this.startActivity(intentApp);
+            finish(); //empèche le retour en arrière
         });
+
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
@@ -100,12 +82,7 @@ public class WorldActivity  extends AppCompatActivity {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_profile);
         Button popupMessageClose = dialog.findViewById(R.id.popupProfileOk);
-        popupMessageClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        popupMessageClose.setOnClickListener(v -> dialog.dismiss());
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
@@ -116,12 +93,7 @@ public class WorldActivity  extends AppCompatActivity {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_question);
         Button popupMessageCancel = dialog.findViewById(R.id.popupQuestionCancel);
-        popupMessageCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
         TextView popupQuestionMessage = dialog.findViewById(R.id.popupQuestionMessage);
         popupQuestionMessage.setText("Le prix c'est le prix !\nSi tu veux acheter... vend\nDU GATEAU !");
