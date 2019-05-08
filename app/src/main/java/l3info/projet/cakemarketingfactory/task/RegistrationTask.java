@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 
-import l3info.projet.cakemarketingfactory.LoginActivity;
+import l3info.projet.cakemarketingfactory.activity.LoginActivity;
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import okhttp3.OkHttpClient;

@@ -1,4 +1,4 @@
-package l3info.projet.cakemarketingfactory;
+package l3info.projet.cakemarketingfactory.activity.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.modele.MessageItem;
+
 /**
  * Créé par Loïc Forestier le 02/05/2019 !
  */
@@ -18,7 +21,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     private ArrayList<MessageItem> messageItems;
     private OnItemClickListener listener;
 
-    MessageAdapter(ArrayList<MessageItem> messageItems) {
+    public MessageAdapter(ArrayList<MessageItem> messageItems) {
         this.messageItems = messageItems;
     }
 
@@ -27,13 +30,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     }
 
     //affecte au listener @listener
-    void setOnItemClickListener(OnItemClickListener listener) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
 
 
-    static class MessageViewHolder extends RecyclerView.ViewHolder{
+    public static class MessageViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageView;
         TextView title;
@@ -41,7 +44,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
         //Paramétrage de la view @itemView
         //@listener > MessageViewHoldert doit rester statique
-        MessageViewHolder(View itemView, final OnItemClickListener listener) {
+        public MessageViewHolder(View itemView, final OnItemClickListener listener) {
             super(itemView);
             imageView = itemView.findViewById(R.id.messageItemIcon);
             title = itemView.findViewById(R.id.messageItemTitle);

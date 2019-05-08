@@ -1,4 +1,4 @@
-package l3info.projet.cakemarketingfactory;
+package l3info.projet.cakemarketingfactory.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.task.AuthenticationTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 

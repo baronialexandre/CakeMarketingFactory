@@ -1,4 +1,4 @@
-package l3info.projet.cakemarketingfactory;
+package l3info.projet.cakemarketingfactory.activity;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -6,14 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
+import l3info.projet.cakemarketingfactory.activity.adapter.MessageAdapter;
+import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.modele.MessageItem;
 
 public class MessagesActivity  extends AppCompatActivity {
 

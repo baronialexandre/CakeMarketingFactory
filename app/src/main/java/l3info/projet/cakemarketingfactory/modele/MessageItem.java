@@ -1,17 +1,17 @@
-package l3info.projet.cakemarketingfactory;
+package l3info.projet.cakemarketingfactory.modele;
 
 import java.util.Date;
 
 /**
  * Créé par Loïc Forestier le 02/05/2019 !
  */
-class MessageItem {
+public class MessageItem {
     private int imageResource;
     private String title;
     private String message;
     private String date;
 
-    MessageItem(int imageResource, String title, String message, String date)
+    public MessageItem(int imageResource, String title, String message, String date)
     {
         this.imageResource = imageResource;
         this.title = title;
@@ -19,29 +19,29 @@ class MessageItem {
         this.date = date;
     }
 
-    int getImageResource() {
+    public int getImageResource() {
         return imageResource;
     }
-    String getTitle() {
+    public String getTitle() {
         return title;
     }
-    String getMessage() {
+    public String getMessage() {
         return message;
     }
-    String getDate() {
+    public String getDate() {
         return date;
     }
 
-    void setImageResource(int imageResource) {
+    public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
     }
-    void setTitle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
-    void setMessage(String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
-    void setDate(String date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

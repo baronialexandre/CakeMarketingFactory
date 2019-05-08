@@ -1,4 +1,4 @@
-package l3info.projet.cakemarketingfactory;
+package l3info.projet.cakemarketingfactory.activity;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
+import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 
 public class WorldActivity  extends AppCompatActivity {

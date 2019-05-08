@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import l3info.projet.cakemarketingfactory.R;
-import l3info.projet.cakemarketingfactory.WorldActivity;
+import l3info.projet.cakemarketingfactory.activity.WorldActivity;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

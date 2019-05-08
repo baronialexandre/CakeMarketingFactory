@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class utilDate {
+public class DateUtil {
 
     //@pattern : DD:HH:mm ; HH:mm ...
     public static String getCurrent(String pattern)

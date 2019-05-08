@@ -1,8 +1,10 @@
-package l3info.projet.cakemarketingfactory;
+package l3info.projet.cakemarketingfactory.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import l3info.projet.cakemarketingfactory.R;
 
 public class LoadingActivity extends AppCompatActivity {
     @Override
