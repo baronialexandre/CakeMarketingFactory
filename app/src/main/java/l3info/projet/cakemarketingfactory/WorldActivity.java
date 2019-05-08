@@ -3,14 +3,17 @@ package l3info.projet.cakemarketingfactory;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Objects;
+
+import l3info.projet.cakemarketingfactory.utils.Contents;
 
 public class WorldActivity  extends AppCompatActivity {
     Context context;
@@ -19,6 +22,12 @@ public class WorldActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_world);
         context = this;
+
+        //access to the userId in shared preferences
+        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        long id = shr.getLong("userId",0L);
+        Log.i("BANDOL","world sharedprefid:"+id );
+
 
         ImageView worldFactory1 = findViewById(R.id.worldFactory1);
         worldFactory1.setOnClickListener(view -> {
@@ -61,17 +70,8 @@ public class WorldActivity  extends AppCompatActivity {
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_settings);
-        Button close = dialog.findViewById(R.id.popupSettingsOk);
-        close.setOnClickListener(v -> dialog.dismiss());
-
-        Button disconnect = dialog.findViewById(R.id.popupSettingsDisconnect);
-        disconnect.setOnClickListener(v -> {
-            //Changer d'activity
-            Intent intentApp = new Intent(WorldActivity.this, LoginActivity.class);
-            WorldActivity.this.startActivity(intentApp);
-            finish(); //empèche le retour en arrière
-        });
-
+        Button popupMessageClose = dialog.findViewById(R.id.popupSettingsOk);
+        popupMessageClose.setOnClickListener(v -> dialog.dismiss());
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
