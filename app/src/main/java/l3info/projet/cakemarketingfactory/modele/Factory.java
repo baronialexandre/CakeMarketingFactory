@@ -1,8 +1,9 @@
 package l3info.projet.cakemarketingfactory.modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Factory {
+public class Factory implements Serializable {
     private int factorySpot;
     private int stockMax;
     private ArrayList<Integer> stocks;

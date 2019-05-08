@@ -42,7 +42,7 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
         try {
 
             OkHttpClient client = new OkHttpClient();
-            Log.i("BANDOL", Contents.API_URL + Contents.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contents.API_PASS);
+            Log.i("BANDOL_AUTH_TASK", Contents.API_URL + Contents.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contents.API_PASS);
             Request request = new Request.Builder()
                     .url(Contents.API_URL + Contents.AUTH_API_URL + "?username=" + username + "&password=" + password + "&apipass=" + Contents.API_PASS)
                     .build();
@@ -52,7 +52,7 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
             if (response.body() != null) {
                 rawJson = response.body().string();
             }
-            Log.i("BANDOL", rawJson);
+            Log.i("BANDOL_AUTH_TASK", rawJson);
             JSONObject jsonObj = new JSONObject(rawJson);
 
             userId = jsonObj.getLong("userId");
@@ -71,7 +71,7 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
         if(authenticationResponse) {
             feedbackTextView.setText(R.string.login_feedback_success);
             feedbackTextView.setTextColor(Color.GREEN);
-            Log.i("BANDOL","true green");
+            Log.i("BANDOL_AUTH_TASK","true green");
 
             //Store id into shared preferences
             //Store username and pwd into shared preferences
@@ -96,7 +96,7 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
         } else {
             feedbackTextView.setText(R.string.login_feedback_failed);
             feedbackTextView.setTextColor(Color.RED);
-            Log.i("BANDOL","wrong red");
+            Log.i("BANDOL_AUTH_TASK","wrong red");
         }
     }
 }

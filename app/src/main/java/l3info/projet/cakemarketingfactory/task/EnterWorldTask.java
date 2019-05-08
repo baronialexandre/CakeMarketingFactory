@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
@@ -41,7 +42,7 @@ public class EnterWorldTask extends AsyncTask<String, Void, World>{
         try {
 
             OkHttpClient client = new OkHttpClient();
-            Log.i("BANDOL", Contents.API_URL + Contents.ENTER_WORLD_URL + "?userId=" + userId + "&apipass=" + Contents.API_PASS);
+            Log.i("BANDOL_ENTER_WORLD_TASK", Contents.API_URL + Contents.ENTER_WORLD_URL + "?userId=" + userId + "&apipass=" + Contents.API_PASS);
             Request request = new Request.Builder()
                     .url(Contents.API_URL + Contents.ENTER_WORLD_URL + "?userId=" + userId + "&apipass=" + Contents.API_PASS)
                     .build();
@@ -51,14 +52,14 @@ public class EnterWorldTask extends AsyncTask<String, Void, World>{
             if (response.body() != null) {
                 rawJson = response.body().string();
             }
-            Log.i("BANDOL", rawJson);
+            Log.i("BANDOL_ENTER_WORLD_TASK", rawJson);
             JSONObject jsonObj = new JSONObject(rawJson);
 
             JSONArray arr = jsonObj.getJSONArray("factorySpots");
             for (int i=0; i < arr.length(); i++) {
                 factorySpots.add(arr.getInt(i));
             }
-            Log.i("BANDOL", factorySpots.toString());
+            Log.i("BANDOL_ENTER_WORLD_TASK", factorySpots.toString());
             return new World(factorySpots);
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error while authenticating ... : " + e.getMessage(), e);
@@ -75,6 +76,7 @@ public class EnterWorldTask extends AsyncTask<String, Void, World>{
         //Redirect to main user activity
         Intent intent;
         intent = new Intent(ctx, WorldActivity.class);
+        intent.putExtra("world", world);
         ctx.startActivity(intent);
     }
 }

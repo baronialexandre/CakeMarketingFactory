@@ -1,6 +1,8 @@
 package l3info.projet.cakemarketingfactory.modele;
 
-public class Line {
+import java.io.Serializable;
+
+public class Line implements Serializable {
     private int cakeId;
     private int lvlBelt;
     private int lvlRobot;
