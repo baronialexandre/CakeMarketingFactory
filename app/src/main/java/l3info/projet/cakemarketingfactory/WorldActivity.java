@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -70,8 +71,10 @@ public class WorldActivity  extends AppCompatActivity {
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_settings);
-        Button popupMessageClose = dialog.findViewById(R.id.popupSettingsOk);
-        popupMessageClose.setOnClickListener(v -> dialog.dismiss());
+        Button close = dialog.findViewById(R.id.popupSettingsOk);
+        close.setOnClickListener(v -> dialog.dismiss());
+        Button disconnect = dialog.findViewById(R.id.popupSettingsDisconnect);
+        disconnect.setOnClickListener(v -> Toast.makeText(context, "Disconnect me :)", Toast.LENGTH_SHORT).show());
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
