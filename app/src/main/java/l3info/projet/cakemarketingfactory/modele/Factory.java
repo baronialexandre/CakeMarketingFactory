@@ -28,6 +28,7 @@ public class Factory implements Serializable {
     public int getStockMax() { return stockMax; }
     public ArrayList<Integer> getStocks() { return stocks; }
     public ArrayList<Line> getLineList() { return lineList; }
+    public Line getLine(int index) { return lineList.get(index); }
 
     public void setFactorySlot(int factorySlot) { this.factorySpot = factorySlot; }
     public void setStockMax(int stockMax) { this.stockMax = stockMax; }
