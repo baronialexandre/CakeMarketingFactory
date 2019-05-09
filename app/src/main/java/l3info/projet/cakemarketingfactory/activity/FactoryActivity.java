@@ -32,8 +32,8 @@ public class FactoryActivity extends AppCompatActivity {
         context = this;
 
         //factory récupérée après le "getExtra"
-        Factory factory = (Factory) getIntent().getSerializableExtra("factory");
-        int factoryID = getIntent().getIntExtra("factoryID", 0);
+        factory = (Factory) getIntent().getSerializableExtra("factory");
+        int factoryID = factory.getFactorySpot()-1;
 
 
         //Provisoire en attendant les Tasks
@@ -42,7 +42,7 @@ public class FactoryActivity extends AppCompatActivity {
         Line line1 = new Line(0,levels);
         Line line2 = new Line(0,levels);
         Line line3 = new Line(0,levels);
-        ArrayList<Line> lines = new ArrayList<Line>();
+        ArrayList<Line> lines = new ArrayList<>();
         lines.add(line1);
         lines.add(line2);
         lines.add(line3);
@@ -154,14 +154,17 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button popupUpgradeOk = dialog.findViewById(R.id.popupUpgradeOk);
         popupUpgradeOk.setOnClickListener(v -> {
-            //factory.getLine(line).setLvl(id,level+1);
+            if (level<=8) {
+                factory.getLine(line).setLvl(id, level + 1);
+                dialog.dismiss();
+            }else { dialog.dismiss();}
         });
 
         TextView popupUpgradeMessage = dialog.findViewById(R.id.popupUpgradeMessage);
         popupUpgradeMessage.setText("Êtes vous sûr de vouloir lancer l'amélioration");
 
         TextView popupUpgradeLevel = dialog.findViewById(R.id.popupUpgradeLevel);
-        String levelText = getString(R.string.level) + (level+1);
+        String levelText = getString(R.string.level) + (level);
         popupUpgradeLevel.setText(levelText);
 
 

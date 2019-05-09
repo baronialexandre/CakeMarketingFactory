@@ -10,8 +10,8 @@ public class Factory implements Serializable {
     private ArrayList<Integer> stocks;
     private ArrayList<Line> lineList;
 
-    public Factory(int factorySlot, int stockMax, ArrayList<Integer> stocks, ArrayList<Line> lineList ){
-        this.factorySpot = factorySlot;
+    public Factory(int factorySpot, int stockMax, ArrayList<Integer> stocks, ArrayList<Line> lineList ){
+        this.factorySpot = factorySpot;
         this.stockMax = stockMax;
         this.stocks = stocks;
         this.lineList = lineList;
@@ -25,13 +25,13 @@ public class Factory implements Serializable {
         this.lineList = null;
     }
 
-    public int getFactorySlot() { return factorySpot; }
+    public int getFactorySpot() { return factorySpot; }
     public int getStockMax() { return stockMax; }
     public ArrayList<Integer> getStocks() { return stocks; }
     public ArrayList<Line> getLineList() { return lineList; }
     public Line getLine(int index) { return lineList.get(index); }
 
-    public void setFactorySlot(int factorySlot) { this.factorySpot = factorySlot; }
+    public void setFactorySpot(int factorySpot) { this.factorySpot = factorySpot; }
     public void setStockMax(int stockMax) { this.stockMax = stockMax; }
     public void setStocks(ArrayList<Integer> stocks) { this.stocks = stocks; }
     public void setLineList(ArrayList<Line> lineList) { this.lineList = lineList; }

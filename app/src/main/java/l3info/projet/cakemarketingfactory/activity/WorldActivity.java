@@ -50,10 +50,10 @@ public class WorldActivity  extends AppCompatActivity {
 
                 factory.setOnClickListener(v -> {
                     //Entrer dans une usine
+                    //todo : put in task
                     Toast.makeText(context, "FACTORY 1 + "+ number, Toast.LENGTH_SHORT).show();
                     Intent intentApp = new Intent(WorldActivity.this, FactoryActivity.class);
                     intentApp.putExtra("factory", world.factories.get(number));
-                    intentApp.putExtra("factoryID", number);
                     WorldActivity.this.startActivity(intentApp);
                 });
             }
