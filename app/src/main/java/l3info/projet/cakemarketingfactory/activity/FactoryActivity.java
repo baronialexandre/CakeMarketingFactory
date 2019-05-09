@@ -3,12 +3,14 @@ package l3info.projet.cakemarketingfactory.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -60,8 +62,21 @@ public class FactoryActivity extends AppCompatActivity {
         ImageView wall2 = findViewById(R.id.factoryWall2);
         wall2.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallID[factoryID]));
 
+        LinearLayout belt1 = findViewById(R.id.factoryBeltLine1);
+        LinearLayout belt2 = findViewById(R.id.factoryBeltLine2);
+        LinearLayout belt3 = findViewById(R.id.factoryBeltLine3);
 
+        ImageView robot1 = findViewById(R.id.factoryRobotLine1);
+        ImageView robot2 = findViewById(R.id.factoryRobotLine2);
+        ImageView robot3 = findViewById(R.id.factoryRobotLine3);
 
+        ImageView oven1 = findViewById(R.id.factoryOvenLine1);
+        ImageView oven2 = findViewById(R.id.factoryOvenLine2);
+        ImageView oven3 = findViewById(R.id.factoryOvenLine3);
+
+        belt1.setBackground(getResources().getDrawable(ImageContent.beltImagesID[factory.getLine(0).getLvl(0)-1]));
+        belt2.setBackground(getResources().getDrawable(ImageContent.beltImagesID[factory.getLine(1).getLvl(0)-1]));
+        belt3.setBackground(getResources().getDrawable(ImageContent.beltImagesID[factory.getLine(2).getLvl(0)-1]));
 
         //access to the userId in shared preferences
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
