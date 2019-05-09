@@ -15,7 +15,8 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
-import l3info.projet.cakemarketingfactory.modele.World;
+import l3info.projet.cakemarketingfactory.model.World;
+import l3info.projet.cakemarketingfactory.task.EnterMessagesTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 import l3info.projet.cakemarketingfactory.utils.ViewContent;
@@ -79,8 +80,10 @@ public class WorldActivity  extends AppCompatActivity {
         ImageView messages = findViewById(R.id.worldLetter);
         messages.setOnClickListener(view -> {
             //Changer d'activity
-            Intent intentApp = new Intent(WorldActivity.this, MessagesActivity.class);
-            WorldActivity.this.startActivity(intentApp);
+//            Intent intentApp = new Intent(WorldActivity.this, MessagesActivity.class);
+//            WorldActivity.this.startActivity(intentApp);
+            EnterMessagesTask enterMessagesTask = new EnterMessagesTask(context);
+            enterMessagesTask.execute();
         });
 
         ImageView settings = findViewById(R.id.worldSettings);

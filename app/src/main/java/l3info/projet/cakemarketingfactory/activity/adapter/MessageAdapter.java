@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import l3info.projet.cakemarketingfactory.R;
-import l3info.projet.cakemarketingfactory.modele.MessageItem;
+import l3info.projet.cakemarketingfactory.model.MessageItem;
 
 /**
  * Créé par Loïc Forestier le 02/05/2019 !
@@ -73,6 +73,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         MessageItem messageItem = messageItems.get(position);
         messageViewHolder.imageView.setImageResource(messageItem.getImageResource());
         messageViewHolder.title.setText(messageItem.getTitle());
+
+        if(messageItem.getTitle().length()>15) {
+            String messageTmp = messageItem.getTitle().substring(0,14) + "...";
+            messageViewHolder.title.setText(messageTmp);
+        }
+        else
+            messageViewHolder.title.setText(messageItem.getTitle());
+
 
         if(messageItem.getMessage().length()>60) {
             String messageTmp = messageItem.getMessage().substring(0,59) + "...";

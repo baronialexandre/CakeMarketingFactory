@@ -1,4 +1,4 @@
-package l3info.projet.cakemarketingfactory.modele;
+package l3info.projet.cakemarketingfactory.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

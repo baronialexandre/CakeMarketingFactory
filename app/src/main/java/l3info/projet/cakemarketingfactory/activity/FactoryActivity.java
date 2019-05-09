@@ -3,10 +3,8 @@ package l3info.projet.cakemarketingfactory.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -17,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
-import l3info.projet.cakemarketingfactory.modele.Factory;
-import l3info.projet.cakemarketingfactory.modele.Line;
+import l3info.projet.cakemarketingfactory.model.Factory;
+import l3info.projet.cakemarketingfactory.model.Line;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 

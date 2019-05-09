@@ -13,7 +13,8 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.adapter.MessageAdapter;
-import l3info.projet.cakemarketingfactory.modele.MessageItem;
+import l3info.projet.cakemarketingfactory.model.MessageItem;
+import l3info.projet.cakemarketingfactory.model.Messages;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MessagesActivity  extends AppCompatActivity {
@@ -43,7 +44,8 @@ public class MessagesActivity  extends AppCompatActivity {
 
     public void initMessageList()
     {
-        createMessageList();
+        messageItems = (ArrayList<MessageItem>) getIntent().getSerializableExtra("messageItems");
+
         buildRecyclerview();
     }
 
@@ -62,15 +64,6 @@ public class MessagesActivity  extends AppCompatActivity {
         return string.toString();
     }
 
-    public void createMessageList() {
-        messageItems= new ArrayList<>();
-
-        double size = Math.random()*100;
-        for(int i=0; i < size; i++)
-        {
-            messageItems.add(new MessageItem(R.drawable.message_letter, randomTextGenerator(10), randomTextGenerator(1000), "03/05/2000", 0));
-        }
-    }
     public void buildRecyclerview(){
         recyclerView = findViewById(R.id.messages);
         layoutManager = new LinearLayoutManager(this);
@@ -97,7 +90,7 @@ public class MessagesActivity  extends AppCompatActivity {
         MessageItem myMessage = messageItems.get(position);
         String title = myMessage.getTitle();
         String text = myMessage.getMessage();
-        String date = myMessage.getDate();
+        String date = myMessage.getSendDate();
         //int type = myMessage.getType();
 
 //        if(type == 1) //winner

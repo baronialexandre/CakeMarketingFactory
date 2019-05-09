@@ -13,7 +13,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import l3info.projet.cakemarketingfactory.activity.WorldActivity;
-import l3info.projet.cakemarketingfactory.modele.World;
+import l3info.projet.cakemarketingfactory.model.World;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
