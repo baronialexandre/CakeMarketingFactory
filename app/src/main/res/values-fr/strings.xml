@@ -34,4 +34,7 @@
     <string name="sellCupcakes">Sell all the cupcakes</string>
     <string name="number">000</string>
     <string name="disconnect">Disconnect</string>
+    <string name="designer">Designer</string>
+    <string name="save_on_device">Save on device</string>
+    <string name="publish">Publish</string>
 </resources>

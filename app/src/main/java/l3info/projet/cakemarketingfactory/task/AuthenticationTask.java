@@ -1,11 +1,11 @@
 package l3info.projet.cakemarketingfactory.task;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import l3info.projet.cakemarketingfactory.R;
-import l3info.projet.cakemarketingfactory.activity.WorldActivity;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/market_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:padding="5dp"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+        <ImageView
+            android:id="@+id/designerBack"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_button_back"
+            android:contentDescription="@string/empty"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/designer"
+            android:paddingTop="10dp"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:textColor="@color/text_color_states"
+            android:background="@drawable/popup"
+            android:enabled="false"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/messages"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@drawable/hatching_frame_designer"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <FrameLayout
+            android:id="@+id/designerDrawingFrame"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/popup">
+        </FrameLayout>
+    </RelativeLayout>
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/popupSideInt">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_gravity="start"
+            android:padding="5dp">
+            <ImageButton
+                android:id="@+id/designerToolsBack"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools6"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools7"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools8"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools9"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+            <ImageButton
+                android:id="@+id/designerTools10"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:ignore="UselessParent">
+
+        <Button
+            android:id="@+id/designerSaveOnDevice"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="7dp"
+            android:text="@string/save_on_device"
+            android:textColor="@color/buttonGreenText"
+            android:background="@drawable/green_button_selector"
+            android:textAlignment="center"
+            tools:ignore="ButtonStyle" />
+        <Button
+            android:id="@+id/designerPublish"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="7dp"
+            android:text="@string/publish"
+            android:textColor="@color/buttonGreenText"
+            android:background="@drawable/green_button_selector"
+            android:textAlignment="center"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

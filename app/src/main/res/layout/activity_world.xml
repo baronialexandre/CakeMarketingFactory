@@ -93,7 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/factory_1"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:contentDescription="@string/empty" />
         </FrameLayout>
         <FrameLayout
@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:src="@drawable/world_dollard_sign"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:contentDescription="@string/empty" />
             <ImageView
                 android:id="@+id/worldFactory2"
@@ -144,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:src="@drawable/world_dollard_sign"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:contentDescription="@string/empty" />
             <ImageView
                 android:id="@+id/worldFactory3"
@@ -174,7 +174,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:src="@drawable/world_dollard_sign"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:contentDescription="@string/empty" />
             <ImageView
                 android:id="@+id/worldFactory4"
@@ -204,7 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:src="@drawable/world_dollard_sign"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:contentDescription="@string/empty" />
             <ImageView
                 android:id="@+id/worldFactory5"
@@ -234,7 +234,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:src="@drawable/world_dollard_sign"
-                android:visibility="visible"
+                android:visibility="invisible"
                 android:contentDescription="@string/empty" />
             <ImageView
                 android:id="@+id/worldFactory6"

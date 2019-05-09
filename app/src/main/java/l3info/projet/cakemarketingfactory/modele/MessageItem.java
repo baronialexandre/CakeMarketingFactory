@@ -10,13 +10,15 @@ public class MessageItem {
     private String title;
     private String message;
     private String date;
+    private int type;
 
-    public MessageItem(int imageResource, String title, String message, String date)
+    public MessageItem(int imageResource, String title, String message, String date, int type)
     {
         this.imageResource = imageResource;
         this.title = title;
         this.message = message;
         this.date = date;
+        this.type = type;
     }
 
     public int getImageResource() {
@@ -31,6 +33,9 @@ public class MessageItem {
     public String getDate() {
         return date;
     }
+    public int getType() {
+        return type;
+    }
 
     public void setImageResource(int imageResource) {
         this.imageResource = imageResource;
@@ -43,5 +48,8 @@ public class MessageItem {
     }
     public void setDate(String date) {
         this.date = date;
+    }
+    public void setType(int type) {
+        this.type = type;
     }
 }

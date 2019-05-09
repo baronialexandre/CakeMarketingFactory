@@ -2,12 +2,12 @@ package l3info.projet.cakemarketingfactory.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +15,6 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.modele.Factory;
-import l3info.projet.cakemarketingfactory.task.EnterFactoryTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 
@@ -30,6 +29,23 @@ public class FactoryActivity extends AppCompatActivity {
 
         context = this;
 
+        //factory récupérée après le "getExtra"
+        Factory factory = (Factory) getIntent().getSerializableExtra("factory");
+        int factoryID = getIntent().getIntExtra("factoryID", 0);
+
+        FrameLayout background = findViewById(R.id.factoryBackground);
+        //getRessources().getDrawable au lieu de getDrawable pour pouvoir compiler sous une API < LOLIPOP
+        background.setBackground(getResources().getDrawable(ImageContent.factoryBackgroundID[factoryID]));
+
+        ImageView wall1 = findViewById(R.id.factoryWall1);
+        //todo : éditer la couleurs des murs graphiquement
+        wall1.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallID[factoryID]));
+        ImageView wall2 = findViewById(R.id.factoryWall2);
+        wall2.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallID[factoryID]));
+
+
+
+
         //access to the userId in shared preferences
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         long userId = shr.getLong("userId",0L);
@@ -38,9 +54,8 @@ public class FactoryActivity extends AppCompatActivity {
 
         ImageView factoryBack = findViewById(R.id.factoryBack);
         factoryBack.setOnClickListener(view -> {
-            //Changer d'activity
-            Intent intentApp = new Intent(FactoryActivity.this, WorldActivity.class);
-            FactoryActivity.this.startActivity(intentApp);
+            //Revenir en arrière sur une activity
+            FactoryActivity.this.finish(); //"dépile" la stack d'activity
         });
 
 
@@ -121,11 +136,8 @@ public class FactoryActivity extends AppCompatActivity {
         popupUpgradeCancel.setOnClickListener(v -> dialog.dismiss());
 
         Button popupUpgradeOk = dialog.findViewById(R.id.popupUpgradeOk);
-        popupUpgradeOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        popupUpgradeOk.setOnClickListener(v -> {
 
-            }
         });
 
         TextView popupUpgradeMessage = dialog.findViewById(R.id.popupUpgradeMessage);

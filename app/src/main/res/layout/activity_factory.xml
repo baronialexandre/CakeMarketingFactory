@@ -128,7 +128,7 @@
                     android:layout_width="7dp"
                     android:layout_height="450dp"
                     android:src="@drawable/factory_wall_1"
-                    android:id="@+id/aaa"
+                    android:id="@+id/factoryWall1"
                     android:contentDescription="@string/plus" />
                 <LinearLayout
                     android:orientation="vertical"
@@ -224,7 +224,7 @@
                     android:layout_width="7dp"
                     android:layout_height="450dp"
                     android:src="@drawable/factory_wall_1"
-                    android:id="@+id/aaca"
+                    android:id="@+id/factoryWall2"
                     android:contentDescription="@string/plus"/>
                 <LinearLayout
                     android:orientation="vertical"

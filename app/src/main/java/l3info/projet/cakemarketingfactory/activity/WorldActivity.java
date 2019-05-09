@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,8 +16,9 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.modele.World;
-import l3info.projet.cakemarketingfactory.task.EnterWorldTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
+import l3info.projet.cakemarketingfactory.utils.ImageContent;
+import l3info.projet.cakemarketingfactory.utils.ViewContent;
 
 public class WorldActivity  extends AppCompatActivity {
     Context context;
@@ -34,26 +35,39 @@ public class WorldActivity  extends AppCompatActivity {
         //EnterWorldTask task = new EnterWorldTask(id, context);
         //task.execute();
 
-        Log.i("BANDOL",getIntent().getSerializableExtra("world").toString());
+        //Log.i("BANDOL",getIntent().getSerializableExtra("world").toString());
         World world = (World) getIntent().getSerializableExtra("world");
-        Log.i("BANDOL",world.factories.toString());
+        //Log.i("BANDOL",world.factories.toString());
 
+        for(int i=0; i<6; i++)
+        {
+            int number = i;
+            if(i < world.factories.size())
+            {
+                ImageView factory = findViewById(ViewContent.factoryID[i]);
+                factory.setImageResource(ImageContent.factoryID[i]);
+                factory.setVisibility(View.VISIBLE);
 
-        ImageView worldFactory1 = findViewById(R.id.worldFactory1);
-        worldFactory1.setOnClickListener(view -> {
-            //Changer d'activity
-            Intent intentApp = new Intent(WorldActivity.this, FactoryActivity.class);
-            WorldActivity.this.startActivity(intentApp);
-        });
-
-        ImageView worldDollardSign2 = findViewById(R.id.worldSign2);
-        worldDollardSign2.setOnClickListener(view -> {
-            //Changer d'activity
-            openPopupSign();
-        });
-
-
-
+                factory.setOnClickListener(v -> {
+                    //Entrer dans une usine
+                    Toast.makeText(context, "FACTORY 1 + "+ number, Toast.LENGTH_SHORT).show();
+                    Intent intentApp = new Intent(WorldActivity.this, FactoryActivity.class);
+                    intentApp.putExtra("factory", world.factories.get(number));
+                    intentApp.putExtra("factoryID", number);
+                    WorldActivity.this.startActivity(intentApp);
+                });
+            }
+            else
+            {
+                ImageView sign = findViewById(ViewContent.signID[i]);
+                sign.setVisibility(View.VISIBLE);
+                sign.setOnClickListener(v -> {
+                    //cliquer sur un panneau $
+                    Toast.makeText(context, "BUY sign 1 + " + number, Toast.LENGTH_SHORT).show();
+                    openPopupSign();
+                });
+            }
+        }
 
         ImageView market = findViewById(R.id.worldMarket);
         market.setOnClickListener(view -> {
@@ -83,7 +97,17 @@ public class WorldActivity  extends AppCompatActivity {
         Button close = dialog.findViewById(R.id.popupSettingsOk);
         close.setOnClickListener(v -> dialog.dismiss());
         Button disconnect = dialog.findViewById(R.id.popupSettingsDisconnect);
-        disconnect.setOnClickListener(v -> Toast.makeText(context, "Disconnect me :)", Toast.LENGTH_SHORT).show());
+        disconnect.setOnClickListener(v -> {
+            SharedPreferences shr = context.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+            SharedPreferences.Editor ed = shr.edit();
+            ed.remove("username");
+            ed.remove("password");
+            ed.remove("userId");
+            ed.apply();
+
+            Intent intentApp = new Intent(WorldActivity.this, LoginActivity.class);
+            WorldActivity.this.startActivity(intentApp);
+        });
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();

@@ -2,7 +2,6 @@ package l3info.projet.cakemarketingfactory.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -26,8 +25,7 @@ public class MarketActivity extends AppCompatActivity {
         ImageView marketBack = findViewById(R.id.marketBack);
         marketBack.setOnClickListener(view -> {
             //Changer d'activity
-            Intent intentApp = new Intent(MarketActivity.this, WorldActivity.class);
-            MarketActivity.this.startActivity(intentApp);
+            MarketActivity.this.finish(); //dépile la stack d'activity
         });
 
         Button sellAll = findViewById(R.id.marketSell);

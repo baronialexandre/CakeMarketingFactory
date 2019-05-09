@@ -1,5 +1,7 @@
 package l3info.projet.cakemarketingfactory.utils;
 
+import android.widget.ImageView;
+
 import l3info.projet.cakemarketingfactory.R;
 
 public class ImageContent {
@@ -38,6 +40,30 @@ public class ImageContent {
             R.drawable.factory_oven_8,
             R.drawable.factory_oven_9,
             R.drawable.factory_oven_10,
+    };
+    public static final int[] factoryID = {
+            R.drawable.factory_1,
+            R.drawable.factory_2,
+            R.drawable.factory_3,
+            R.drawable.factory_4,
+            R.drawable.factory_5,
+            R.drawable.factory_6
+    };
+    public static final int[] factoryBackgroundID = {
+            R.drawable.factory_background_1,
+            R.drawable.factory_background_2,
+            R.drawable.factory_background_3,
+            R.drawable.factory_background_4,
+            R.drawable.factory_background_5,
+            R.drawable.factory_background_6
+    };
+    public static final int[] factoryWallID = {
+            R.drawable.factory_wall_1,
+            R.drawable.factory_wall_2,
+            R.drawable.factory_wall_3,
+            R.drawable.factory_wall_4,
+            R.drawable.factory_wall_5,
+            R.drawable.factory_wall_6
     };
 
 }
