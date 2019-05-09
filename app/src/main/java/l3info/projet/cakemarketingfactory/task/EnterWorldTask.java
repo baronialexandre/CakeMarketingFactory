@@ -67,8 +67,6 @@ public class EnterWorldTask extends AsyncTask<String, Void, World>{
     protected void onPostExecute(World world) {
         super.onPostExecute(world);
         Context ctx = this.ctx.get();
-
-
         //Redirect to main user activity
         Intent intent;
         intent = new Intent(ctx, WorldActivity.class);

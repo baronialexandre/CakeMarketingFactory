@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,8 +16,9 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
-import l3info.projet.cakemarketingfactory.model.World;
-import l3info.projet.cakemarketingfactory.task.EnterMessagesTask;
+import l3info.projet.cakemarketingfactory.modele.World;
+import l3info.projet.cakemarketingfactory.task.AuthenticationTask;
+import l3info.projet.cakemarketingfactory.task.EnterFactoryTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 import l3info.projet.cakemarketingfactory.utils.ViewContent;
@@ -28,13 +30,6 @@ public class WorldActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_world);
         context = this;
-        //access to the userId in shared preferences
-        //SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-        //long id = shr.getLong("userId",0L);
-        //Log.i("BANDOL","world sharedprefid:"+id );
-        //EnterWorldTask ici ou dans auth task
-        //EnterWorldTask task = new EnterWorldTask(id, context);
-        //task.execute();
 
         //Log.i("BANDOL",getIntent().getSerializableExtra("world").toString());
         World world = (World) getIntent().getSerializableExtra("world");
@@ -42,7 +37,7 @@ public class WorldActivity  extends AppCompatActivity {
 
         for(int i=0; i<6; i++)
         {
-            int number = i;
+            int factorySpot = i;
             if(i < world.factories.size())
             {
                 ImageView factory = findViewById(ViewContent.factoryID[i]);
@@ -52,10 +47,20 @@ public class WorldActivity  extends AppCompatActivity {
                 factory.setOnClickListener(v -> {
                     //Entrer dans une usine
                     //todo : put in task
-                    Toast.makeText(context, "FACTORY 1 + "+ number, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "FACTORY 1 + "+ factorySpot, Toast.LENGTH_SHORT).show();
+
+                    //access to the userId in shared preferences
+                    SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+                    long id = shr.getLong("userId",0L);
+                    Log.i("BANDOL","world sharedprefid:"+id );
+                    EnterFactoryTask task = new EnterFactoryTask(id,world.factories.get(factorySpot), context);
+                    task.execute();
+
+                    /*
                     Intent intentApp = new Intent(WorldActivity.this, FactoryActivity.class);
                     intentApp.putExtra("factory", world.factories.get(number));
                     WorldActivity.this.startActivity(intentApp);
+                    */
                 });
             }
             else
@@ -64,7 +69,7 @@ public class WorldActivity  extends AppCompatActivity {
                 sign.setVisibility(View.VISIBLE);
                 sign.setOnClickListener(v -> {
                     //cliquer sur un panneau $
-                    Toast.makeText(context, "BUY sign 1 + " + number, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "BUY sign 1 + " + factorySpot, Toast.LENGTH_SHORT).show();
                     openPopupSign();
                 });
             }
@@ -80,10 +85,8 @@ public class WorldActivity  extends AppCompatActivity {
         ImageView messages = findViewById(R.id.worldLetter);
         messages.setOnClickListener(view -> {
             //Changer d'activity
-//            Intent intentApp = new Intent(WorldActivity.this, MessagesActivity.class);
-//            WorldActivity.this.startActivity(intentApp);
-            EnterMessagesTask enterMessagesTask = new EnterMessagesTask(context);
-            enterMessagesTask.execute();
+            Intent intentApp = new Intent(WorldActivity.this, MessagesActivity.class);
+            WorldActivity.this.startActivity(intentApp);
         });
 
         ImageView settings = findViewById(R.id.worldSettings);

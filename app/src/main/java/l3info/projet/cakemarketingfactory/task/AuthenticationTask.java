@@ -31,7 +31,6 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
     public AuthenticationTask(String username, String password, TextView feedbackTextView, Context ctx) {
         this.username = username;
         this.password = password;
-
         this.feedbackTextView = new WeakReference<>(feedbackTextView);
         this.ctx = new WeakReference<>(ctx);
     }
@@ -74,7 +73,6 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
 
             //Store id into shared preferences
             //Store username and pwd into shared preferences
-
             SharedPreferences shr = ctx.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
             SharedPreferences.Editor ed = shr.edit();
             ed.putLong("userId",userId);
@@ -85,8 +83,6 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
             //Enter world Task ici ou dans on create world activity?
             EnterWorldTask task = new EnterWorldTask(userId, ctx);
             task.execute();
-
-
             //Redirect to main user activity
             //Intent intent;
             //intent = new Intent(ctx, WorldActivity.class);

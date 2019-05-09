@@ -17,12 +17,9 @@ import l3info.projet.cakemarketingfactory.utils.Contents;
 public class LoginActivity extends AppCompatActivity {
 
     Context context;
-
-
     Button register, connection;
     EditText loginUsername, loginPassword;
     TextView feedbackTextView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
