@@ -42,6 +42,11 @@ public class FactoryActivity extends AppCompatActivity {
         Line line1 = new Line(0,levels);
         Line line2 = new Line(0,levels);
         Line line3 = new Line(0,levels);
+        ArrayList<Line> lines = new ArrayList<Line>();
+        lines.add(line1);
+        lines.add(line2);
+        lines.add(line3);
+        factory.setLineList(lines);
 
 
 
