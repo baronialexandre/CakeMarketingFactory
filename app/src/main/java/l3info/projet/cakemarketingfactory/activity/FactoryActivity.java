@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
-import l3info.projet.cakemarketingfactory.modele.Factory;
-import l3info.projet.cakemarketingfactory.modele.Line;
+import l3info.projet.cakemarketingfactory.model.Factory;
+import l3info.projet.cakemarketingfactory.model.Line;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 

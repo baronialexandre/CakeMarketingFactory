@@ -14,7 +14,6 @@ import java.util.Objects;
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.adapter.MessageAdapter;
 import l3info.projet.cakemarketingfactory.model.MessageItem;
-import l3info.projet.cakemarketingfactory.model.Messages;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MessagesActivity  extends AppCompatActivity {
@@ -45,23 +44,7 @@ public class MessagesActivity  extends AppCompatActivity {
     public void initMessageList()
     {
         messageItems = (ArrayList<MessageItem>) getIntent().getSerializableExtra("messageItems");
-
         buildRecyclerview();
-    }
-
-    String randomTextGenerator(int sizeMax)
-    {
-        String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        StringBuilder string = new StringBuilder();
-        double size = Math.random()*sizeMax;
-        for(int i=0; i < size; i++)
-        {
-            if(Math.random()<0.3 && string.length() > 1)
-                string.append(" ");
-            else
-                string.append(alpha.charAt((int)(Math.random()*alpha.length())));
-        }
-        return string.toString();
     }
 
     public void buildRecyclerview(){
