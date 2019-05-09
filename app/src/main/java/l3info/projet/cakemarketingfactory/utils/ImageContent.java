@@ -58,12 +58,12 @@ public class ImageContent {
             R.drawable.factory_background_6
     };
     public static final int[] factoryWallID = {
-            R.drawable.factory_wall_1/*,
+            R.drawable.factory_wall_1,
             R.drawable.factory_wall_2,
             R.drawable.factory_wall_3,
             R.drawable.factory_wall_4,
             R.drawable.factory_wall_5,
-            R.drawable.factory_wall_6*/
+            R.drawable.factory_wall_6
     };
 
 }

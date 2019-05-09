@@ -38,7 +38,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         //Provisoire en attendant les Tasks
         ArrayList<Integer> levels = new ArrayList<Integer>();
-        for(int i = 0; i<3; i++){levels.add(0);}
+        for(int i = 0; i<3; i++){levels.add(1);}
         Line line1 = new Line(0,levels);
         Line line2 = new Line(0,levels);
         Line line3 = new Line(0,levels);
@@ -154,7 +154,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button popupUpgradeOk = dialog.findViewById(R.id.popupUpgradeOk);
         popupUpgradeOk.setOnClickListener(v -> {
-            factory.getLine(line).setLvl(id,level+1);
+            //factory.getLine(line).setLvl(id,level+1);
         });
 
         TextView popupUpgradeMessage = dialog.findViewById(R.id.popupUpgradeMessage);
