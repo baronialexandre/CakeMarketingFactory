@@ -11,10 +11,12 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.modele.Factory;
+import l3info.projet.cakemarketingfactory.modele.Line;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 
@@ -32,6 +34,16 @@ public class FactoryActivity extends AppCompatActivity {
         //factory récupérée après le "getExtra"
         Factory factory = (Factory) getIntent().getSerializableExtra("factory");
         int factoryID = getIntent().getIntExtra("factoryID", 0);
+
+
+        //Provisoire en attendant les Tasks
+        ArrayList<Integer> levels = new ArrayList<Integer>();
+        for(int i = 0; i<3; i++){levels.add(0);}
+        Line line1 = new Line(0,levels);
+        Line line2 = new Line(0,levels);
+        Line line3 = new Line(0,levels);
+
+
 
         FrameLayout background = findViewById(R.id.factoryBackground);
         //getRessources().getDrawable au lieu de getDrawable pour pouvoir compiler sous une API < LOLIPOP
@@ -62,18 +74,18 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button factoryBeltButtonLine1 = findViewById(R.id.factoryBeltButtonLine1);
         factoryBeltButtonLine1.setOnClickListener(view -> {
-            int level = 0;
-            openPopupUpgrade(level, ImageContent.beltImagesID[level]);
+            int level = factory.getLine(0).getLvl(0);
+            openPopupUpgrade(level, ImageContent.beltImagesID[level],0,0);
         });
         Button factoryRobotButtonLine1 = findViewById(R.id.factoryRobotButtonLine1);
         factoryRobotButtonLine1.setOnClickListener(view -> {
-            int level = 0;
-            openPopupUpgrade(level, ImageContent.robotImagesID[level]);
+            int level = factory.getLine(0).getLvl(1);
+            openPopupUpgrade(level, ImageContent.robotImagesID[level],0,1);
         });
         Button factoryOvenButtonLine1 = findViewById(R.id.factoryOvenButtonLine1);
         factoryOvenButtonLine1.setOnClickListener(view -> {
-            int level = 0;
-            openPopupUpgrade(level, ImageContent.ovenImagesID[level]);
+            int level = factory.getLine(0).getLvl(2);
+            openPopupUpgrade(level, ImageContent.ovenImagesID[level],0,2);
         });
 
 
@@ -81,36 +93,36 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button factoryBeltButtonLine2 = findViewById(R.id.factoryBeltButtonLine2);
         factoryBeltButtonLine2.setOnClickListener(view -> {
-            int level = 0;
-            openPopupUpgrade(level, ImageContent.beltImagesID[level]);
+            int level = factory.getLine(1).getLvl(0);
+            openPopupUpgrade(level, ImageContent.beltImagesID[level],1,0);
         });
         Button factoryRobotButtonLine2 = findViewById(R.id.factoryRobotButtonLine2);
         factoryRobotButtonLine2.setOnClickListener(view -> {
-            int level = 0;
-            openPopupUpgrade(level, ImageContent.robotImagesID[level]);
+            int level = factory.getLine(1).getLvl(1);
+            openPopupUpgrade(level, ImageContent.robotImagesID[level],1,1);
         });
         Button factoryOvenButtonLine2 = findViewById(R.id.factoryOvenButtonLine2);
         factoryOvenButtonLine2.setOnClickListener(view -> {
-            int level = 0;
-            openPopupUpgrade(level, ImageContent.ovenImagesID[level]);
+            int level = factory.getLine(1).getLvl(2);
+            openPopupUpgrade(level, ImageContent.ovenImagesID[level],1,2);
         });
 
 
 
         Button factoryBeltButtonLine3 = findViewById(R.id.factoryBeltButtonLine3);
         factoryBeltButtonLine3.setOnClickListener(view -> {
-            int level = 0;
-            openPopupUpgrade(level, ImageContent.beltImagesID[level]);
+            int level = factory.getLine(2).getLvl(0);
+            openPopupUpgrade(level, ImageContent.beltImagesID[level],2,0);
         });
         Button factoryRobotButtonLine3 = findViewById(R.id.factoryRobotButtonLine3);
         factoryRobotButtonLine3.setOnClickListener(view -> {
-            int level = 0;
-            openPopupUpgrade(level, ImageContent.robotImagesID[level]);
+            int level = factory.getLine(2).getLvl(1);
+            openPopupUpgrade(level, ImageContent.robotImagesID[level],2,1);
         });
         Button factoryOvenButtonLine3 = findViewById(R.id.factoryOvenButtonLine3);
         factoryOvenButtonLine3.setOnClickListener(view -> {
-            int level = 0;
-            openPopupUpgrade(level, ImageContent.ovenImagesID[level]);
+            int level = factory.getLine(2).getLvl(2);
+            openPopupUpgrade(level, ImageContent.ovenImagesID[level],2,2);
         });
 
 
@@ -119,7 +131,7 @@ public class FactoryActivity extends AppCompatActivity {
         Button factoryButtonStock = findViewById(R.id.factoryButtonStock);
         factoryButtonStock.setOnClickListener(v -> {
             int level = 0;
-            openPopupUpgrade(level, R.drawable.title);
+            openPopupUpgrade(level, R.drawable.title,0,0);
         });
 
         Button sell = findViewById(R.id.factorySell);
@@ -128,7 +140,7 @@ public class FactoryActivity extends AppCompatActivity {
     }
 
     //exemple
-    void openPopupUpgrade(int level, int res)
+    void openPopupUpgrade(int level, int res, int line, int id)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_upgrade);
@@ -137,7 +149,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button popupUpgradeOk = dialog.findViewById(R.id.popupUpgradeOk);
         popupUpgradeOk.setOnClickListener(v -> {
-
+            factory.getLine(line).setLvl(id,level+1);
         });
 
         TextView popupUpgradeMessage = dialog.findViewById(R.id.popupUpgradeMessage);

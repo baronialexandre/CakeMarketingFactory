@@ -1,29 +1,23 @@
 package l3info.projet.cakemarketingfactory.modele;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Line implements Serializable {
     private int cakeId;
-    private int lvlBelt;
-    private int lvlRobot;
-    private int lvlOven;
+    private ArrayList<Integer> lvl;
 
-    public Line(int cakeId, int lvlBelt, int lvlRobot,int lvlOven){
+    public Line(int cakeId, ArrayList<Integer> lvl){
         this.cakeId = cakeId;
-        this.lvlBelt = lvlBelt;
-        this.lvlRobot = lvlRobot;
-        this.lvlOven = lvlOven;
+        this.lvl = lvl;
     }
 
     public int getCakeId() { return cakeId; }
-    public int getLvlBelt() { return lvlBelt; }
-    public int getLvlRobot() { return lvlRobot; }
-    public int getLvlOven() { return lvlOven; }
+    public ArrayList<Integer> getAllLvl() { return lvl; }
+    public int getLvl( int index) { return lvl.get(index); }
 
     public void setCakeId(int cakeId) { this.cakeId = cakeId; }
-    public void setLvlBelt(int lvlBelt) { this.lvlBelt = lvlBelt; }
-    public void setLvlRobot(int lvlRobot) { this.lvlRobot = lvlRobot; }
-    public void setLvlOven(int lvlOven) { this.lvlOven = lvlOven; }
+    public void setLvl( int index, int lvl ) { this.lvl.set(index,lvl); }
 
-    public int getProduction(){ return this.lvlBelt+this.lvlRobot+this.lvlOven; }
+    public int getProduction(){ return this.lvl.get(0)+this.lvl.get(1)+this.lvl.get(2); }
 }
