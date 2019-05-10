@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class FactoryActivity extends AppCompatActivity {
     Context context;
     Factory factory;
 
+    ArrayList<ImageButton> allProduction = new ArrayList<>();
     ArrayList<LinearLayout> allBelts = new ArrayList<>();
     ArrayList<ImageView> allRobots = new ArrayList<>();
     ArrayList<ImageView> allOvens = new ArrayList<>();
@@ -43,19 +45,6 @@ public class FactoryActivity extends AppCompatActivity {
         int factoryId = factory.getFactorySpot()-1;
 
 
-        //Provisoire en attendant les Tasks
-        ArrayList<Integer> levels = new ArrayList<Integer>();
-        for(int i = 0; i<3; i++){levels.add(0);}
-        Line line1 = new Line(0,levels);
-        Line line2 = new Line(0,levels);
-        Line line3 = new Line(0,levels);
-        ArrayList<Line> lines = new ArrayList<>();
-        lines.add(line1);
-        lines.add(line2);
-        lines.add(line3);
-        factory.setLines(lines);
-
-
         FrameLayout background = findViewById(R.id.factoryBackground);
         //getRessources().getDrawable au lieu de getDrawable pour pouvoir compiler sous une API < LOLIPOP
         background.setBackground(getResources().getDrawable(ImageContent.factoryBackgroundID[factoryId]));
@@ -66,6 +55,9 @@ public class FactoryActivity extends AppCompatActivity {
         ImageView wall2 = findViewById(R.id.factoryWall2);
         wall2.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallID[factoryId]));
 
+        allProduction.add(findViewById(R.id.factoryProductionButtonLine1));
+        allProduction.add(findViewById(R.id.factoryProductionButtonLine2));
+        allProduction.add(findViewById(R.id.factoryProductionButtonLine2));
 
         allBelts.add(findViewById(R.id.factoryBeltLine1));
         allBelts.add(findViewById(R.id.factoryBeltLine2));
@@ -80,10 +72,14 @@ public class FactoryActivity extends AppCompatActivity {
         allOvens.add(findViewById(R.id.factoryOvenLine3));
 
         for(int i = 0; i < 3; i++){
-            allBelts.get(i).setBackground(getResources().getDrawable(ImageContent.beltImagesID[factory.getLine(i).getMachineLevel(i)]));
-            allRobots.get(i).setImageResource(ImageContent.robotImagesID[factory.getLine(i).getMachineLevel(i)]);
-            allOvens.get(i).setImageResource(ImageContent.ovenImagesID[factory.getLine(i).getMachineLevel(i)]);
+            if(factory.getLine(i) != null){
+                allProduction.get(i).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[factory.getLine(i).getCakeId()]));
+                allBelts.get(i).setBackground(getResources().getDrawable(ImageContent.beltImagesID[factory.getLine(i).getMachineLevel(i)]));
+                allRobots.get(i).setImageResource(ImageContent.robotImagesID[factory.getLine(i).getMachineLevel(i)]);
+                allOvens.get(i).setImageResource(ImageContent.ovenImagesID[factory.getLine(i).getMachineLevel(i)]);
+            }
         }
+
 
         //access to the userId in shared preferences
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
@@ -96,14 +92,6 @@ public class FactoryActivity extends AppCompatActivity {
             //Revenir en arrière sur une activity
             FactoryActivity.this.finish(); //"dépile" la stack d'activity
         });
-
-        /*
-        ArrayList<Button> allMachineButtons = new ArrayList<>();
-        for(int iLine = 0; iLine < 3; iLine++){
-            for(int iMachine = 0; iMachine < 3; iMachine++){
-
-            }
-        }*/
 
 
         Button factoryBeltButtonLine1 = findViewById(R.id.factoryBeltButtonLine1);
@@ -121,6 +109,11 @@ public class FactoryActivity extends AppCompatActivity {
             int level = factory.getLine(0).getMachineLevel(2);
             openPopupUpgrade(level, ImageContent.ovenImagesID[level],0,2);
         });
+        if (factory.getLine(0) == null){
+            factoryBeltButtonLine1.setEnabled(false);
+            factoryRobotButtonLine1.setEnabled(false);
+            factoryOvenButtonLine1.setEnabled(false);
+        }
 
 
 
@@ -139,7 +132,11 @@ public class FactoryActivity extends AppCompatActivity {
             int level = factory.getLine(1).getMachineLevel(2);
             openPopupUpgrade(level, ImageContent.ovenImagesID[level],1,2);
         });
-
+        if (factory.getLine(1) == null){
+            factoryBeltButtonLine2.setEnabled(false);
+            factoryRobotButtonLine2.setEnabled(false);
+            factoryOvenButtonLine2.setEnabled(false);
+        }
 
 
         Button factoryBeltButtonLine3 = findViewById(R.id.factoryBeltButtonLine3);
@@ -157,7 +154,11 @@ public class FactoryActivity extends AppCompatActivity {
             int level = factory.getLine(2).getMachineLevel(2);
             openPopupUpgrade(level, ImageContent.ovenImagesID[level],2,2);
         });
-
+        if (factory.getLine(2) == null){
+            factoryBeltButtonLine3.setEnabled(false);
+            factoryRobotButtonLine3.setEnabled(false);
+            factoryOvenButtonLine3.setEnabled(false);
+        }
 
 
 
@@ -197,7 +198,7 @@ public class FactoryActivity extends AppCompatActivity {
         popupUpgradeMessage.setText("Êtes vous sûr de vouloir lancer l'amélioration");
 
         TextView popupUpgradeLevel = dialog.findViewById(R.id.popupUpgradeLevel);
-        String levelText = getString(R.string.level) + level + line + id;
+        String levelText = getString(R.string.level) + level;
         popupUpgradeLevel.setText(levelText);
 
 
