@@ -113,6 +113,9 @@ public class FactoryActivity extends AppCompatActivity {
             factoryBeltButtonLine1.setEnabled(false);
             factoryRobotButtonLine1.setEnabled(false);
             factoryOvenButtonLine1.setEnabled(false);
+            factoryBeltButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
+            factoryRobotButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
+            factoryOvenButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
         }
 
 
@@ -136,6 +139,9 @@ public class FactoryActivity extends AppCompatActivity {
             factoryBeltButtonLine2.setEnabled(false);
             factoryRobotButtonLine2.setEnabled(false);
             factoryOvenButtonLine2.setEnabled(false);
+            factoryBeltButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
+            factoryRobotButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
+            factoryOvenButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
         }
 
 
@@ -158,6 +164,9 @@ public class FactoryActivity extends AppCompatActivity {
             factoryBeltButtonLine3.setEnabled(false);
             factoryRobotButtonLine3.setEnabled(false);
             factoryOvenButtonLine3.setEnabled(false);
+            factoryBeltButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
+            factoryRobotButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
+            factoryOvenButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
         }
 
 
