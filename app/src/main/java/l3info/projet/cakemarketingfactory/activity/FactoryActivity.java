@@ -93,7 +93,42 @@ public class FactoryActivity extends AppCompatActivity {
             FactoryActivity.this.finish(); //"dépile" la stack d'activity
         });
 
+        /** ---------- Change production ---------- **/
+        ImageButton productionLine1 = findViewById(R.id.factoryProductionButtonLine1);
+        productionLine1.setOnClickListener(view -> {
+            if (factory.getLine(0) != null) {
+                int newProduction = factory.getLine(0).getCakeId() + 1;
+                if (newProduction == 3) { newProduction = 0; }
+                factory.getLine(0).setCakeId(newProduction);
+                allProduction.get(0).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[newProduction]));
+                factory.getLine(0).setCakeId(newProduction);
+            }
+        });
+        ImageButton productionLine2 = findViewById(R.id.factoryProductionButtonLine2);
+        productionLine2.setOnClickListener(view -> {
+            if (factory.getLine(1) != null) {
+                int newProduction = factory.getLine(1).getCakeId() + 1;
+                if (newProduction == 3) { newProduction = 0; }
+                factory.getLine(1).setCakeId(newProduction);
+                allProduction.get(1).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[newProduction]));
+                factory.getLine(1).setCakeId(newProduction);
+            }
+        });
+        ImageButton productionLine3 = findViewById(R.id.factoryProductionButtonLine3);
+        productionLine3.setOnClickListener(view -> {
+            if (factory.getLine(2) != null) {
+                int newProduction = factory.getLine(2).getCakeId() + 1;
+                if (newProduction == 3) { newProduction = 0; }
+                factory.getLine(2).setCakeId(newProduction);
+                allProduction.get(2).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[newProduction]));
+                factory.getLine(2).setCakeId(newProduction);
+            }
+        });
 
+        /** ---------- End change production ---------- **/
+
+        /** ---------- Upgrade buttons ---------- **/
+        //Line 1
         Button factoryBeltButtonLine1 = findViewById(R.id.factoryBeltButtonLine1);
         factoryBeltButtonLine1.setOnClickListener(view -> {
             int level = factory.getLine(0).getMachineLevel(0);
@@ -117,9 +152,7 @@ public class FactoryActivity extends AppCompatActivity {
             factoryRobotButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
             factoryOvenButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
         }
-
-
-
+        //Line 2
         Button factoryBeltButtonLine2 = findViewById(R.id.factoryBeltButtonLine2);
         factoryBeltButtonLine2.setOnClickListener(view -> {
             int level = factory.getLine(1).getMachineLevel(0);
@@ -143,8 +176,7 @@ public class FactoryActivity extends AppCompatActivity {
             factoryRobotButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
             factoryOvenButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
         }
-
-
+        //Line 3
         Button factoryBeltButtonLine3 = findViewById(R.id.factoryBeltButtonLine3);
         factoryBeltButtonLine3.setOnClickListener(view -> {
             int level = factory.getLine(2).getMachineLevel(0);
@@ -168,8 +200,7 @@ public class FactoryActivity extends AppCompatActivity {
             factoryRobotButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
             factoryOvenButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
         }
-
-
+        /** End upgrade button **/
 
         Button factoryButtonStock = findViewById(R.id.factoryButtonStock);
         factoryButtonStock.setOnClickListener(v -> {

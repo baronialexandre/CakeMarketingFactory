@@ -74,7 +74,7 @@ public class EnterFactoryTask extends AsyncTask<String, Void, Factory>{
             }
             Log.i("BANDOL_ENTER_FACTORYTSK", factory.toString());
 
-            userId = jsonObj.getLong("userId");
+            //userId = jsonObj.getLong("userId");
             return factory;
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error while authenticating ... : " + e.getMessage(), e);
