@@ -24,9 +24,10 @@
             android:layout_row="0"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
-            android:background="@drawable/hours_frame2">
+            android:background="@drawable/hours_frame2"
+            tools:ignore="RtlHardcoded">
             <TextView
                 android:id="@+id/marketHours"
                 android:layout_width="match_parent"
@@ -36,6 +37,27 @@
                 android:textSize="30sp"
                 android:textColor="@color/text_color_states"
                 android:enabled="false"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_column="2">
+            <EditText
+                android:id="@+id/marketCapital"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:enabled="false"
+                android:text="@string/cash"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_states"
+                android:inputType="textNoSuggestions"
+                tools:ignore="Autofill,LabelFor"
+                android:background="@drawable/hours_frame"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"/>
         </RelativeLayout>
     </GridLayout>
     <LinearLayout
@@ -51,7 +73,7 @@
             android:gravity="center">
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:gravity ="bottom">
                 <TextView
                     android:layout_width="70dp"
@@ -59,11 +81,15 @@
                     android:textColor="@color/text_color_states"
                     android:text="7.5 $/u"
                     android:textAlignment="center"
-                    android:background="@drawable/popup"/>
+                    android:background="@drawable/popup_side_market"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:gravity ="center">
                 <TextView
                     android:layout_width="70dp"
@@ -71,11 +97,15 @@
                     android:textColor="@color/text_color_states"
                     android:text="5 $/u"
                     android:textAlignment="center"
-                    android:background="@drawable/popup"/>
+                    android:background="@drawable/popup_side_market"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:gravity ="top">
                 <TextView
                     android:layout_width="70dp"
@@ -83,7 +113,11 @@
                     android:textColor="@color/text_color_states"
                     android:text="2.5 $/u"
                     android:textAlignment="center"
-                    android:background="@drawable/popup"/>
+                    android:background="@drawable/popup_side_market"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"/>
             </RelativeLayout>
         </LinearLayout>
         <FrameLayout
@@ -104,10 +138,10 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
         <RelativeLayout
             android:layout_width="120dp"
             android:layout_height="match_parent"
@@ -116,13 +150,17 @@
             <TextView
                 android:id="@+id/marketSelectedPrice"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/hours_frame"
                 android:text="@string/cash"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:textColor="@color/text_color_states"
-                android:enabled="false"/>
+                android:enabled="false"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"/>
         </RelativeLayout>
     </LinearLayout>
 
@@ -131,7 +169,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
         <ImageButton
             android:id="@+id/marketCookie"
             android:layout_margin="5dp"
@@ -166,7 +204,8 @@
             android:text="@string/advertising"
             android:layout_margin="5dp"
             android:textColor="@color/buttonGreenText"
-            android:background="@drawable/green_button_selector"/>
+            android:background="@drawable/green_button_selector"
+            tools:ignore="ButtonStyle" />
         <Button
             android:id="@+id/marketSell"
             android:layout_width="120dp"
@@ -174,7 +213,8 @@
             android:text="@string/sell"
             android:layout_margin="5dp"
             android:textColor="@color/buttonGreenText"
-            android:background="@drawable/green_button_selector"/>
+            android:background="@drawable/green_button_selector"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 </LinearLayout>
