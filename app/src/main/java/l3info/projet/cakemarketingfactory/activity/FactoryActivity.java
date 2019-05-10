@@ -96,32 +96,18 @@ public class FactoryActivity extends AppCompatActivity {
         /** ---------- Change production ---------- **/
         ImageButton productionLine1 = findViewById(R.id.factoryProductionButtonLine1);
         productionLine1.setOnClickListener(view -> {
-            if (factory.getLine(0) != null) {
-                int newProduction = factory.getLine(0).getCakeId() + 1;
-                if (newProduction == 3) { newProduction = 0; }
-                factory.getLine(0).setCakeId(newProduction);
-                allProduction.get(0).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[newProduction]));
-                factory.getLine(0).setCakeId(newProduction);
-            }
+            if (factory.getLine(0) != null) { openPopupSelection(0); }
         });
         ImageButton productionLine2 = findViewById(R.id.factoryProductionButtonLine2);
         productionLine2.setOnClickListener(view -> {
             if (factory.getLine(1) != null) {
-                int newProduction = factory.getLine(1).getCakeId() + 1;
-                if (newProduction == 3) { newProduction = 0; }
-                factory.getLine(1).setCakeId(newProduction);
-                allProduction.get(1).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[newProduction]));
-                factory.getLine(1).setCakeId(newProduction);
+                if (factory.getLine(0) != null) { openPopupSelection(1); }
             }
         });
         ImageButton productionLine3 = findViewById(R.id.factoryProductionButtonLine3);
         productionLine3.setOnClickListener(view -> {
             if (factory.getLine(2) != null) {
-                int newProduction = factory.getLine(2).getCakeId() + 1;
-                if (newProduction == 3) { newProduction = 0; }
-                factory.getLine(2).setCakeId(newProduction);
-                allProduction.get(2).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[newProduction]));
-                factory.getLine(2).setCakeId(newProduction);
+                if (factory.getLine(0) != null) { openPopupSelection(2); }
             }
         });
 
@@ -244,6 +230,39 @@ public class FactoryActivity extends AppCompatActivity {
 
         ImageView popupUpgradeImage = dialog.findViewById(R.id.popupUpgradeImage);
         popupUpgradeImage.setImageResource(res);
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    void openPopupSelection(int line)
+    {
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.popup_cake_sel);
+        ImageView popupMessageCancel = dialog.findViewById(R.id.popupCakeSelBack);
+        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
+
+        ImageButton cookieSelect = dialog.findViewById(R.id.popupCakeSelCookie);
+        cookieSelect.setOnClickListener(v -> {
+            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[0]));
+            factory.getLine(line).setCakeId(0);
+            dialog.dismiss();
+        });
+
+        ImageButton cupcakeSelect = dialog.findViewById(R.id.popupCakeSelCupcake);
+        cupcakeSelect.setOnClickListener(v -> {
+            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[1]));
+            factory.getLine(line).setCakeId(1);
+            dialog.dismiss();
+        });
+
+        ImageButton donutSelect = dialog.findViewById(R.id.popupCakeSelDonut);
+        donutSelect.setOnClickListener(v -> {
+            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[2]));
+            factory.getLine(line).setCakeId(2);
+            dialog.dismiss();
+        });
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);

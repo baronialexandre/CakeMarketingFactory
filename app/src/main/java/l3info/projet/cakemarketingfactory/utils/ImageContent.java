@@ -66,8 +66,8 @@ public class ImageContent {
             R.drawable.factory_wall_6
     };
     public static final int[] cakeImageID = {
-            R.drawable.ic_cupcake,
             R.drawable.ic_cookie,
+            R.drawable.ic_cupcake,
             R.drawable.ic_donut
     };
 }
