@@ -18,6 +18,7 @@ import java.util.Objects;
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.World;
 import l3info.projet.cakemarketingfactory.task.EnterFactoryTask;
+import l3info.projet.cakemarketingfactory.task.EnterMarketTask;
 import l3info.projet.cakemarketingfactory.task.EnterMessagesTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
@@ -78,8 +79,8 @@ public class WorldActivity  extends AppCompatActivity {
         ImageView market = findViewById(R.id.worldMarket);
         market.setOnClickListener(view -> {
             //Changer d'activity
-            Intent intentApp = new Intent(WorldActivity.this, MarketActivity.class);
-            WorldActivity.this.startActivity(intentApp);
+            EnterMarketTask enterMarketTask = new EnterMarketTask(context);
+            enterMarketTask.execute();
         });
 
         ImageView messages = findViewById(R.id.worldLetter);

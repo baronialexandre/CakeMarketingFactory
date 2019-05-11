@@ -79,7 +79,7 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_color_states"
-                    android:text="7.5 $/u"
+                    android:text="15 $/u"
                     android:textAlignment="center"
                     android:background="@drawable/popup_side_market"
                     android:layout_marginTop="25dp"
@@ -95,7 +95,7 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_color_states"
-                    android:text="5 $/u"
+                    android:text="10 $/u"
                     android:textAlignment="center"
                     android:background="@drawable/popup_side_market"
                     android:layout_marginTop="15dp"
@@ -111,7 +111,7 @@
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_color_states"
-                    android:text="2.5 $/u"
+                    android:text="5 $/u"
                     android:textAlignment="center"
                     android:background="@drawable/popup_side_market"
                     android:layout_marginTop="25dp"
@@ -130,9 +130,12 @@
                 android:background="@drawable/market_graph_background">
             </FrameLayout>
             <!-- Graph -->
-            <!-- Graph -->
-            <!-- Graph -->
-            <!-- Graph -->
+            <l3info.projet.cakemarketingfactory.activity.view.MarketGraph
+                android:id="@+id/marketGraph"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+            />
             <!-- Graph -->
         </FrameLayout>
     </LinearLayout>

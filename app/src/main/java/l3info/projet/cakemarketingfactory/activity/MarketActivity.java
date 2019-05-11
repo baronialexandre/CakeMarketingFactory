@@ -13,14 +13,26 @@ import android.widget.TextView;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.activity.view.MarketGraph;
+import l3info.projet.cakemarketingfactory.model.Market;
 
-public class MarketActivity extends AppCompatActivity {
+public class MarketActivity extends AppCompatActivity
+{
+
+    Market market;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market);
 
         Context context = this;
+
+        market = (Market) getIntent().getSerializableExtra("market");
+
+        MarketGraph marketGraph = findViewById(R.id.marketGraph);
+
+        marketGraph.setMarket(market);
 
         ImageView marketBack = findViewById(R.id.marketBack);
         marketBack.setOnClickListener(view -> {
@@ -67,9 +79,6 @@ public class MarketActivity extends AppCompatActivity {
         progressBarCookie.setProgress(25);
         progressBarCupcake.setProgress(5);
         progressBarDonut.setProgress(70);
-
-
-
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);

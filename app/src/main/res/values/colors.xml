@@ -36,4 +36,6 @@
    <color name="popupBackground">#404040</color>
    <color name="popupSideInt">#787878</color>
    <color name="popupSideExt">#636363</color>
+
+   <color name="marketGraphLine">#00DD00</color>
 </resources>

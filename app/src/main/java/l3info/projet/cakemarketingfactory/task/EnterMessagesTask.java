@@ -79,7 +79,6 @@ public class EnterMessagesTask extends AsyncTask<String, Void, ArrayList<Message
         super.onPostExecute(messageItems);
         Context ctx = this.ctx.get();
 
-
         //Redirect to main user activity
         Intent intent;
         intent = new Intent(ctx, MessagesActivity.class);

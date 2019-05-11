@@ -61,7 +61,7 @@ public class EnterFactoryTask extends AsyncTask<String, Void, Factory>{
             factory.setCapacityLevel(jsonObj.getInt("capacityLevel"));
             JSONArray arr = jsonObj.getJSONArray("stocks");
             for (int i=0; i < arr.length(); i++) {
-                factory.getCurrentStocks().set(arr.getJSONObject(i).getInt("productId")-1,arr.getJSONObject(i).getInt("quantity"));
+                factory.getCurrentStocks().set(arr.getJSONObject(i).getInt("productId"),arr.getJSONObject(i).getInt("quantity"));
             }
 
             JSONArray arr2 = jsonObj.getJSONArray("lines");
