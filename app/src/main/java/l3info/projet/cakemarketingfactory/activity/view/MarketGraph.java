@@ -34,7 +34,7 @@ public class MarketGraph extends View
     private void init()
     {
         Paint lineThicknessPaint = new Paint();
-        lineThicknessPaint.setStrokeWidth(5.0f);
+        lineThicknessPaint.setStrokeWidth(8.0f);
 
         lineIncreasePaint = new Paint(lineThicknessPaint);
         lineStagnatePaint = new Paint(lineThicknessPaint);
@@ -50,14 +50,16 @@ public class MarketGraph extends View
     {
         super.onDraw(canvas);
 
-        float originX = 0;
-        float originY = getHeight() - ((market.demands[0].get(0).getPrice()*(float)getHeight())/20);
-        for(int i = 1; i < market.demands[0].size()-1; i++)
-        {
-            Demand demand = market.demands[0].get(i);
+        ArrayList<Demand> cookieDemands = market.demands.get(0);
 
-            float destX = originX + (float)(getWidth()/8);
-            float destY = getHeight() - ((demand.getPrice()*(float)getHeight())/20);
+        float originX = 0;
+        float originY = (float)getHeight() - ((cookieDemands.get(0).getPrice()*(float)getHeight())/20);
+        for(int i = 1; i < cookieDemands.size(); i++)
+        {
+            Demand demand = cookieDemands.get(i);
+
+            float destX = originX + (float)(getWidth()/9);
+            float destY = (float)getHeight() - ((demand.getPrice()*(float)getHeight())/20);
 
             if(originY == destY)
                 canvas.drawLine(originX,originY,destX,destY,lineStagnatePaint);
@@ -68,9 +70,7 @@ public class MarketGraph extends View
 
             originX = destX;
             originY = destY;
-
         }
-
     }
 
 }
