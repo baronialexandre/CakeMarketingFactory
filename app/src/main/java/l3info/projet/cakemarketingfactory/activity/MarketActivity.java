@@ -31,12 +31,25 @@ public class MarketActivity extends AppCompatActivity
 
         market = (Market) getIntent().getSerializableExtra("market");
 
+        // GRAPH
         MarketGraph marketGraph = findViewById(R.id.marketGraph);
         marketGraph.setMarket(market);
 
+        // GRAPH DISPLAY BUTTONS
+        ImageButton marketCookie = findViewById(R.id.marketCookie);
+        ImageButton marketCupcake = findViewById(R.id.marketCupcake);
+        ImageButton marketDonut = findViewById(R.id.marketDonut);
+
+        marketCookie.setOnClickListener(v -> marketGraph.setProductIdToDisplay(0));
+        marketCupcake.setOnClickListener(v -> marketGraph.setProductIdToDisplay(1));
+        marketDonut.setOnClickListener(v -> marketGraph.setProductIdToDisplay(2));
+
+        // COUNTDOWN
         MarketTimeView marketTimeView = findViewById(R.id.marketTimeView);
         marketTimeView.setOnClickListener(v -> openPopupTimeInfo(context));
         marketTimeView.start();
+
+
 
         Button sellAll = findViewById(R.id.marketSell);
         sellAll.setOnClickListener(v -> openPopupSell(context));

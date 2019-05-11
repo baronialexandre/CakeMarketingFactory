@@ -15,6 +15,7 @@ import l3info.projet.cakemarketingfactory.model.Market;
 public class MarketGraph extends View
 {
     Market market;
+    int productIdToDisplay;
 
     Paint lineIncreasePaint;
     Paint lineStagnatePaint;
@@ -43,6 +44,8 @@ public class MarketGraph extends View
         lineIncreasePaint.setColor(0xff00dd00);
         lineStagnatePaint.setColor(0xffff8800);
         lineDecreasePaint.setColor(0xffff0000);
+
+        productIdToDisplay = 0;
     }
 
     @Override
@@ -50,27 +53,51 @@ public class MarketGraph extends View
     {
         super.onDraw(canvas);
 
-        ArrayList<Demand> cookieDemands = market.demands.get(0);
+        drawProductGraph(productIdToDisplay, canvas);
+    }
 
-        float originX = 0;
-        float originY = (float)getHeight() - ((cookieDemands.get(0).getPrice()*(float)getHeight())/20);
-        for(int i = 1; i < cookieDemands.size(); i++)
+    private void drawProductGraph(int productId, Canvas canvas)
+    {
+        ArrayList<Demand> demands = market.demands.get(productId);
+
+        float startX = 0;
+        float startY = (float)getHeight() - ((demands.get(0).getPrice()*(float)getHeight())/20);
+        for(int i = 1; i < demands.size(); i++)
         {
-            Demand demand = cookieDemands.get(i);
+            Demand demand = demands.get(i);
 
-            float destX = originX + (float)(getWidth()/9);
-            float destY = (float)getHeight() - ((demand.getPrice()*(float)getHeight())/20);
+            float stopX = startX + (float)(getWidth()/9);
+            float stopY = (float)getHeight() - ((demand.getPrice()*(float)getHeight())/20);
 
-            if(originY == destY)
-                canvas.drawLine(originX,originY,destX,destY,lineStagnatePaint);
-            else if(originY > destY)
-                canvas.drawLine(originX,originY,destX,destY,lineIncreasePaint);
-            else
-                canvas.drawLine(originX,originY,destX,destY,lineDecreasePaint);
+            traceLine(startX, startY, stopX, stopY, canvas);
 
-            originX = destX;
-            originY = destY;
+            startX = stopX;
+            startY = stopY;
         }
+    }
+
+    private void traceLine(float startX, float startY, float stopX, float stopY, Canvas canvas)
+    {
+        Paint paint = determinePaint(startY, stopY);
+        canvas.drawLine(startX, startY, stopX, stopY, paint);
+    }
+
+    private Paint determinePaint(float startY, float stopY)
+    {
+        Paint paint;
+        if(startY == stopY)
+            paint = lineStagnatePaint;
+        else if(startY > stopY)
+            paint = lineIncreasePaint;
+        else
+            paint = lineDecreasePaint;
+        return paint;
+    }
+
+    public void setProductIdToDisplay(int productIdToDisplay)
+    {
+        this.productIdToDisplay = productIdToDisplay;
+        invalidate();
     }
 
 }

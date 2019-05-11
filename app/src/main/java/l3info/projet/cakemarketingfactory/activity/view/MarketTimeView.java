@@ -32,7 +32,7 @@ public class MarketTimeView extends android.support.v7.widget.AppCompatTextView
 
         long diff = Math.abs(now.getTime() - next.getTime());
 
-        timer = new CountDownTimer(diff,60000)
+        timer = new CountDownTimer(diff,2000)
         {
             @Override
             public void onTick(long elapsed)
