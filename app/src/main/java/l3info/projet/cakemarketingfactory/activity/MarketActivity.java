@@ -14,6 +14,7 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.view.MarketGraph;
+import l3info.projet.cakemarketingfactory.activity.view.MarketTimeView;
 import l3info.projet.cakemarketingfactory.model.Market;
 
 public class MarketActivity extends AppCompatActivity
@@ -31,20 +32,23 @@ public class MarketActivity extends AppCompatActivity
         market = (Market) getIntent().getSerializableExtra("market");
 
         MarketGraph marketGraph = findViewById(R.id.marketGraph);
-
         marketGraph.setMarket(market);
 
-        ImageView marketBack = findViewById(R.id.marketBack);
-        marketBack.setOnClickListener(view -> {
-            //Changer d'activity
-            MarketActivity.this.finish(); //dépile la stack d'activity
-        });
+        MarketTimeView marketTimeView = findViewById(R.id.marketTimeView);
+        marketTimeView.setOnClickListener(v -> openPopupTimeInfo(context));
+        marketTimeView.start();
 
         Button sellAll = findViewById(R.id.marketSell);
         sellAll.setOnClickListener(v -> openPopupSell(context));
 
         Button advertising = findViewById(R.id.marketAdvertising);
         advertising.setOnClickListener(v -> openPopupAds(context));
+
+        ImageView marketBack = findViewById(R.id.marketBack);
+        marketBack.setOnClickListener(view -> {
+            //Changer d'activity
+            MarketActivity.this.finish(); //dépile la stack d'activity
+        });
     }
 
 
@@ -102,6 +106,26 @@ public class MarketActivity extends AppCompatActivity
         message.setText(string);
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    void openPopupTimeInfo(Context context)
+    {
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.popup_notification);
+        Button popupMessageCancel = dialog.findViewById(R.id.popupNotificationOk);
+        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
+
+        TextView message = dialog.findViewById(R.id.popupNotificationMessage);
+
+        String string = "Temps restant avant la fin de la semaine.\n" +
+                "A la fin de chaque semaine, toutes les entreprises sont remises à zéro : capital, usines, stocks ...\n" +
+                "Les 3 meilleurs joueurs auront une place dans la galerie des gagnants.\n" +
+                "Votre meilleur capital est conservé, et votre niveau augmente en fonction de votre capital final.";
+        message.setText(string);
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.show();
     }

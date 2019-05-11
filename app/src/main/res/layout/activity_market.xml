@@ -28,15 +28,14 @@
             android:gravity="center"
             android:background="@drawable/hours_frame2"
             tools:ignore="RtlHardcoded">
-            <TextView
-                android:id="@+id/marketHours"
+            <l3info.projet.cakemarketingfactory.activity.view.MarketTimeView
+                android:id="@+id/marketTimeView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Hours"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:textColor="@color/text_color_states"
-                android:enabled="false"/>
+                />
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
