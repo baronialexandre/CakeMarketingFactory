@@ -2,12 +2,8 @@ package l3info.projet.cakemarketingfactory.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -20,8 +16,6 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
-import l3info.projet.cakemarketingfactory.model.Line;
-import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 
 public class FactoryActivity extends AppCompatActivity {
@@ -52,7 +46,6 @@ public class FactoryActivity extends AppCompatActivity {
 
         /** --------- Pictures creation --------- **/
         ImageView wall1 = findViewById(R.id.factoryWall1);
-        //todo : éditer la couleurs des murs graphiquement
         wall1.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallID[factoryId]));
         ImageView wall2 = findViewById(R.id.factoryWall2);
         wall2.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallID[factoryId]));
@@ -87,8 +80,8 @@ public class FactoryActivity extends AppCompatActivity {
 
 
         //access to the userId in shared preferences
-        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-        long userId = shr.getLong("userId",0L);
+//        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+//        long userId = shr.getLong("userId",0L);
 
         //EnterFactoryTask task = new EnterFactoryTask(userId, factory, context);
 
@@ -134,13 +127,15 @@ public class FactoryActivity extends AppCompatActivity {
             int level = factory.getLine(0).getMachineLevel(2);
             openPopupUpgrade(level, ImageContent.ovenImagesID[level],0,2);
         });
+
+
         if (factory.getLine(0) == null){
             factoryBeltButtonLine1.setEnabled(false);
             factoryRobotButtonLine1.setEnabled(false);
             factoryOvenButtonLine1.setEnabled(false);
-            factoryBeltButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
-            factoryRobotButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
-            factoryOvenButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
+            factoryBeltButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
+            factoryRobotButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
+            factoryOvenButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
         }
         //Line 2
         Button factoryBeltButtonLine2 = findViewById(R.id.factoryBeltButtonLine2);
@@ -162,9 +157,9 @@ public class FactoryActivity extends AppCompatActivity {
             factoryBeltButtonLine2.setEnabled(false);
             factoryRobotButtonLine2.setEnabled(false);
             factoryOvenButtonLine2.setEnabled(false);
-            factoryBeltButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
-            factoryRobotButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
-            factoryOvenButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
+            factoryBeltButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
+            factoryRobotButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
+            factoryOvenButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
         }
         //Line 3
         Button factoryBeltButtonLine3 = findViewById(R.id.factoryBeltButtonLine3);
@@ -186,9 +181,9 @@ public class FactoryActivity extends AppCompatActivity {
             factoryBeltButtonLine3.setEnabled(false);
             factoryRobotButtonLine3.setEnabled(false);
             factoryOvenButtonLine3.setEnabled(false);
-            factoryBeltButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
-            factoryRobotButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
-            factoryOvenButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_enabled));
+            factoryBeltButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
+            factoryRobotButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
+            factoryOvenButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
         }
         Button factoryButtonStock = findViewById(R.id.factoryButtonStock);
         factoryButtonStock.setOnClickListener(v -> {
