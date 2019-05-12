@@ -28,9 +28,13 @@ public class EnterMarketTask extends AsyncTask<String, Void, Market>
 
     private final WeakReference<Context> ctx;
 
-    public EnterMarketTask(Context ctx)
+    private long userId;
+    private int userScore;
+
+    public EnterMarketTask(long userId, Context ctx)
     {
         this.ctx = new WeakReference<>(ctx);
+        this.userId = userId;
     }
 
     @Override
@@ -39,10 +43,10 @@ public class EnterMarketTask extends AsyncTask<String, Void, Market>
         try
         {
             OkHttpClient client = new OkHttpClient();
-            Log.i("BANDOL_MARKET_TASK", Contents.API_URL + Contents.ENTER_MARKET_URL + "&apipass=" + Contents.API_PASS);
+            Log.i("BANDOL_MARKET_TASK", Contents.API_URL + Contents.ENTER_MARKET_URL + "?apipass=" + Contents.API_PASS + "&userId=" + userId);
 
             Request request = new Request.Builder()
-                    .url(Contents.API_URL + Contents.ENTER_MARKET_URL + "?apipass=" + Contents.API_PASS)
+                    .url(Contents.API_URL + Contents.ENTER_MARKET_URL + "?apipass=" + Contents.API_PASS + "&userId=" + userId)
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -55,6 +59,7 @@ public class EnterMarketTask extends AsyncTask<String, Void, Market>
             JSONObject jsonObj = new JSONObject(rawJson);
 
             JSONArray productsArray = jsonObj.getJSONArray("demands");
+            userScore = jsonObj.getInt("userScore");
 
             Market market = new Market();
 
@@ -93,6 +98,7 @@ public class EnterMarketTask extends AsyncTask<String, Void, Market>
         Intent intent;
         intent = new Intent(ctx, MarketActivity.class);
         intent.putExtra("market", market);
+        intent.putExtra("userScore", userScore);
         ctx.startActivity(intent);
     }
 }

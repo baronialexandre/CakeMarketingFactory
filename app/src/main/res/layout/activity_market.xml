@@ -42,16 +42,12 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_column="2">
-            <EditText
+            <TextView
                 android:id="@+id/marketCapital"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:enabled="false"
-                android:text="@string/cash"
                 android:textAlignment="center"
                 android:textColor="@color/text_color_states"
-                android:inputType="textNoSuggestions"
-                tools:ignore="Autofill,LabelFor"
                 android:background="@drawable/hours_frame"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -123,11 +119,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/popup_side">
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/market_graph_background">
-            </FrameLayout>
             <!-- Graph -->
             <l3info.projet.cakemarketingfactory.activity.view.MarketGraph
                 android:id="@+id/marketGraph"
@@ -154,7 +145,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/hours_frame"
-                android:text="@string/cash"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:textColor="@color/text_color_states"
@@ -175,23 +165,26 @@
         <ImageButton
             android:id="@+id/marketCookie"
             android:layout_margin="5dp"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_cookie"
+            android:background="@drawable/productbutton_selector"
             android:contentDescription="@string/empty" />
         <ImageButton
             android:id="@+id/marketCupcake"
             android:layout_margin="5dp"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_cupcake"
+            android:background="@drawable/productbutton_selector"
             android:contentDescription="@string/empty" />
         <ImageButton
             android:id="@+id/marketDonut"
             android:layout_margin="5dp"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_donut"
+            android:background="@drawable/productbutton_selector"
             android:contentDescription="@string/empty" />
     </LinearLayout>
     <LinearLayout

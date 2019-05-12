@@ -2,6 +2,7 @@ package l3info.projet.cakemarketingfactory.activity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -10,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.Locale;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
@@ -30,19 +34,38 @@ public class MarketActivity extends AppCompatActivity
         Context context = this;
 
         market = (Market) getIntent().getSerializableExtra("market");
+        int userScore = getIntent().getIntExtra("userScore", 0);
+
+        // USER SCORE DISPLAY
+        TextView userScoreDisplay = findViewById(R.id.marketCapital);
+        userScoreDisplay.setText(String.format(Locale.FRANCE, "%d$", userScore));
 
         // GRAPH
         MarketGraph marketGraph = findViewById(R.id.marketGraph);
         marketGraph.setMarket(market);
 
-        // GRAPH DISPLAY BUTTONS
+        // SELECTED PRODUCT PRICE DISPLAY
+        TextView marketSelectedPrice = findViewById(R.id.marketSelectedPrice);
+
+        // DEFAULT DISPLAY = COOKIES (0)
+        setProductToDisplay(0, marketGraph, marketSelectedPrice);
+
+        // SELECT PRODUCT BUTTONS
         ImageButton marketCookie = findViewById(R.id.marketCookie);
         ImageButton marketCupcake = findViewById(R.id.marketCupcake);
         ImageButton marketDonut = findViewById(R.id.marketDonut);
 
-        marketCookie.setOnClickListener(v -> marketGraph.setProductIdToDisplay(0));
-        marketCupcake.setOnClickListener(v -> marketGraph.setProductIdToDisplay(1));
-        marketDonut.setOnClickListener(v -> marketGraph.setProductIdToDisplay(2));
+        marketCookie.setOnClickListener(v   -> {
+            setProductToDisplay(0, marketGraph, marketSelectedPrice);
+        });
+        marketCupcake.setOnClickListener(v    -> {
+            setProductToDisplay(1, marketGraph, marketSelectedPrice);
+        });
+        marketDonut.setOnClickListener(v  -> {
+            setProductToDisplay(2, marketGraph, marketSelectedPrice);
+        });
+
+
 
         // COUNTDOWN
         MarketTimeView marketTimeView = findViewById(R.id.marketTimeView);
@@ -141,5 +164,11 @@ public class MarketActivity extends AppCompatActivity
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.show();
+    }
+
+    void setProductToDisplay(int productId, MarketGraph marketGraph, TextView priceDisplay)
+    {
+        marketGraph.setProductIdToDisplay(productId);
+        priceDisplay.setText(String.format(Locale.FRANCE,"%d$",market.lastProductPrice(productId)));
     }
 }

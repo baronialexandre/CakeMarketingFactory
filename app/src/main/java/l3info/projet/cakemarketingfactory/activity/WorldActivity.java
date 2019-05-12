@@ -79,7 +79,9 @@ public class WorldActivity  extends AppCompatActivity {
         ImageView market = findViewById(R.id.worldMarket);
         market.setOnClickListener(view -> {
             //Changer d'activity
-            EnterMarketTask enterMarketTask = new EnterMarketTask(context);
+            SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+            long userId = shr.getLong("userId",0L);
+            EnterMarketTask enterMarketTask = new EnterMarketTask(userId, context);
             enterMarketTask.execute();
         });
 

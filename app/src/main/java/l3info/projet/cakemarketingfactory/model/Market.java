@@ -27,4 +27,10 @@ public class Market implements Serializable
         for(ArrayList<Demand> demandList : demands)
             Collections.reverse(demandList);
     }
+
+    public int lastProductPrice(int productId)
+    {
+        ArrayList<Demand> productDemand = demands.get(productId);
+        return productDemand.get(productDemand.size()-1).getPrice();
+    }
 }

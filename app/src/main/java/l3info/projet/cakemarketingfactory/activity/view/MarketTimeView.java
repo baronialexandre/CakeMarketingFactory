@@ -18,13 +18,13 @@ public class MarketTimeView extends android.support.v7.widget.AppCompatTextView
 
         // NE PAS CRITIQUER SVP :'(
         Calendar calendar = Calendar.getInstance();
-        int daysInterval = Calendar.MONDAY - calendar.get(Calendar.DAY_OF_WEEK);
+        int daysInterval = Calendar.SUNDAY - calendar.get(Calendar.DAY_OF_WEEK);
         if(daysInterval < 0)
             daysInterval += 7;
         calendar.add(Calendar.DAY_OF_YEAR, daysInterval);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 1);
-        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
         calendar.set(Calendar.MILLISECOND, 0);
 
         Date now = new Date();

@@ -38,4 +38,7 @@
    <color name="popupSideExt">#636363</color>
 
    <color name="marketGraphLine">#00DD00</color>
+
+   <color name="productButtonDefault">#505050</color>
+   <color name="productButtonSelect">#337733</color>
 </resources>
