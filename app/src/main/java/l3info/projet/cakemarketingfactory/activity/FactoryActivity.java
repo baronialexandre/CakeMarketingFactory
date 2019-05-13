@@ -23,6 +23,7 @@ public class FactoryActivity extends AppCompatActivity {
     Context context;
     Factory factory;
 
+    ArrayList<TextView> allProductSpeed = new ArrayList<>();
     ArrayList<ImageButton> allProduction = new ArrayList<>();
     ArrayList<LinearLayout> allBelts = new ArrayList<>();
     ArrayList<ImageView> allRobots = new ArrayList<>();
@@ -51,6 +52,10 @@ public class FactoryActivity extends AppCompatActivity {
         ImageView wall2 = findViewById(R.id.factoryWall2);
         wall2.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallID[factoryId]));
 
+        allProductSpeed.add(findViewById(R.id.factoryUnitPerSecondLine1));
+        allProductSpeed.add(findViewById(R.id.factoryUnitPerSecondLine2));
+        allProductSpeed.add(findViewById(R.id.factoryUnitPerSecondLine3));
+
         allProduction.add(findViewById(R.id.factoryProductionButtonLine1));
         allProduction.add(findViewById(R.id.factoryProductionButtonLine2));
         allProduction.add(findViewById(R.id.factoryProductionButtonLine2));
@@ -69,6 +74,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         for(int i = 0; i < 3; i++){
             if(factory.getLine(i) != null){
+                allProductSpeed.get(i).setText(factory.getLine(i).getProduction()+"/s");
                 allProduction.get(i).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[factory.getLine(i).getCakeId()]));
                 allBelts.get(i).setBackground(getResources().getDrawable(ImageContent.beltImagesID[factory.getLine(i).getMachineLevel(i)]));
                 allRobots.get(i).setImageResource(ImageContent.robotImagesID[factory.getLine(i).getMachineLevel(i)]);
@@ -233,6 +239,8 @@ public class FactoryActivity extends AppCompatActivity {
                 else if (id == 2){
                     allOvens.get(line).setImageResource(ImageContent.ovenImagesID[level+1]);
                 }
+                allProductSpeed.get(line).setText(factory.getLine(line).getProduction()+"/s");
+
                 if (level == 8) {
                     button.setBackground(getResources().getDrawable(R.drawable.gold_button_selector));
                     button.setText("M");
