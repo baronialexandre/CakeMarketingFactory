@@ -2,16 +2,13 @@ package l3info.projet.cakemarketingfactory.activity;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -20,11 +17,16 @@ import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.view.MarketGraph;
 import l3info.projet.cakemarketingfactory.activity.view.MarketTimeView;
 import l3info.projet.cakemarketingfactory.model.Market;
+import l3info.projet.cakemarketingfactory.model.Votes;
+import l3info.projet.cakemarketingfactory.task.CastVoteTask;
+import l3info.projet.cakemarketingfactory.utils.Contents;
 
 public class MarketActivity extends AppCompatActivity
 {
 
     Market market;
+    Votes votes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -34,6 +36,7 @@ public class MarketActivity extends AppCompatActivity
         Context context = this;
 
         market = (Market) getIntent().getSerializableExtra("market");
+        votes = (Votes) getIntent().getSerializableExtra("votes");
         int userScore = getIntent().getIntExtra("userScore", 0);
 
         // USER SCORE DISPLAY
@@ -55,15 +58,9 @@ public class MarketActivity extends AppCompatActivity
         ImageButton marketCupcake = findViewById(R.id.marketCupcake);
         ImageButton marketDonut = findViewById(R.id.marketDonut);
 
-        marketCookie.setOnClickListener(v   -> {
-            setProductToDisplay(0, marketGraph, marketSelectedPrice);
-        });
-        marketCupcake.setOnClickListener(v    -> {
-            setProductToDisplay(1, marketGraph, marketSelectedPrice);
-        });
-        marketDonut.setOnClickListener(v  -> {
-            setProductToDisplay(2, marketGraph, marketSelectedPrice);
-        });
+        marketCookie.setOnClickListener(v   -> setProductToDisplay(0, marketGraph, marketSelectedPrice));
+        marketCupcake.setOnClickListener(v    -> setProductToDisplay(1, marketGraph, marketSelectedPrice));
+        marketDonut.setOnClickListener(v  -> setProductToDisplay(2, marketGraph, marketSelectedPrice));
 
 
 
@@ -78,7 +75,7 @@ public class MarketActivity extends AppCompatActivity
         sellAll.setOnClickListener(v -> openPopupSell(context));
 
         Button advertising = findViewById(R.id.marketAdvertising);
-        advertising.setOnClickListener(v -> openPopupAds(context));
+        advertising.setOnClickListener(v -> openPopupAds(context, votes));
 
         ImageView marketBack = findViewById(R.id.marketBack);
         marketBack.setOnClickListener(view -> {
@@ -102,7 +99,7 @@ public class MarketActivity extends AppCompatActivity
     }
 
     //exemple
-    void openPopupAds(Context context)
+    void openPopupAds(Context context, Votes votes)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_market_advertising);
@@ -112,13 +109,33 @@ public class MarketActivity extends AppCompatActivity
         ImageButton infos = dialog.findViewById(R.id.popupMarketAdvertisingInfo);
         infos.setOnClickListener(v -> openInfos(context));
 
-        ProgressBar progressBarCookie = dialog.findViewById(R.id.popupMarketAdvertisingCookieBar);
-        ProgressBar progressBarCupcake = dialog.findViewById(R.id.popupMarketAdvertisingCupcakeBar);
-        ProgressBar progressBarDonut = dialog.findViewById(R.id.popupMarketAdvertisingDonutBar);
+        TextView popupMarketCookieDisplay = dialog.findViewById(R.id.popupMarketCookieDisplay);
+        TextView popupMarketCupcakeDisplay = dialog.findViewById(R.id.popupMarketCupcakeDisplay);
+        TextView popupMarketDonutDisplay = dialog.findViewById(R.id.popupMarketDonutDisplay);
 
-        progressBarCookie.setProgress(25);
-        progressBarCupcake.setProgress(5);
-        progressBarDonut.setProgress(70);
+        popupMarketCookieDisplay.setText(String.format(Locale.FRANCE,"%.1f%%", votes.getPercentage(0)));
+        popupMarketCupcakeDisplay.setText(String.format(Locale.FRANCE,"%.1f%%", votes.getPercentage(1)));
+        popupMarketDonutDisplay.setText(String.format(Locale.FRANCE,"%.1f%%", votes.getPercentage(2)));
+
+        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        long userId = shr.getLong("userId",0L);
+
+        ImageView popupMarketAdvertisingCookie = dialog.findViewById(R.id.popupMarketAdvertisingCookie);
+        ImageView popupMarketAdvertisingCupcake = dialog.findViewById(R.id.popupMarketAdvertisingCupcake);
+        ImageView popupMarketAdvertisingDonut = dialog.findViewById(R.id.popupMarketAdvertisingDonut);
+
+        popupMarketAdvertisingCookie.setOnClickListener(v -> {
+            CastVoteTask castVoteTask = new CastVoteTask(0, userId, dialog);
+            castVoteTask.execute();
+        });
+        popupMarketAdvertisingCupcake.setOnClickListener(v -> {
+            CastVoteTask castVoteTask = new CastVoteTask(1, userId, dialog);
+            castVoteTask.execute();
+        });
+        popupMarketAdvertisingDonut.setOnClickListener(v -> {
+            CastVoteTask castVoteTask = new CastVoteTask(2, userId, dialog);
+            castVoteTask.execute();
+        });
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);

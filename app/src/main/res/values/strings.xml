@@ -42,4 +42,9 @@
     <string name="select_a_cake">Select a cake</string>
     <string name="upgrade_valid">Are you sure you want to start the improvement?\nIt will cost you </string>
     <string name="max_level">This element is already at the maximum level</string>
+    <string name="graph_top_value" translatable="false">15 $/u</string>
+    <string name="graph_middle_value" translatable="false">10 $/u</string>
+    <string name="graph_lower_value" translatable="false">5 $/u</string>
+    <string name="vote_already_cast">You\'ve already cast a vote.</string>
+    <string name="vote_cast">Vote cast.</string>
 </resources>

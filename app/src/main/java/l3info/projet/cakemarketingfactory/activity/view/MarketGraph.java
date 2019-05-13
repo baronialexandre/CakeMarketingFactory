@@ -96,7 +96,7 @@ public class MarketGraph extends View
         }
 
         // VERTICAL LINES
-        float xPos = (float)(getWidth()/8);
+        float xPos = (float)(getWidth()/9);
         for(int i = 0; i < 8; i++)
         {
             canvas.drawLine(xPos, 0, xPos, getHeight(), backgroundLineThinPaint);

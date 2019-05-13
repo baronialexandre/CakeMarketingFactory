@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.util.Pair;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,11 +11,11 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 
 import l3info.projet.cakemarketingfactory.activity.MarketActivity;
 import l3info.projet.cakemarketingfactory.model.Demand;
 import l3info.projet.cakemarketingfactory.model.Market;
+import l3info.projet.cakemarketingfactory.model.Votes;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -30,11 +29,13 @@ public class EnterMarketTask extends AsyncTask<String, Void, Market>
 
     private long userId;
     private int userScore;
+    private Votes votes;
 
     public EnterMarketTask(long userId, Context ctx)
     {
         this.ctx = new WeakReference<>(ctx);
         this.userId = userId;
+        this.votes = new Votes(3);
     }
 
     @Override
@@ -74,10 +75,20 @@ public class EnterMarketTask extends AsyncTask<String, Void, Market>
                     JSONObject demand = demandsArray.getJSONObject(j);
                     String demandDate = demand.getString("demandDate");
                     int price = demand.getInt("price");
-                    market.addDemand(productId, new Demand(demandDate, price));
+                    market.addDemand(productId, new Demand(price));
                 }
             }
             market.order();
+
+            JSONArray votesArray = jsonObj.getJSONArray("votes");
+
+            for(int i = 0; i < votesArray.length(); i++)
+            {
+                JSONObject vote = votesArray.getJSONObject(i);
+                int productId = vote.getInt("productId");
+                int voteAmount = vote.getInt("voteAmount");
+                votes.addVote(productId, voteAmount);
+            }
 
             return market;
         }
@@ -98,6 +109,7 @@ public class EnterMarketTask extends AsyncTask<String, Void, Market>
         Intent intent;
         intent = new Intent(ctx, MarketActivity.class);
         intent.putExtra("market", market);
+        intent.putExtra("votes", votes);
         intent.putExtra("userScore", userScore);
         ctx.startActivity(intent);
     }
