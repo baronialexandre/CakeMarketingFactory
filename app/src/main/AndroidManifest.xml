@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="l3info.projet.cakemarketingfactory">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -31,7 +32,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.MarketActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".activity.DesignerActivity"
+            android:screenOrientation="portrait"/>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

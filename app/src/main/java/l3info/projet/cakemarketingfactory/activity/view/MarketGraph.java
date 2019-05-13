@@ -100,7 +100,7 @@ public class MarketGraph extends View
         for(int i = 0; i < 8; i++)
         {
             canvas.drawLine(xPos, 0, xPos, getHeight(), backgroundLineThinPaint);
-            xPos = xPos + (float)(getWidth()/8);
+            xPos = xPos + (float)(getWidth()/9);
         }
     }
 
@@ -123,7 +123,7 @@ public class MarketGraph extends View
         {
             Demand demand = demands.get(i);
 
-            float stopX = startX + (float)(getWidth()/8);
+            float stopX = startX + (float)(getWidth()/9);
             float stopY = yPosFromPrice(demand.getPrice());
 
             traceLine(startX, startY, stopX, stopY, canvas);

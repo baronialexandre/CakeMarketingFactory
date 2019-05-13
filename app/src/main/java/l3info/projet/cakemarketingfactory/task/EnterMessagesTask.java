@@ -36,7 +36,6 @@ public class EnterMessagesTask extends AsyncTask<String, Void, ArrayList<Message
         try {
 
             OkHttpClient client = new OkHttpClient();
-            Log.i("BANDOL_MESSAGES_TASK", Contents.API_URL + Contents.ENTER_MESSAGES_URL + "&apipass=" + Contents.API_PASS);
             Request request = new Request.Builder()
                     .url(Contents.API_URL + Contents.ENTER_MESSAGES_URL + "?apipass=" + Contents.API_PASS)
                     .build();
@@ -46,7 +45,7 @@ public class EnterMessagesTask extends AsyncTask<String, Void, ArrayList<Message
             if (response.body() != null) {
                 rawJson = response.body().string();
             }
-            Log.i("BANDOL_MESSAGES_TASK", rawJson);
+
             JSONObject jsonObj = new JSONObject(rawJson);
 
             JSONArray jsonArray = jsonObj.getJSONArray("mails");
@@ -67,7 +66,7 @@ public class EnterMessagesTask extends AsyncTask<String, Void, ArrayList<Message
 
             return messageItems;
         } catch (IOException | JSONException e) {
-            Log.e(TAG, "Error while authenticating ... : " + e.getMessage(), e);
+            e.printStackTrace();
             ArrayList<MessageItem> messageItems = new ArrayList<>();
             messageItems.add(new MessageItem(-1, DateUtil.getCurrent("JJ/MM/YYYY"), "Error", "Communication error...","adminMessage", "System"));
             return messageItems;

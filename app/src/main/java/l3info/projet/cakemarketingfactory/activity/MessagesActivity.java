@@ -1,11 +1,15 @@
 package l3info.projet.cakemarketingfactory.activity;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,9 +18,11 @@ import java.util.Objects;
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.adapter.MessageAdapter;
 import l3info.projet.cakemarketingfactory.model.MessageItem;
+import l3info.projet.cakemarketingfactory.task.TopMessageTask;
+import l3info.projet.cakemarketingfactory.utils.Contents;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class MessagesActivity  extends AppCompatActivity {
+public class MessagesActivity extends AppCompatActivity {
 
     private ArrayList<MessageItem> messageItems;
 
@@ -24,11 +30,15 @@ public class MessagesActivity  extends AppCompatActivity {
     private MessageAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    Context ctx;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
+
+        ctx = this;
 
         ImageView ivBack = findViewById(R.id.messagesBack);
         ivBack.setOnClickListener(view -> {
@@ -41,13 +51,12 @@ public class MessagesActivity  extends AppCompatActivity {
     }
 
 
-    public void initMessageList()
-    {
+    public void initMessageList() {
         messageItems = (ArrayList<MessageItem>) getIntent().getSerializableExtra("messageItems");
         buildRecyclerview();
     }
 
-    public void buildRecyclerview(){
+    public void buildRecyclerview() {
         recyclerView = findViewById(R.id.messages);
         layoutManager = new LinearLayoutManager(this);
         adapter = new MessageAdapter(messageItems);
@@ -74,34 +83,34 @@ public class MessagesActivity  extends AppCompatActivity {
         String title = myMessage.getTitle();
         String text = myMessage.getMessage();
         String date = myMessage.getSendDate();
-        //int type = myMessage.getType();
 
-//        if(type == 1) //winner
-//        {
-//            //Changer d'activity
-//            Intent intentApp = new Intent(MessagesActivity.this, WorldActivity.class);
-//            MessagesActivity.this.startActivity(intentApp);
-//        }
-//        else if(type == 0) {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.popup_message);
 
-            final Dialog dialog = new Dialog(this);
-            dialog.setContentView(R.layout.popup_message);
+        ImageView ivPopupMessageClose = dialog.findViewById(R.id.popupMessageClose);
+        ivPopupMessageClose.setOnClickListener(v -> dialog.dismiss());
 
-            ImageView ivPopupMessageClose = dialog.findViewById(R.id.popupMessageClose);
-            ivPopupMessageClose.setOnClickListener(v -> dialog.dismiss());
+        TextView tvPopupMessageTitle = dialog.findViewById(R.id.popupMessageTitle);
+        tvPopupMessageTitle.setText(title);
+        TextView tvPopupMessageText = dialog.findViewById(R.id.popupMessageText);
+        tvPopupMessageText.setText(text);
+        TextView tvPopupMessageDate = dialog.findViewById(R.id.popupMessageDate);
 
-            TextView tvPopupMessageTitle = dialog.findViewById(R.id.popupMessageTitle);
-            tvPopupMessageTitle.setText(title);
-            TextView tvPopupMessageText = dialog.findViewById(R.id.popupMessageText);
-            tvPopupMessageText.setText(text);
-            TextView tvPopupMessageDate = dialog.findViewById(R.id.popupMessageDate);
+        tvPopupMessageDate.setText(date);
 
-            tvPopupMessageDate.setText(date);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
 
-            Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
-            dialog.setCancelable(false);
-            dialog.show();
-    //    }
+        if(myMessage.getMailType().equals("resultMessage"))
+        {
+            SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+            int userId = (int) shr.getLong("userId",0L);
+
+            RelativeLayout buttonArea = dialog.findViewById(R.id.popupMessageButtonArea);
+            TopMessageTask topMessageTask = new TopMessageTask(userId, buttonArea, ctx);
+            topMessageTask.execute();
+        }
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
 }
