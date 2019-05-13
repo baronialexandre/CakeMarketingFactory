@@ -2,6 +2,7 @@ package l3info.projet.cakemarketingfactory.activity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,17 +18,21 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
+import l3info.projet.cakemarketingfactory.task.GetMoneyTask;
+import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 
 public class FactoryActivity extends AppCompatActivity {
     Context context;
     Factory factory;
 
-    ArrayList<TextView> allProductSpeed = new ArrayList<>();
-    ArrayList<ImageButton> allProduction = new ArrayList<>();
-    ArrayList<LinearLayout> allBelts = new ArrayList<>();
-    ArrayList<ImageView> allRobots = new ArrayList<>();
-    ArrayList<ImageView> allOvens = new ArrayList<>();
+    TextView userMoney;
+
+    ArrayList<TextView> allProductSpeed;
+    ArrayList<ImageButton> allProduction;
+    ArrayList<LinearLayout> allBelts;
+    ArrayList<ImageView> allRobots;
+    ArrayList<ImageView> allOvens;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +45,23 @@ public class FactoryActivity extends AppCompatActivity {
         factory = (Factory) getIntent().getSerializableExtra("factory");
         int factoryId = factory.getFactorySpot()-1;
 
+        //access to the userId in shared preferences
+        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        long userId = shr.getLong("userId",0L);
+
+        userMoney = findViewById(R.id.factoryCapital);
+        GetMoneyTask getMoney = new GetMoneyTask(userId, userMoney, context);
+        getMoney.execute();
 
         FrameLayout background = findViewById(R.id.factoryBackground);
         //getRessources().getDrawable au lieu de getDrawable pour pouvoir compiler sous une API < LOLIPOP
         background.setBackground(getResources().getDrawable(ImageContent.factoryBackgroundID[factoryId]));
 
+        allProductSpeed = new ArrayList<>();
+        allProduction = new ArrayList<>();
+        allBelts = new ArrayList<>();
+        allRobots = new ArrayList<>();
+        allOvens = new ArrayList<>();
 
         /** --------- Pictures creation --------- **/
         ImageView wall1 = findViewById(R.id.factoryWall1);
@@ -84,11 +101,6 @@ public class FactoryActivity extends AppCompatActivity {
         TextView stockText = findViewById(R.id.factoryStockText);
         stockText.setText(factory.getCurrentStocks().get(0)+factory.getCurrentStocks().get(1)+factory.getCurrentStocks().get(2)+"/"+(factory.getCapacityLevel()+1)*100);
         /* --------- End pictures creation --------- */
-
-
-        //access to the userId in shared preferences
-//        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-//        long userId = shr.getLong("userId",0L);
 
         //EnterFactoryTask task = new EnterFactoryTask(userId, factory, context);
 
