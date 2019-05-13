@@ -40,4 +40,6 @@
     <string name="save_on_device">Save on device</string>
     <string name="publish">Publish</string>
     <string name="select_a_cake">Select a cake</string>
+    <string name="upgrade_valid">Are you sure you want to start the improvement?\nIt will cost you </string>
+    <string name="max_level">This element is already at the maximum level</string>
 </resources>
