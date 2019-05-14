@@ -35,7 +35,7 @@ public class FunctionUtil {
         return Math.abs(now.getTime() - next.getTime());
     }
 
-    public static final String[] cashNotation = {
+    private static final String[] cashNotation = {
             "",
             "K", // One Thousand
             "M", // One Million
@@ -44,7 +44,7 @@ public class FunctionUtil {
             "+"  // More !
     };
 
-    public static String cashShortner(long cash) {
+    public static String scoreShortner(long cash) {
         if(cash < 0) return "---";
         boolean locker = true;
         int i = 0;

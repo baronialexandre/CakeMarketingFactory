@@ -11,7 +11,7 @@ public final class Contents {
     public static final String LAST_WEEK_TOP_DESIGN = "/lastweektop.php";
     public static final String ENTER_MARKET_URL = "/entermarket.php";
     public static final String CAST_VOTE_URL = "/castvote.php";
-    public static final String GET_MONEY_URL = "/getmoney.php";
+    public static final String GET_SCORE_URL = "/getscore.php";
     public static final String BUY_FACTORY_URL = "/buyfactory.php";
 
     public static final String API_PASS = "bandol";

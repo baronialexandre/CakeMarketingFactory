@@ -22,7 +22,7 @@ import l3info.projet.cakemarketingfactory.task.BuyFactoryTask;
 import l3info.projet.cakemarketingfactory.task.EnterFactoryTask;
 import l3info.projet.cakemarketingfactory.task.EnterMarketTask;
 import l3info.projet.cakemarketingfactory.task.EnterMessagesTask;
-import l3info.projet.cakemarketingfactory.task.GetMoneyTask;
+import l3info.projet.cakemarketingfactory.task.GetScoreTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 import l3info.projet.cakemarketingfactory.utils.ViewContent;
@@ -45,10 +45,10 @@ public class WorldActivity  extends AppCompatActivity {
         Log.i("BANDOL","world sharedprefid:"+userId );
 
 
-        TextView userMoney = findViewById(R.id.worldCapital);
+        TextView userScore = findViewById(R.id.worldCapital);
 
-        GetMoneyTask getMoney = new GetMoneyTask(userId, userMoney, context);
-        getMoney.execute();
+        GetScoreTask getScore = new GetScoreTask(userId, userScore, context);
+        getScore.execute();
 
 
         for(int i=0; i<6; i++)
@@ -80,7 +80,7 @@ public class WorldActivity  extends AppCompatActivity {
                     //montre le prix et demande si tu veux acheter
 
 
-                    openPopupSign(factorySpot+1,shr.getInt("money",0));
+                    openPopupSign(factorySpot+1,shr.getInt("score",0));
                 });
             }
         }
@@ -140,7 +140,7 @@ public class WorldActivity  extends AppCompatActivity {
         dialog.show();
     }
 
-    void openPopupSign(int factorySpot, int money)
+    void openPopupSign(int factorySpot, int score)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_question);
@@ -156,7 +156,7 @@ public class WorldActivity  extends AppCompatActivity {
         Button popupMessageOk = dialog.findViewById(R.id.popupQuestionOk);
         popupMessageOk.setOnClickListener(v -> {
             //Propose de selectionner le gateau de la 1ere ligne lors de l'achat
-            openPopupSelection(factorySpot,money);
+            openPopupSelection(factorySpot,score);
             dialog.dismiss();
         });
 
@@ -165,7 +165,7 @@ public class WorldActivity  extends AppCompatActivity {
         dialog.show();
     }
 
-    void openPopupSelection(int factorySpot, int money)
+    void openPopupSelection(int factorySpot, int score)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_cake_sel);
@@ -177,7 +177,7 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton cookieSelect = dialog.findViewById(R.id.popupCakeSelCookie);
         cookieSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,0,money,context);
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,0,score,context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
@@ -188,7 +188,7 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton cupcakeSelect = dialog.findViewById(R.id.popupCakeSelCupcake);
         cupcakeSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,1,money,context);
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,1,score,context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
@@ -199,7 +199,7 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton donutSelect = dialog.findViewById(R.id.popupCakeSelDonut);
         donutSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,2,money,context);
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,2,score,context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();

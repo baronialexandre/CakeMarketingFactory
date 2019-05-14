@@ -25,14 +25,14 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Factory>{
     private final long userId;
     private final int factorySpot;
     private final int productId;
-    private final int money;
+    private final int score;
     private final WeakReference<Context> ctx;
 
-    public BuyFactoryTask(long userId, int factorySpot, int productId, int money, Context ctx) {
+    public BuyFactoryTask(long userId, int factorySpot, int productId, int score, Context ctx) {
         this.userId = userId;
         this.factorySpot = factorySpot;
         this.productId = productId;
-        this.money = money;
+        this.score = score;
         this.ctx = new WeakReference<>(ctx);
     }
 
@@ -41,9 +41,9 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Factory>{
         try {
             OkHttpClient client = new OkHttpClient();
             Log.i("BANDOL_BUY_FACTORYTSK", "OKHTTP");
-            Log.i("BANDOL_BUY_FACTORYTSK", Contents.API_URL + Contents.BUY_FACTORY_URL + "?userId=" + userId + "&factorySpot=" + factorySpot + "&score=" + money  + "&productId=" + productId + "&apipass=" + Contents.API_PASS);
+            Log.i("BANDOL_BUY_FACTORYTSK", Contents.API_URL + Contents.BUY_FACTORY_URL + "?userId=" + userId + "&factorySpot=" + factorySpot + "&score=" + score + "&productId=" + productId + "&apipass=" + Contents.API_PASS);
             Request request = new Request.Builder()
-                    .url(Contents.API_URL + Contents.BUY_FACTORY_URL + "?userId=" + userId + "&factorySpot=" + factorySpot + "&score=" + money  + "&productId=" + productId + "&apipass=" + Contents.API_PASS)
+                    .url(Contents.API_URL + Contents.BUY_FACTORY_URL + "?userId=" + userId + "&factorySpot=" + factorySpot + "&score=" + score + "&productId=" + productId + "&apipass=" + Contents.API_PASS)
                     .build();
 
             Response response = client.newCall(request).execute();

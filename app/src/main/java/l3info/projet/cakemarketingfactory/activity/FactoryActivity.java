@@ -18,7 +18,7 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
-import l3info.projet.cakemarketingfactory.task.GetMoneyTask;
+import l3info.projet.cakemarketingfactory.task.GetScoreTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 
@@ -26,7 +26,7 @@ public class FactoryActivity extends AppCompatActivity {
     Context context;
     Factory factory;
 
-    TextView userMoney;
+    TextView userScore;
 
     ArrayList<TextView> allProductSpeed;
     ArrayList<ImageButton> allProduction;
@@ -49,9 +49,9 @@ public class FactoryActivity extends AppCompatActivity {
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         long userId = shr.getLong("userId",0L);
 
-        userMoney = findViewById(R.id.factoryCapital);
-        GetMoneyTask getMoney = new GetMoneyTask(userId, userMoney, context);
-        getMoney.execute();
+        userScore = findViewById(R.id.factoryCapital);
+        GetScoreTask getScore = new GetScoreTask(userId, userScore, context);
+        getScore.execute();
 
         FrameLayout background = findViewById(R.id.factoryBackground);
         //getRessources().getDrawable au lieu de getDrawable pour pouvoir compiler sous une API < LOLIPOP

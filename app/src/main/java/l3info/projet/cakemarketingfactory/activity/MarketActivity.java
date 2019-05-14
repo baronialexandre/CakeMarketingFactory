@@ -42,7 +42,7 @@ public class MarketActivity extends AppCompatActivity
 
         // USER SCORE DISPLAY
         TextView userScoreDisplay = findViewById(R.id.marketCapital);
-        userScoreDisplay.setText(String.format(Locale.FRANCE, "%s$", FunctionUtil.cashShortner(userScore)));
+        userScoreDisplay.setText(String.format(Locale.FRANCE, "%s$", FunctionUtil.scoreShortner(userScore)));
 
         // GRAPH
         MarketGraph marketGraph = findViewById(R.id.marketGraph);

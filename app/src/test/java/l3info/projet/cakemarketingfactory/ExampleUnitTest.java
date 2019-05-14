@@ -19,16 +19,16 @@ public class ExampleUnitTest {
 
     @Test
     public void cashShortner_isCorrect() {
-        assertEquals(FunctionUtil.cashShortner(-158156158L), "---");
-        assertEquals(FunctionUtil.cashShortner(0L), "0");
-        assertEquals(FunctionUtil.cashShortner(125L), "125");
-        assertEquals(FunctionUtil.cashShortner(999L), "999");
-        assertEquals(FunctionUtil.cashShortner(9999L), "9K");
-        assertEquals(FunctionUtil.cashShortner(9999999L), "9M");
-        assertEquals(FunctionUtil.cashShortner(9999999999L), "9B");
-        assertEquals(FunctionUtil.cashShortner(9999999999999L), "9T");
-        assertEquals(FunctionUtil.cashShortner(9999999999999999L), "9+");
-        assertEquals(FunctionUtil.cashShortner(999999999999999999L), "999+");
-        assertEquals(FunctionUtil.cashShortner(1999999999999999999L), "+++");
+        assertEquals(FunctionUtil.scoreShortner(-158156158L), "---");
+        assertEquals(FunctionUtil.scoreShortner(0L), "0");
+        assertEquals(FunctionUtil.scoreShortner(125L), "125");
+        assertEquals(FunctionUtil.scoreShortner(999L), "999");
+        assertEquals(FunctionUtil.scoreShortner(9999L), "9K");
+        assertEquals(FunctionUtil.scoreShortner(9999999L), "9M");
+        assertEquals(FunctionUtil.scoreShortner(9999999999L), "9B");
+        assertEquals(FunctionUtil.scoreShortner(9999999999999L), "9T");
+        assertEquals(FunctionUtil.scoreShortner(9999999999999999L), "9+");
+        assertEquals(FunctionUtil.scoreShortner(999999999999999999L), "999+");
+        assertEquals(FunctionUtil.scoreShortner(1999999999999999999L), "+++");
     }
 }

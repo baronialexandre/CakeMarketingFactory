@@ -18,16 +18,18 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GetMoneyTask extends AsyncTask<String, Void, Integer> {
-    private static final String TAG = "GetMoneyTask";
+//GetMoneyTask refactor
+
+public class GetScoreTask extends AsyncTask<String, Void, Integer> {
+    private static final String TAG = "GetScoreTask";
 
     private final long userId;
     private final WeakReference<Context> ctx;
-    private final WeakReference<TextView> money;
+    private final WeakReference<TextView> score;
 
-    public GetMoneyTask(long userId, TextView money, Context ctx) {
+    public GetScoreTask(long userId, TextView score, Context ctx) {
         this.userId = userId;
-        this.money = new WeakReference<>(money);
+        this.score = new WeakReference<>(score);
         this.ctx = new WeakReference<>(ctx);
     }
 
@@ -36,7 +38,7 @@ public class GetMoneyTask extends AsyncTask<String, Void, Integer> {
         try {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url(Contents.API_URL + Contents.GET_MONEY_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId)
+                    .url(Contents.API_URL + Contents.GET_SCORE_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId)
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -46,7 +48,7 @@ public class GetMoneyTask extends AsyncTask<String, Void, Integer> {
             }
             JSONObject jsonObj = new JSONObject(rawJson);
 
-            return jsonObj.getInt("money");
+            return jsonObj.getInt("score");
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error while authenticating ... : " + e.getMessage(), e);
             return 42;
@@ -54,15 +56,15 @@ public class GetMoneyTask extends AsyncTask<String, Void, Integer> {
     }
 
     @Override
-    protected void onPostExecute(Integer userMoney) {
-        super.onPostExecute(userMoney);
+    protected void onPostExecute(Integer userScore) {
+        super.onPostExecute(userScore);
         Context ctx = this.ctx.get();
-        TextView money = this.money.get();
-        String moneyText = FunctionUtil.cashShortner(userMoney)+" $";
-        money.setText(moneyText);
+        TextView score = this.score.get();
+        String scoreText = FunctionUtil.scoreShortner(userScore)+" $";
+        score.setText(scoreText);
         SharedPreferences shr = ctx.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = shr.edit();
-        ed.putInt("money",userMoney);
+        ed.putInt("score",userScore);
         ed.apply();
     }
 }
