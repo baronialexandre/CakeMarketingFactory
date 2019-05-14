@@ -4,9 +4,9 @@ import android.content.Context;
 import android.os.CountDownTimer;
 import android.util.AttributeSet;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
+
+import l3info.projet.cakemarketingfactory.utils.FunctionUtil;
 
 public class MarketTimeView extends android.support.v7.widget.AppCompatTextView
 {
@@ -16,21 +16,7 @@ public class MarketTimeView extends android.support.v7.widget.AppCompatTextView
     {
         super(context, attrs);
 
-        // NE PAS CRITIQUER SVP :'(
-        Calendar calendar = Calendar.getInstance();
-        int daysInterval = Calendar.SUNDAY - calendar.get(Calendar.DAY_OF_WEEK);
-        if(daysInterval < 0)
-            daysInterval += 7;
-        calendar.add(Calendar.DAY_OF_YEAR, daysInterval);
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        calendar.set(Calendar.MINUTE, 59);
-        calendar.set(Calendar.SECOND, 59);
-        calendar.set(Calendar.MILLISECOND, 0);
-
-        Date now = new Date();
-        Date next = calendar.getTime();
-
-        long diff = Math.abs(now.getTime() - next.getTime());
+        long diff = FunctionUtil.getCountDown();
 
         timer = new CountDownTimer(diff,2000)
         {

@@ -56,8 +56,8 @@ public class WorldActivity  extends AppCompatActivity {
             int factorySpot = i;
             if(i < world.factories.size())
             {
-                ImageView factory = findViewById(ViewContent.factoryID[i]);
-                factory.setImageResource(ImageContent.factoryID[i]);
+                ImageView factory = findViewById(ViewContent.factoryId[i]);
+                factory.setImageResource(ImageContent.factoryId[i]);
                 factory.setVisibility(View.VISIBLE);
 
                 factory.setOnClickListener(v -> {
@@ -72,7 +72,7 @@ public class WorldActivity  extends AppCompatActivity {
             }
             else
             {
-                ImageView sign = findViewById(ViewContent.signID[i]);
+                ImageView sign = findViewById(ViewContent.signId[i]);
                 sign.setVisibility(View.VISIBLE);
                 sign.setOnClickListener(v -> {
                     //cliquer sur un panneau $
@@ -215,8 +215,8 @@ public class WorldActivity  extends AppCompatActivity {
     public void switchSpot(int spot)
     {
         if(spot > 5) return; //il y a 6 usines max
-        ImageView factory = findViewById(ViewContent.factoryID[spot]);
-        factory.setImageResource(ImageContent.factoryID[spot]);
+        ImageView factory = findViewById(ViewContent.factoryId[spot]);
+        factory.setImageResource(ImageContent.factoryId[spot]);
         factory.setVisibility(View.VISIBLE);
         factory.setOnClickListener(v -> {
             //Entrer dans une usine
@@ -230,7 +230,7 @@ public class WorldActivity  extends AppCompatActivity {
             task.execute();
         });
 
-        ImageView sign = findViewById(ViewContent.signID[spot]);
+        ImageView sign = findViewById(ViewContent.signId[spot]);
         sign.setVisibility(View.VISIBLE);
         sign.setClickable(false);
     }

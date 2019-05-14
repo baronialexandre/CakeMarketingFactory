@@ -3,7 +3,6 @@ package l3info.projet.cakemarketingfactory.task;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,9 +14,8 @@ import java.util.ArrayList;
 
 import l3info.projet.cakemarketingfactory.activity.MessagesActivity;
 import l3info.projet.cakemarketingfactory.model.MessageItem;
-import l3info.projet.cakemarketingfactory.model.Messages;
 import l3info.projet.cakemarketingfactory.utils.Contents;
-import l3info.projet.cakemarketingfactory.utils.DateUtil;
+import l3info.projet.cakemarketingfactory.utils.FunctionUtil;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -68,7 +66,7 @@ public class EnterMessagesTask extends AsyncTask<String, Void, ArrayList<Message
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             ArrayList<MessageItem> messageItems = new ArrayList<>();
-            messageItems.add(new MessageItem(-1, DateUtil.getCurrent("JJ/MM/YYYY"), "Error", "Communication error...","adminMessage", "System"));
+            messageItems.add(new MessageItem(-1, FunctionUtil.getCurrent("JJ/MM/YYYY"), "Error", "Communication error...","adminMessage", "System"));
             return messageItems;
         }
     }

@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import l3info.projet.cakemarketingfactory.R;
 
 public class ImageContent {
-    public static final int[] beltImagesID = {
+    public static final int[] beltImagesId = {
             R.drawable.factory_belt_1,
             R.drawable.factory_belt_2,
             R.drawable.factory_belt_3,
@@ -17,7 +17,7 @@ public class ImageContent {
             R.drawable.factory_belt_9,
             R.drawable.factory_belt_10,
     };
-    public static final int[] robotImagesID = {
+    public static final int[] robotImagesId = {
             R.drawable.factory_robot_1,
             R.drawable.factory_robot_2,
             R.drawable.factory_robot_3,
@@ -29,7 +29,7 @@ public class ImageContent {
             R.drawable.factory_robot_9,
             R.drawable.factory_robot_10,
     };
-    public static final int[] ovenImagesID = {
+    public static final int[] ovenImagesId = {
             R.drawable.factory_oven_1,
             R.drawable.factory_oven_2,
             R.drawable.factory_oven_3,
@@ -41,7 +41,7 @@ public class ImageContent {
             R.drawable.factory_oven_9,
             R.drawable.factory_oven_10,
     };
-    public static final int[] factoryID = {
+    public static final int[] factoryId = {
             R.drawable.factory_1,
             R.drawable.factory_2,
             R.drawable.factory_3,
@@ -49,7 +49,7 @@ public class ImageContent {
             R.drawable.factory_5,
             R.drawable.factory_6
     };
-    public static final int[] factoryBackgroundID = {
+    public static final int[] factoryBackgroundId = {
             R.drawable.factory_background_1,
             R.drawable.factory_background_2,
             R.drawable.factory_background_3,
@@ -57,7 +57,7 @@ public class ImageContent {
             R.drawable.factory_background_5,
             R.drawable.factory_background_6
     };
-    public static final int[] factoryWallID = {
+    public static final int[] factoryWallId = {
             R.drawable.factory_wall_1,
             R.drawable.factory_wall_2,
             R.drawable.factory_wall_3,
@@ -65,7 +65,7 @@ public class ImageContent {
             R.drawable.factory_wall_5,
             R.drawable.factory_wall_6
     };
-    public static final int[] cakeImageID = {
+    public static final int[] cakeImageId = {
             R.drawable.ic_cookie,
             R.drawable.ic_cupcake,
             R.drawable.ic_donut

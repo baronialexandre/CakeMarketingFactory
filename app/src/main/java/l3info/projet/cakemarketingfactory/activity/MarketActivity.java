@@ -20,6 +20,7 @@ import l3info.projet.cakemarketingfactory.model.Market;
 import l3info.projet.cakemarketingfactory.model.Votes;
 import l3info.projet.cakemarketingfactory.task.CastVoteTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
+import l3info.projet.cakemarketingfactory.utils.FunctionUtil;
 
 public class MarketActivity extends AppCompatActivity
 {
@@ -41,7 +42,7 @@ public class MarketActivity extends AppCompatActivity
 
         // USER SCORE DISPLAY
         TextView userScoreDisplay = findViewById(R.id.marketCapital);
-        userScoreDisplay.setText(String.format(Locale.FRANCE, "%d$", userScore));
+        userScoreDisplay.setText(String.format(Locale.FRANCE, "%s$", FunctionUtil.cashShortner(userScore)));
 
         // GRAPH
         MarketGraph marketGraph = findViewById(R.id.marketGraph);

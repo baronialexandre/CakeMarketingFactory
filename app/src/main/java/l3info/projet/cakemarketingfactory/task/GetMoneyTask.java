@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import l3info.projet.cakemarketingfactory.utils.Contents;
+import l3info.projet.cakemarketingfactory.utils.FunctionUtil;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -57,7 +58,8 @@ public class GetMoneyTask extends AsyncTask<String, Void, Integer> {
         super.onPostExecute(userMoney);
         Context ctx = this.ctx.get();
         TextView money = this.money.get();
-        money.setText(userMoney+" $");
+        String moneyText = FunctionUtil.cashShortner(userMoney)+" $";
+        money.setText(moneyText);
         SharedPreferences shr = ctx.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = shr.edit();
         ed.putInt("money",userMoney);

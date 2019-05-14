@@ -55,7 +55,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         FrameLayout background = findViewById(R.id.factoryBackground);
         //getRessources().getDrawable au lieu de getDrawable pour pouvoir compiler sous une API < LOLIPOP
-        background.setBackground(getResources().getDrawable(ImageContent.factoryBackgroundID[factoryId]));
+        background.setBackground(getResources().getDrawable(ImageContent.factoryBackgroundId[factoryId]));
 
         allProductSpeed = new ArrayList<>();
         allProduction = new ArrayList<>();
@@ -63,11 +63,11 @@ public class FactoryActivity extends AppCompatActivity {
         allRobots = new ArrayList<>();
         allOvens = new ArrayList<>();
 
-        /** --------- Pictures creation --------- **/
+        /* --------- Pictures creation --------- */
         ImageView wall1 = findViewById(R.id.factoryWall1);
-        wall1.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallID[factoryId]));
+        wall1.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallId[factoryId]));
         ImageView wall2 = findViewById(R.id.factoryWall2);
-        wall2.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallID[factoryId]));
+        wall2.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallId[factoryId]));
 
         allProductSpeed.add(findViewById(R.id.factoryUnitPerSecondLine1));
         allProductSpeed.add(findViewById(R.id.factoryUnitPerSecondLine2));
@@ -92,10 +92,10 @@ public class FactoryActivity extends AppCompatActivity {
         for(int i = 0; i < 3; i++){
             if(factory.getLine(i) != null){
                 allProductSpeed.get(i).setText(factory.getLine(i).getProduction()+"/s");
-                allProduction.get(i).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[factory.getLine(i).getCakeId()]));
-                allBelts.get(i).setBackground(getResources().getDrawable(ImageContent.beltImagesID[factory.getLine(i).getMachineLevel(i)]));
-                allRobots.get(i).setImageResource(ImageContent.robotImagesID[factory.getLine(i).getMachineLevel(i)]);
-                allOvens.get(i).setImageResource(ImageContent.ovenImagesID[factory.getLine(i).getMachineLevel(i)]);
+                allProduction.get(i).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[factory.getLine(i).getCakeId()]));
+                allBelts.get(i).setBackground(getResources().getDrawable(ImageContent.beltImagesId[factory.getLine(i).getMachineLevel(i)]));
+                allRobots.get(i).setImageResource(ImageContent.robotImagesId[factory.getLine(i).getMachineLevel(i)]);
+                allOvens.get(i).setImageResource(ImageContent.ovenImagesId[factory.getLine(i).getMachineLevel(i)]);
             }
         }
         TextView stockText = findViewById(R.id.factoryStockText);
@@ -134,17 +134,17 @@ public class FactoryActivity extends AppCompatActivity {
         Button factoryBeltButtonLine1 = findViewById(R.id.factoryBeltButtonLine1);
         factoryBeltButtonLine1.setOnClickListener(view -> {
             int level = factory.getLine(0).getMachineLevel(0);
-            openPopupUpgrade(level, ImageContent.beltImagesID[level],0,0, factoryBeltButtonLine1);
+            openPopupUpgrade(level, ImageContent.beltImagesId[level],0,0, factoryBeltButtonLine1);
         });
         Button factoryRobotButtonLine1 = findViewById(R.id.factoryRobotButtonLine1);
         factoryRobotButtonLine1.setOnClickListener(view -> {
             int level = factory.getLine(0).getMachineLevel(1);
-            openPopupUpgrade(level, ImageContent.robotImagesID[level],0,1, factoryRobotButtonLine1);
+            openPopupUpgrade(level, ImageContent.robotImagesId[level],0,1, factoryRobotButtonLine1);
         });
         Button factoryOvenButtonLine1 = findViewById(R.id.factoryOvenButtonLine1);
         factoryOvenButtonLine1.setOnClickListener(view -> {
             int level = factory.getLine(0).getMachineLevel(2);
-            openPopupUpgrade(level, ImageContent.ovenImagesID[level],0,2, factoryOvenButtonLine1);
+            openPopupUpgrade(level, ImageContent.ovenImagesId[level],0,2, factoryOvenButtonLine1);
         });
 
 
@@ -160,17 +160,17 @@ public class FactoryActivity extends AppCompatActivity {
         Button factoryBeltButtonLine2 = findViewById(R.id.factoryBeltButtonLine2);
         factoryBeltButtonLine2.setOnClickListener(view -> {
             int level = factory.getLine(1).getMachineLevel(0);
-            openPopupUpgrade(level, ImageContent.beltImagesID[level],1,0, factoryBeltButtonLine2);
+            openPopupUpgrade(level, ImageContent.beltImagesId[level],1,0, factoryBeltButtonLine2);
         });
         Button factoryRobotButtonLine2 = findViewById(R.id.factoryRobotButtonLine2);
         factoryRobotButtonLine2.setOnClickListener(view -> {
             int level = factory.getLine(1).getMachineLevel(1);
-            openPopupUpgrade(level, ImageContent.robotImagesID[level],1,1, factoryRobotButtonLine2);
+            openPopupUpgrade(level, ImageContent.robotImagesId[level],1,1, factoryRobotButtonLine2);
         });
         Button factoryOvenButtonLine2 = findViewById(R.id.factoryOvenButtonLine2);
         factoryOvenButtonLine2.setOnClickListener(view -> {
             int level = factory.getLine(1).getMachineLevel(2);
-            openPopupUpgrade(level, ImageContent.ovenImagesID[level],1,2, factoryOvenButtonLine2);
+            openPopupUpgrade(level, ImageContent.ovenImagesId[level],1,2, factoryOvenButtonLine2);
         });
         if (factory.getLine(1) == null){
             factoryBeltButtonLine2.setEnabled(false);
@@ -184,17 +184,17 @@ public class FactoryActivity extends AppCompatActivity {
         Button factoryBeltButtonLine3 = findViewById(R.id.factoryBeltButtonLine3);
         factoryBeltButtonLine3.setOnClickListener(view -> {
             int level = factory.getLine(2).getMachineLevel(0);
-            openPopupUpgrade(level, ImageContent.beltImagesID[level],2,0, factoryBeltButtonLine3);
+            openPopupUpgrade(level, ImageContent.beltImagesId[level],2,0, factoryBeltButtonLine3);
         });
         Button factoryRobotButtonLine3 = findViewById(R.id.factoryRobotButtonLine3);
         factoryRobotButtonLine3.setOnClickListener(view -> {
             int level = factory.getLine(2).getMachineLevel(1);
-            openPopupUpgrade(level, ImageContent.robotImagesID[level],2,1, factoryRobotButtonLine3);
+            openPopupUpgrade(level, ImageContent.robotImagesId[level],2,1, factoryRobotButtonLine3);
         });
         Button factoryOvenButtonLine3 = findViewById(R.id.factoryOvenButtonLine3);
         factoryOvenButtonLine3.setOnClickListener(view -> {
             int level = factory.getLine(2).getMachineLevel(2);
-            openPopupUpgrade(level, ImageContent.ovenImagesID[level],2,2, factoryOvenButtonLine3);
+            openPopupUpgrade(level, ImageContent.ovenImagesId[level],2,2, factoryOvenButtonLine3);
         });
         if (factory.getLine(2) == null){
             factoryBeltButtonLine3.setEnabled(false);
@@ -227,9 +227,11 @@ public class FactoryActivity extends AppCompatActivity {
 
         TextView popupUpgradeMessage = dialog.findViewById(R.id.popupUpgradeMessage);
         popupUpgradeMessage.setText(getString(R.string.upgrade_valid)+" "+(level*1000)+" $");
+
         if(level == 9){
             popupUpgradeMessage.setText(R.string.max_level);
             popupUpgradeCancel.setVisibility(View.INVISIBLE);
+            popupUpgradeCancel.setClickable(false);
         }
 
         Button popupUpgradeOk = dialog.findViewById(R.id.popupUpgradeOk);
@@ -243,13 +245,13 @@ public class FactoryActivity extends AppCompatActivity {
                 }
 
                 if (id == 0) {
-                    allBelts.get(line).setBackground(getResources().getDrawable(ImageContent.beltImagesID[level+1]));
+                    allBelts.get(line).setBackground(getResources().getDrawable(ImageContent.beltImagesId[level+1]));
                 }
                 else if (id == 1) {
-                    allRobots.get(line).setImageResource(ImageContent.robotImagesID[level+1]);
+                    allRobots.get(line).setImageResource(ImageContent.robotImagesId[level+1]);
                 }
                 else if (id == 2){
-                    allOvens.get(line).setImageResource(ImageContent.ovenImagesID[level+1]);
+                    allOvens.get(line).setImageResource(ImageContent.ovenImagesId[level+1]);
                 }
                 allProductSpeed.get(line).setText(factory.getLine(line).getProduction()+"/s");
 
@@ -284,21 +286,21 @@ public class FactoryActivity extends AppCompatActivity {
 
         ImageButton cookieSelect = dialog.findViewById(R.id.popupCakeSelCookie);
         cookieSelect.setOnClickListener(v -> {
-            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[0]));
+            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[0]));
             factory.getLine(line).setCakeId(0);
             dialog.dismiss();
         });
 
         ImageButton cupcakeSelect = dialog.findViewById(R.id.popupCakeSelCupcake);
         cupcakeSelect.setOnClickListener(v -> {
-            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[1]));
+            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[1]));
             factory.getLine(line).setCakeId(1);
             dialog.dismiss();
         });
 
         ImageButton donutSelect = dialog.findViewById(R.id.popupCakeSelDonut);
         donutSelect.setOnClickListener(v -> {
-            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageID[2]));
+            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[2]));
             factory.getLine(line).setCakeId(2);
             dialog.dismiss();
         });
@@ -318,23 +320,21 @@ public class FactoryActivity extends AppCompatActivity {
 
         TextView cookieStock = dialog.findViewById(R.id.popupSellNbCookie);
         cookieStock.setText(""+factory.getCurrentStocks().get(0));
+
         TextView cupcakeStock = dialog.findViewById(R.id.popupSellNbCupcake);
         cupcakeStock.setText(""+factory.getCurrentStocks().get(1));
+
         TextView donutStock = dialog.findViewById(R.id.popupSellNbDonut);
         donutStock.setText(""+factory.getCurrentStocks().get(2));
 
         ImageButton cookieSell = dialog.findViewById(R.id.popupMarketSellCookie);
-        cookieSell.setOnClickListener(v -> {
-            factory.getCurrentStocks().set(0,0);
-        });
+        cookieSell.setOnClickListener(v -> factory.getCurrentStocks().set(0,0));
+
         ImageButton cupcakeSell = dialog.findViewById(R.id.popupMarketSellCupcake);
-        cupcakeSell.setOnClickListener(v -> {
-            factory.getCurrentStocks().set(1,0);
-        });
+        cupcakeSell.setOnClickListener(v -> factory.getCurrentStocks().set(1,0));
+
         ImageButton donutSell = dialog.findViewById(R.id.popupMarketSellDonut);
-        donutSell.setOnClickListener(v -> {
-            factory.getCurrentStocks().set(2,0);
-        });
+        donutSell.setOnClickListener(v -> factory.getCurrentStocks().set(2,0));
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
