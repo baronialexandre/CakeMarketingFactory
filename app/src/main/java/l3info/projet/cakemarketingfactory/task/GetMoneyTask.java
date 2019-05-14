@@ -1,6 +1,7 @@
 package l3info.projet.cakemarketingfactory.task;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -21,11 +22,11 @@ public class GetMoneyTask extends AsyncTask<String, Void, Integer> {
 
     private final long userId;
     private final WeakReference<Context> ctx;
-    private final TextView money;
+    private final WeakReference<TextView> money;
 
     public GetMoneyTask(long userId, TextView money, Context ctx) {
         this.userId = userId;
-        this.money = money;
+        this.money = new WeakReference<>(money);
         this.ctx = new WeakReference<>(ctx);
     }
 
@@ -55,7 +56,11 @@ public class GetMoneyTask extends AsyncTask<String, Void, Integer> {
     protected void onPostExecute(Integer userMoney) {
         super.onPostExecute(userMoney);
         Context ctx = this.ctx.get();
-        int m = userMoney;
+        TextView money = this.money.get();
         money.setText(userMoney+" $");
+        SharedPreferences shr = ctx.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = shr.edit();
+        ed.putInt("money",userMoney);
+        ed.apply();
     }
 }

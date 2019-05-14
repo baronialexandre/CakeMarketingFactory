@@ -18,9 +18,11 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.World;
+import l3info.projet.cakemarketingfactory.task.BuyFactoryTask;
 import l3info.projet.cakemarketingfactory.task.EnterFactoryTask;
 import l3info.projet.cakemarketingfactory.task.EnterMarketTask;
 import l3info.projet.cakemarketingfactory.task.EnterMessagesTask;
+import l3info.projet.cakemarketingfactory.task.GetMoneyTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 import l3info.projet.cakemarketingfactory.utils.ViewContent;
@@ -37,6 +39,17 @@ public class WorldActivity  extends AppCompatActivity {
         //Log.i("BANDOL",getIntent().getSerializableExtra("world").toString());
         world = (World) getIntent().getSerializableExtra("world");
         //Log.i("BANDOL",world.factories.toString());
+        //access to the userId in shared preferences
+        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        long userId = shr.getLong("userId",0L);
+        Log.i("BANDOL","world sharedprefid:"+userId );
+
+
+        TextView userMoney = findViewById(R.id.worldCapital);
+
+        GetMoneyTask getMoney = new GetMoneyTask(userId, userMoney, context);
+        getMoney.execute();
+
 
         for(int i=0; i<6; i++)
         {
@@ -52,11 +65,8 @@ public class WorldActivity  extends AppCompatActivity {
                     //todo : put in task
                     Toast.makeText(context, "FACTORY 1 + "+ factorySpot, Toast.LENGTH_SHORT).show();
 
-                    //access to the userId in shared preferences
-                    SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-                    long id = shr.getLong("userId",0L);
-                    Log.i("BANDOL","world sharedprefid:"+id );
-                    EnterFactoryTask task = new EnterFactoryTask(id,world.factories.get(factorySpot), context);
+
+                    EnterFactoryTask task = new EnterFactoryTask(userId,world.factories.get(factorySpot), context);
                     task.execute();
                 });
             }
@@ -68,7 +78,9 @@ public class WorldActivity  extends AppCompatActivity {
                     //cliquer sur un panneau $
                     Toast.makeText(context, "BUY sign 1 + " + factorySpot, Toast.LENGTH_SHORT).show();
                     //montre le prix et demande si tu veux acheter
-                    openPopupSign(factorySpot);
+
+
+                    openPopupSign(factorySpot+1,shr.getInt("money",0));
                 });
             }
         }
@@ -76,8 +88,6 @@ public class WorldActivity  extends AppCompatActivity {
         ImageView market = findViewById(R.id.worldMarket);
         market.setOnClickListener(view -> {
             //Changer d'activity
-            SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-            long userId = shr.getLong("userId",0L);
             EnterMarketTask enterMarketTask = new EnterMarketTask(userId, context);
             enterMarketTask.execute();
         });
@@ -130,7 +140,7 @@ public class WorldActivity  extends AppCompatActivity {
         dialog.show();
     }
 
-    void openPopupSign(int spot)
+    void openPopupSign(int factorySpot, int money)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_question);
@@ -146,7 +156,7 @@ public class WorldActivity  extends AppCompatActivity {
         Button popupMessageOk = dialog.findViewById(R.id.popupQuestionOk);
         popupMessageOk.setOnClickListener(v -> {
             //Propose de selectionner le gateau de la 1ere ligne lors de l'achat
-            openPopupSelection(spot);
+            openPopupSelection(factorySpot,money);
             dialog.dismiss();
         });
 
@@ -155,38 +165,45 @@ public class WorldActivity  extends AppCompatActivity {
         dialog.show();
     }
 
-    void openPopupSelection(int spot)
+    void openPopupSelection(int factorySpot, int money)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_cake_sel);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupCakeSelBack);
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
-
+        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        long userId = shr.getLong("userId",0L);
         //clic sur cookie
         ImageButton cookieSelect = dialog.findViewById(R.id.popupCakeSelCookie);
         cookieSelect.setOnClickListener(v -> {
             /*Do something*/
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,0,money,context);
+            task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
-            switchSpot(spot);
+            switchSpot(factorySpot);
         });
 
         //clic sur cupcake
         ImageButton cupcakeSelect = dialog.findViewById(R.id.popupCakeSelCupcake);
         cupcakeSelect.setOnClickListener(v -> {
             /*Do something*/
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,1,money,context);
+            task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
-            switchSpot(spot);
+            switchSpot(factorySpot);
         });
 
         //clic sur donut
         ImageButton donutSelect = dialog.findViewById(R.id.popupCakeSelDonut);
         donutSelect.setOnClickListener(v -> {
             /*Do something*/
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,2,money,context);
+            task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
-            switchSpot(spot);
+            switchSpot(factorySpot);
         });
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur

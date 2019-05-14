@@ -12,6 +12,7 @@ public final class Contents {
     public static final String ENTER_MARKET_URL = "/entermarket.php";
     public static final String CAST_VOTE_URL = "/castvote.php";
     public static final String GET_MONEY_URL = "/getmoney.php";
+    public static final String BUY_FACTORY_URL = "/buyfactory.php";
 
     public static final String API_PASS = "bandol";
     public static final String SHRD_PREF = "dolban";
