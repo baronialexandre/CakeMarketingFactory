@@ -89,17 +89,27 @@ public class FactoryActivity extends AppCompatActivity {
         allOvens.add(findViewById(R.id.factoryOvenLine2));
         allOvens.add(findViewById(R.id.factoryOvenLine3));
 
+        //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
+        String text;
+
         for(int i = 0; i < 3; i++){
             if(factory.getLine(i) != null){
-                allProductSpeed.get(i).setText(factory.getLine(i).getProduction()+"/s");
+                text = factory.getLine(i).getProduction()+"/s"; //todo : par secondes ? => minutes ! //Loïc
+                allProductSpeed.get(i).setText(text);
                 allProduction.get(i).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[factory.getLine(i).getCakeId()]));
                 allBelts.get(i).setBackground(getResources().getDrawable(ImageContent.beltImagesId[factory.getLine(i).getMachineLevel(i)]));
                 allRobots.get(i).setImageResource(ImageContent.robotImagesId[factory.getLine(i).getMachineLevel(i)]);
                 allOvens.get(i).setImageResource(ImageContent.ovenImagesId[factory.getLine(i).getMachineLevel(i)]);
             }
         }
+
+        text = (factory.getCurrentStocks().get(0)
+                + factory.getCurrentStocks().get(1)
+                + factory.getCurrentStocks().get(2)) +
+                "/" +
+                (factory.getCapacityLevel() + 1) * 100;
         TextView stockText = findViewById(R.id.factoryStockText);
-        stockText.setText(factory.getCurrentStocks().get(0)+factory.getCurrentStocks().get(1)+factory.getCurrentStocks().get(2)+"/"+(factory.getCapacityLevel()+1)*100);
+        stockText.setText(text);
         /* --------- End pictures creation --------- */
 
         //EnterFactoryTask task = new EnterFactoryTask(userId, factory, context);
@@ -225,8 +235,11 @@ public class FactoryActivity extends AppCompatActivity {
         Button popupUpgradeCancel = dialog.findViewById(R.id.popupUpgradeCancel);
         popupUpgradeCancel.setOnClickListener(v -> dialog.dismiss());
 
+        String text; //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
+
         TextView popupUpgradeMessage = dialog.findViewById(R.id.popupUpgradeMessage);
-        popupUpgradeMessage.setText(getString(R.string.upgrade_valid)+" "+(level*1000)+" $");
+        text = getString(R.string.upgrade_valid)+" "+(level*1000)+" $";
+        popupUpgradeMessage.setText(text);
 
         if(level == 9){
             popupUpgradeMessage.setText(R.string.max_level);
@@ -318,14 +331,19 @@ public class FactoryActivity extends AppCompatActivity {
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
+        String text; //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
+
         TextView cookieStock = dialog.findViewById(R.id.popupSellNbCookie);
-        cookieStock.setText(""+factory.getCurrentStocks().get(0));
+        text = factory.getCurrentStocks().get(0)+"";
+        cookieStock.setText(text);
 
         TextView cupcakeStock = dialog.findViewById(R.id.popupSellNbCupcake);
-        cupcakeStock.setText(""+factory.getCurrentStocks().get(1));
+        text = factory.getCurrentStocks().get(1)+"";
+        cupcakeStock.setText(text);
 
         TextView donutStock = dialog.findViewById(R.id.popupSellNbDonut);
-        donutStock.setText(""+factory.getCurrentStocks().get(2));
+        text = factory.getCurrentStocks().get(2)+"";
+        donutStock.setText(text);
 
         ImageButton cookieSell = dialog.findViewById(R.id.popupMarketSellCookie);
         cookieSell.setOnClickListener(v -> factory.getCurrentStocks().set(0,0));
