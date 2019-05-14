@@ -258,7 +258,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:orientation="horizontal"
-            android:background="@drawable/popup"
+            android:background="@drawable/bottom_bar"
             android:gravity="center"
             tools:ignore="UselessParent">
             <ImageView
