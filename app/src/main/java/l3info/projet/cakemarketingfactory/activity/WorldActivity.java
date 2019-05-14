@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import l3info.projet.cakemarketingfactory.utils.ViewContent;
 
 public class WorldActivity  extends AppCompatActivity {
     Context context;
+    World world;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,7 @@ public class WorldActivity  extends AppCompatActivity {
         context = this;
 
         //Log.i("BANDOL",getIntent().getSerializableExtra("world").toString());
-        World world = (World) getIntent().getSerializableExtra("world");
+        world = (World) getIntent().getSerializableExtra("world");
         //Log.i("BANDOL",world.factories.toString());
 
         for(int i=0; i<6; i++)
@@ -56,12 +58,6 @@ public class WorldActivity  extends AppCompatActivity {
                     Log.i("BANDOL","world sharedprefid:"+id );
                     EnterFactoryTask task = new EnterFactoryTask(id,world.factories.get(factorySpot), context);
                     task.execute();
-
-                    /*
-                    Intent intentApp = new Intent(WorldActivity.this, FactoryActivity.class);
-                    intentApp.putExtra("factory", world.factories.get(number));
-                    WorldActivity.this.startActivity(intentApp);
-                    */
                 });
             }
             else
@@ -71,7 +67,8 @@ public class WorldActivity  extends AppCompatActivity {
                 sign.setOnClickListener(v -> {
                     //cliquer sur un panneau $
                     Toast.makeText(context, "BUY sign 1 + " + factorySpot, Toast.LENGTH_SHORT).show();
-                    openPopupSign();
+                    //montre le prix et demande si tu veux acheter
+                    openPopupSign(factorySpot);
                 });
             }
         }
@@ -133,7 +130,7 @@ public class WorldActivity  extends AppCompatActivity {
         dialog.show();
     }
 
-    void openPopupSign()
+    void openPopupSign(int spot)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_question);
@@ -146,8 +143,78 @@ public class WorldActivity  extends AppCompatActivity {
         ImageView popupQuestionImage = dialog.findViewById(R.id.popupQuestionImage);
         popupQuestionImage.setImageResource(R.drawable.world_dollard_sign);
 
+        Button popupMessageOk = dialog.findViewById(R.id.popupQuestionOk);
+        popupMessageOk.setOnClickListener(v -> {
+            //Propose de selectionner le gateau de la 1ere ligne lors de l'achat
+            openPopupSelection(spot);
+            dialog.dismiss();
+        });
+
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
+    }
+
+    void openPopupSelection(int spot)
+    {
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.popup_cake_sel);
+        ImageView popupMessageCancel = dialog.findViewById(R.id.popupCakeSelBack);
+        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
+
+        //clic sur cookie
+        ImageButton cookieSelect = dialog.findViewById(R.id.popupCakeSelCookie);
+        cookieSelect.setOnClickListener(v -> {
+            /*Do something*/
+            //bien garder le dismiss qui suit //remove this comment
+            dialog.dismiss();
+            switchSpot(spot);
+        });
+
+        //clic sur cupcake
+        ImageButton cupcakeSelect = dialog.findViewById(R.id.popupCakeSelCupcake);
+        cupcakeSelect.setOnClickListener(v -> {
+            /*Do something*/
+            //bien garder le dismiss qui suit //remove this comment
+            dialog.dismiss();
+            switchSpot(spot);
+        });
+
+        //clic sur donut
+        ImageButton donutSelect = dialog.findViewById(R.id.popupCakeSelDonut);
+        donutSelect.setOnClickListener(v -> {
+            /*Do something*/
+            //bien garder le dismiss qui suit //remove this comment
+            dialog.dismiss();
+            switchSpot(spot);
+        });
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    //switch de panneau d'achat à usine achetée
+    public void switchSpot(int spot)
+    {
+        if(spot > 5) return; //il y a 6 usines max
+        ImageView factory = findViewById(ViewContent.factoryID[spot]);
+        factory.setImageResource(ImageContent.factoryID[spot]);
+        factory.setVisibility(View.VISIBLE);
+        factory.setOnClickListener(v -> {
+            //Entrer dans une usine
+            Toast.makeText(context, "FACTORY 1 + "+ spot, Toast.LENGTH_SHORT).show();
+
+            //access to the userId in shared preferences
+            SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+            long id = shr.getLong("userId",0L);
+            Log.i("BANDOL","world sharedprefid:"+id );
+            EnterFactoryTask task = new EnterFactoryTask(id,world.factories.get(spot), context);
+            task.execute();
+        });
+
+        ImageView sign = findViewById(ViewContent.signID[spot]);
+        sign.setVisibility(View.VISIBLE);
+        sign.setClickable(false);
     }
 }
