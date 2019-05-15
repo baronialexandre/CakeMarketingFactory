@@ -47,4 +47,8 @@
     <string name="graph_lower_value" translatable="false">5 $/u</string>
     <string name="vote_already_cast">You\'ve already cast a vote.</string>
     <string name="vote_cast">Vote cast.</string>
+    <string name="profile_title">Profile</string>
+    <string name="profile_labels">Username : \nRegistered : \nLevel : \nTop Score : \nBest Rank : </string>
+    <string name="profile_values" translatable="false">%1$s\n%2$s\n%3$d\n%4$d\n%5$d</string>
+
 </resources>

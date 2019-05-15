@@ -59,7 +59,7 @@ public class GetScoreTask extends AsyncTask<String, Void, Integer> {
         super.onPostExecute(userScore);
         Context ctx = this.ctx.get();
         TextView score = this.score.get();
-        String scoreText = FunctionUtil.scoreShortner(userScore)+" $";
+        String scoreText = FunctionUtil.scoreShorten(userScore)+" $";
         score.setText(scoreText);
         SharedPreferences shr = ctx.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = shr.edit();

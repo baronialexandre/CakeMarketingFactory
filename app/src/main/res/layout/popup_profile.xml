@@ -3,15 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:id="@+id/popup_background"
-    android:layout_width="300dp"
+    android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:background="@drawable/popup"
-    android:gravity="bottom" >
-
+    android:gravity="center"
+    android:paddingTop="10dp">
     <TextView
-        android:id="@+id/popupProfileText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="@string/profile_title"
+        android:layout_marginBottom="5dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:background="@color/background"
+        android:weightSum="2">
+
+        <TextView
+        android:id="@+id/popupProfileLabels"
+        android:text="@string/profile_labels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_color_states"
+        android:padding="10dp"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_weight="1"
+            android:gravity="start"/>
+
+        <TextView
+        android:id="@+id/popupProfileValues"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/profileValues"
+        android:padding="10dp"
+        android:lineSpacingMultiplier="1.5"
+        android:layout_weight="1"
+            android:gravity="end"/>
+
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
