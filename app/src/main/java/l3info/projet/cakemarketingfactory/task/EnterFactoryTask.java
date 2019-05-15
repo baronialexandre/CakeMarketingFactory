@@ -86,7 +86,7 @@ public class EnterFactoryTask extends AsyncTask<String, Void, Factory>{
     protected void onPostExecute(Factory factory) {
         super.onPostExecute(factory);
         Context ctx = this.ctx.get();
-        //Redirect to main user activity
+        //Redirect to factory activity
         Intent intent;
         intent = new Intent(ctx, FactoryActivity.class);
         intent.putExtra("factory", factory);

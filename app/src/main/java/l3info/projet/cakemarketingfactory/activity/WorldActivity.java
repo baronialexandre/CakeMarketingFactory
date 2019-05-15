@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.model.World;
 import l3info.projet.cakemarketingfactory.task.BuyFactoryTask;
 import l3info.projet.cakemarketingfactory.task.EnterFactoryTask;
@@ -30,6 +31,7 @@ import l3info.projet.cakemarketingfactory.utils.ViewContent;
 public class WorldActivity  extends AppCompatActivity {
     Context context;
     World world;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class WorldActivity  extends AppCompatActivity {
         //access to the userId in shared preferences
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         long userId = shr.getLong("userId",0L);
-        Log.i("BANDOL","world sharedprefid:"+userId );
+        //Log.i("BANDOL","world sharedprefid:"+userId );
 
 
         TextView userScore = findViewById(R.id.worldCapital);
@@ -80,7 +82,7 @@ public class WorldActivity  extends AppCompatActivity {
                     //montre le prix et demande si tu veux acheter
 
 
-                    openPopupSign(factorySpot+1,shr.getInt("score",0));
+                    openPopupSign(factorySpot,shr.getInt("score",0));
                 });
             }
         }
@@ -189,7 +191,7 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton cookieSelect = dialog.findViewById(R.id.popupCakeSelCookie);
         cookieSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,0,score,context);
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,0,score,context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
@@ -200,7 +202,7 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton cupcakeSelect = dialog.findViewById(R.id.popupCakeSelCupcake);
         cupcakeSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,1,score,context);
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,1,score,context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
@@ -211,7 +213,7 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton donutSelect = dialog.findViewById(R.id.popupCakeSelDonut);
         donutSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot,2,score,context);
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,2,score,context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
@@ -237,8 +239,8 @@ public class WorldActivity  extends AppCompatActivity {
             //access to the userId in shared preferences
             SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
             long id = shr.getLong("userId",0L);
-            Log.i("BANDOL","world sharedprefid:"+id );
-            EnterFactoryTask task = new EnterFactoryTask(id,world.factories.get(spot), context);
+            Log.i("BANDOL","spot"+spot );
+            EnterFactoryTask task = new EnterFactoryTask(id,new Factory(spot+1), context);
             task.execute();
         });
 
