@@ -14,6 +14,7 @@ public final class Contents {
     public static final String GET_SCORE_URL = "/getscore.php";
     public static final String BUY_FACTORY_URL = "/buyfactory.php";
     public static final String SELL_STOCK_URL = "/sellstock.php";
+    public static final String GET_STOCK_URL = "/getstock.php";
 
     public static final String API_PASS = "bandol";
     public static final String SHRD_PREF = "dolban";
