@@ -26,7 +26,6 @@ public class GetScoreTask extends AsyncTask<String, Void, Integer> {
     private final long userId;
     private final WeakReference<Context> ctx;
     private final WeakReference<TextView> score;
-
     public GetScoreTask(long userId, TextView score, Context ctx) {
         this.userId = userId;
         this.score = new WeakReference<>(score);
@@ -38,7 +37,7 @@ public class GetScoreTask extends AsyncTask<String, Void, Integer> {
         try {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url(Contents.API_URL + Contents.SELL_STOCK_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId)
+                    .url(Contents.API_URL + Contents.GET_SCORE_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId)
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -51,7 +50,7 @@ public class GetScoreTask extends AsyncTask<String, Void, Integer> {
             return jsonObj.getInt("score");
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error while authenticating ... : " + e.getMessage(), e);
-            return 0;
+            return 42;
         }
     }
 

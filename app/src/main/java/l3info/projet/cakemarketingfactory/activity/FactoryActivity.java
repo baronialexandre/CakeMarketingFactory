@@ -19,12 +19,15 @@ import java.util.Objects;
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.task.GetScoreTask;
+import l3info.projet.cakemarketingfactory.task.SellStockTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 
 public class FactoryActivity extends AppCompatActivity {
     Context context;
     Factory factory;
+    long userId;
+    int score;
 
     TextView userScore;
 
@@ -47,7 +50,8 @@ public class FactoryActivity extends AppCompatActivity {
 
         //access to the userId in shared preferences
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-        long userId = shr.getLong("userId",0L);
+        userId = shr.getLong("userId",0L);
+        score = shr.getInt("score",0);
 
         userScore = findViewById(R.id.factoryCapital);
         GetScoreTask getScore = new GetScoreTask(userId, userScore, context);
@@ -326,6 +330,7 @@ public class FactoryActivity extends AppCompatActivity {
     //exemple
     void openPopupSell(Context context)
     {
+
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_market_sell);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
@@ -346,7 +351,10 @@ public class FactoryActivity extends AppCompatActivity {
         donutStock.setText(text);
 
         ImageButton cookieSell = dialog.findViewById(R.id.popupMarketSellCookie);
-        cookieSell.setOnClickListener(v -> factory.getCurrentStocks().set(0,0));
+        cookieSell.setOnClickListener(v -> {
+            SellStockTask sellCookies = new SellStockTask(userId, factory, 0, score, context);
+            sellCookies.execute();
+        });
 
         ImageButton cupcakeSell = dialog.findViewById(R.id.popupMarketSellCupcake);
         cupcakeSell.setOnClickListener(v -> factory.getCurrentStocks().set(1,0));
