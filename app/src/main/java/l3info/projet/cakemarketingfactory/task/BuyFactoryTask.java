@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,6 +13,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 
+import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.FactoryActivity;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.model.Line;
@@ -68,16 +70,16 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
     @Override
     protected void onPostExecute(Boolean success) {
         super.onPostExecute(success);
+        Context ctx = this.ctx.get();
         if(success) {
             // Toast achat successful
+            Toast.makeText(ctx, R.string.purchaseSuccesful, Toast.LENGTH_LONG).show();
             Log.i("BANDOL_BUY_FACTORYTSK", "success");
-            Context ctx = this.ctx.get();
             EnterFactoryTask task = new EnterFactoryTask(userId,new Factory(factorySpot), ctx);
             task.execute();
         } else {
-            if (notEnoughScore) Log.i("BANDOL_BUY_FACTORYTSK", "false not enough");
-            else Log.i("BANDOL_BUY_FACTORYTSK", "false");
-            // Toast pas assez de score
+            if (notEnoughScore) Toast.makeText(ctx, R.string.purchaseNotEnoughScore, Toast.LENGTH_LONG).show();
+            Toast.makeText(ctx, R.string.purchaseFailure, Toast.LENGTH_LONG).show();
         }
     }
 }

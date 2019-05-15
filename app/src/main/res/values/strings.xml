@@ -50,5 +50,8 @@
     <string name="profile_title">Profile</string>
     <string name="profile_labels">Username : \nRegistered : \nLevel : \nTop Score : \nBest Rank : </string>
     <string name="profile_values" translatable="false">%1$s\n%2$s\n%3$d\n%4$d\n%5$d</string>
+    <string name="purchaseSuccesful">Factory purchase was succesful!</string>
+    <string name="purchaseNotEnoughScore">Not enough money to buy this factory</string>
+    <string name="purchaseFailure">Purchase failure</string>
 
 </resources>
