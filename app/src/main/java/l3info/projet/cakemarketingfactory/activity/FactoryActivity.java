@@ -100,7 +100,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         for(int i = 0; i < 3; i++){
             if(factory.getLine(i) != null){
-                text = factory.getLine(i).getProduction()+"/s"; //todo : par secondes ? => minutes ! //Loïc
+                text = factory.getLine(i).getProduction()+"/m";
                 allProductSpeed.get(i).setText(text);
                 allProduction.get(i).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[factory.getLine(i).getCakeId()]));
                 allBelts.get(i).setBackground(getResources().getDrawable(ImageContent.beltImagesId[factory.getLine(i).getMachineLevel(i)]));
@@ -272,7 +272,7 @@ public class FactoryActivity extends AppCompatActivity {
                 else if (id == 2){
                     allOvens.get(line).setImageResource(ImageContent.ovenImagesId[level+1]);
                 }
-                allProductSpeed.get(line).setText(factory.getLine(line).getProduction()+"/s");
+                allProductSpeed.get(line).setText(factory.getLine(line).getProduction()+"/m");
 
                 if (level == 8) {
                     button.setBackground(getResources().getDrawable(R.drawable.gold_button_selector));
