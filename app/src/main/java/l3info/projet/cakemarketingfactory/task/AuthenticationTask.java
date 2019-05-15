@@ -26,7 +26,13 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
     private final String password;
     private final WeakReference<TextView> feedbackTextView;
     private final WeakReference<Context> ctx;
+
+    // User properties
     private long userId;
+    private int level;
+    private String registerDate;
+    private long maxScore;
+    private int maxRank;
 
     public AuthenticationTask(String username, String password, TextView feedbackTextView, Context ctx) {
         this.username = username;
@@ -54,6 +60,11 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
             JSONObject jsonObj = new JSONObject(rawJson);
 
             userId = jsonObj.getLong("userId");
+            level = jsonObj.getInt("level");
+            registerDate = jsonObj.getString("registerDate");
+            maxScore = jsonObj.getLong("maxScore");
+            maxRank = jsonObj.getInt("maxRank");
+
             return jsonObj.getBoolean("auth");
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error while authenticating ... : " + e.getMessage(), e);
@@ -72,12 +83,16 @@ public class AuthenticationTask extends AsyncTask<String, Void, Boolean>{
             Log.i("BANDOL_AUTH_TASK","true green");
 
             //Store id into shared preferences
-            //Store username and pwd into shared preferences
+            //Store uesr properties in shared preferences
             SharedPreferences shr = ctx.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
             SharedPreferences.Editor ed = shr.edit();
             ed.putLong("userId",userId);
             ed.putString("username",username);
             ed.putString("password",password);
+            ed.putInt("level", level);
+            ed.putString("registerDate", registerDate);
+            ed.putLong("maxScore", maxScore);
+            ed.putInt("maxRank", maxRank);
             ed.apply();
 
             //Enter world Task ici ou dans on create world activity?

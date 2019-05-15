@@ -44,19 +44,19 @@ public class FunctionUtil {
             "+"  // More !
     };
 
-    public static String scoreShortner(long cash) {
-        if(cash < 0) return "---";
+    public static String scoreShorten(long score) {
+        if(score < 0) return "---";
         boolean locker = true;
         int i = 0;
         while (locker) {
-            if (1000 <= cash) {
-                cash /= 1000;
+            if (1000 <= score) {
+                score /= 1000;
                 i++;
             }
             else locker = false;
         }
         if(i<cashNotation.length)
-            return cash+FunctionUtil.cashNotation[i];
+            return score+FunctionUtil.cashNotation[i];
         else return "+++"; //too much
     }
 }

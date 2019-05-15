@@ -133,6 +133,18 @@ public class WorldActivity  extends AppCompatActivity {
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_profile);
+
+        TextView popupProfileValues = dialog.findViewById(R.id.popupProfileValues);
+
+        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        String username = shr.getString("username","");
+        String registerDate = shr.getString("registerDate","");
+        int level = shr.getInt("level",0);
+        long maxScore = shr.getLong("maxScore",0);
+        int maxRank = shr.getInt("maxRank",0);
+
+        popupProfileValues.setText(getString(R.string.profile_values, username, registerDate, level, maxScore, maxRank));
+
         Button popupMessageClose = dialog.findViewById(R.id.popupProfileOk);
         popupMessageClose.setOnClickListener(v -> dialog.dismiss());
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
@@ -148,7 +160,7 @@ public class WorldActivity  extends AppCompatActivity {
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
         TextView popupQuestionMessage = dialog.findViewById(R.id.popupQuestionMessage);
-        popupQuestionMessage.setText("Le prix c'est le prix !\nSi tu veux acheter... vend\nDU GATEAU !");
+        popupQuestionMessage.setText("Le prix c'est le prix !\nSi tu veux acheter... vends\nDU GATEAU !");
 
         ImageView popupQuestionImage = dialog.findViewById(R.id.popupQuestionImage);
         popupQuestionImage.setImageResource(R.drawable.world_dollard_sign);

@@ -42,4 +42,6 @@
     <string name="max_level">Cet élément est déjà au niveau maximum</string>
     <string name="vote_already_cast">Vous avez déjà voté.</string>
     <string name="vote_cast">Vote enregistré.</string>
+    <string name="profile_title">Profil</string>
+    <string name="profile_labels">Pseudo : \nInscription : \nNiveau : \nScore Max : \nRang Max : </string>
 </resources>

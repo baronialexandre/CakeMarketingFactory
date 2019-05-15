@@ -41,4 +41,6 @@
 
    <color name="productButtonDefault">#505050</color>
    <color name="productButtonSelect">#337733</color>
+
+   <color name="profileValues">#EEFFEE</color>
 </resources>
