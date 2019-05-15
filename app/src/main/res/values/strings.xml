@@ -30,7 +30,7 @@
     <string name="registration_feedback_already_used">Username already used!</string>
     <string name="registration_feedback_failed">Registration failed</string>
     <string name="sell">Sell</string>
-    <string name="selling">Selling</string>
+    <string name="selling">Sell All</string>
     <string name="SellCookies">Sell all the cookies</string>
     <string name="sellDonuts">Sell all the donuts</string>
     <string name="sellCupcakes">Sell all the cupcakes</string>
@@ -45,13 +45,19 @@
     <string name="graph_top_value" translatable="false">15 $/u</string>
     <string name="graph_middle_value" translatable="false">10 $/u</string>
     <string name="graph_lower_value" translatable="false">5 $/u</string>
+
     <string name="vote_already_cast">You\'ve already cast a vote.</string>
     <string name="vote_cast">Vote cast.</string>
+
     <string name="profile_title">Profile</string>
     <string name="profile_labels">Username : \nRegistered : \nLevel : \nTop Score : \nBest Rank : </string>
     <string name="profile_values" translatable="false">%1$s\n%2$s\n%3$d\n%4$d\n%5$d</string>
     <string name="purchaseSuccesful">Factory purchase was succesful!</string>
     <string name="purchaseNotEnoughScore">Not enough money to buy this factory</string>
     <string name="purchaseFailure">Purchase failure</string>
+
+    <string name="market_sell_error">Error when trying to retrieve stocks.</string>
+    <string name="market_sell_failed">Could not sell your stocks.</string>
+    <string name="market_sell_confirm">Sales confirmed !</string>
 
 </resources>

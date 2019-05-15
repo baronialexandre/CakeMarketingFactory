@@ -19,6 +19,7 @@ import l3info.projet.cakemarketingfactory.activity.view.MarketTimeView;
 import l3info.projet.cakemarketingfactory.model.Market;
 import l3info.projet.cakemarketingfactory.model.Votes;
 import l3info.projet.cakemarketingfactory.task.CastVoteTask;
+import l3info.projet.cakemarketingfactory.task.GetStockTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.FunctionUtil;
 
@@ -42,7 +43,7 @@ public class MarketActivity extends AppCompatActivity
 
         // USER SCORE DISPLAY
         TextView userScoreDisplay = findViewById(R.id.marketCapital);
-        userScoreDisplay.setText(String.format(Locale.FRANCE, "%s$", FunctionUtil.scoreShorten(userScore)));
+        userScoreDisplay.setText(String.format(Locale.ROOT, "%s$", FunctionUtil.scoreShorten(userScore)));
 
         // GRAPH
         MarketGraph marketGraph = findViewById(R.id.marketGraph);
@@ -94,6 +95,12 @@ public class MarketActivity extends AppCompatActivity
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
+        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        long userId = shr.getLong("userId",0L);
+
+        GetStockTask getStockTask = new GetStockTask(userId, dialog);
+        getStockTask.execute();
+
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
@@ -114,9 +121,9 @@ public class MarketActivity extends AppCompatActivity
         TextView popupMarketCupcakeDisplay = dialog.findViewById(R.id.popupMarketCupcakeDisplay);
         TextView popupMarketDonutDisplay = dialog.findViewById(R.id.popupMarketDonutDisplay);
 
-        popupMarketCookieDisplay.setText(String.format(Locale.FRANCE,"%.1f%%", votes.getPercentage(0)));
-        popupMarketCupcakeDisplay.setText(String.format(Locale.FRANCE,"%.1f%%", votes.getPercentage(1)));
-        popupMarketDonutDisplay.setText(String.format(Locale.FRANCE,"%.1f%%", votes.getPercentage(2)));
+        popupMarketCookieDisplay.setText(String.format(Locale.ROOT,"%.1f%%", votes.getPercentage(0)));
+        popupMarketCupcakeDisplay.setText(String.format(Locale.ROOT,"%.1f%%", votes.getPercentage(1)));
+        popupMarketDonutDisplay.setText(String.format(Locale.ROOT,"%.1f%%", votes.getPercentage(2)));
 
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         long userId = shr.getLong("userId",0L);
@@ -187,6 +194,6 @@ public class MarketActivity extends AppCompatActivity
     void setProductToDisplay(int productId, MarketGraph marketGraph, TextView priceDisplay)
     {
         marketGraph.setProductIdToDisplay(productId);
-        priceDisplay.setText(String.format(Locale.FRANCE,"%d$",market.lastProductPrice(productId)));
+        priceDisplay.setText(String.format(Locale.ROOT,"%d$",market.lastProductPrice(productId)));
     }
 }

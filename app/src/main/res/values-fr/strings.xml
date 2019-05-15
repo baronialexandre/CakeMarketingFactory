@@ -28,16 +28,16 @@
     <string name="registration_feedback_already_used">Pseudo déja utilisé!</string>
     <string name="registration_feedback_failed">Erreur d\'inscription</string>
     <string name="sell">Vendre</string>
-    <string name="selling">Selling</string>
-    <string name="SellCookies">Sell all the cookies</string>
-    <string name="sellDonuts">Sell all the donuts</string>
-    <string name="sellCupcakes">Sell all the cupcakes</string>
+    <string name="selling">Vente Générale</string>
+    <string name="SellCookies">Vendre tous les cookies</string>
+    <string name="sellDonuts">Vendre tous les donuts</string>
+    <string name="sellCupcakes">Vendre tous les cupcakes</string>
     <string name="number">000</string>
-    <string name="disconnect">Disconnect</string>
+    <string name="disconnect">Déconnexion</string>
     <string name="designer">Designer</string>
-    <string name="save_on_device">Save on device</string>
-    <string name="publish">Publish</string>
-    <string name="select_a_cake">Select a cake</string>
+    <string name="save_on_device">Sauvegarder</string>
+    <string name="publish">Publier</string>
+    <string name="select_a_cake">Sélectionnez un produit</string>
     <string name="upgrade_valid">Êtes vous sûr de vouloir lancer l\'amélioration ?\nElle vous coutera </string>
     <string name="max_level">Cet élément est déjà au niveau maximum</string>
     <string name="vote_already_cast">Vous avez déjà voté.</string>
@@ -47,4 +47,8 @@
     <string name="purchaseSuccesful">Achat effectué!</string>
     <string name="purchaseNotEnoughScore">Pas assez de sous pour acheter cette usine</string>
     <string name="purchaseFailure">L\'achat a échoué!</string>
+
+    <string name="market_sell_error">Erreur lors de l\'obtention des stocks.</string>
+    <string name="market_sell_failed">La vente a échoué.</string>
+    <string name="market_sell_confirm">Vente réussie !</string>
 </resources>
