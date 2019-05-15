@@ -127,106 +127,55 @@ public class FactoryActivity extends AppCompatActivity {
         });
 
         /* ---------- Change production ---------- */
-        ImageButton productionLine1 = findViewById(R.id.factoryProductionButtonLine1);
-        productionLine1.setOnClickListener(view -> {
-            if (factory.getLine(0) != null) { openPopupSelection(0); }
-        });
-        ImageButton productionLine2 = findViewById(R.id.factoryProductionButtonLine2);
-        productionLine2.setOnClickListener(view -> {
-            if (factory.getLine(1) != null) {
-                if (factory.getLine(0) != null) { openPopupSelection(1); }
-            }
-        });
-        ImageButton productionLine3 = findViewById(R.id.factoryProductionButtonLine3);
-        productionLine3.setOnClickListener(view -> {
-            if (factory.getLine(2) != null) {
-                if (factory.getLine(0) != null) { openPopupSelection(2); }
-            }
-        });
+        for (int i=0; i<3; i++){
+            int line = i;
+            ImageButton productionLine = findViewById(ViewContent.factoryProduction[line]);
+            productionLine.setOnClickListener(view -> {
+                if (factory.getLine(line) != null) { openPopupSelection(line); }
+            });
+        }
         /* ---------- End change production ---------- */
 
         /* ---------- Upgrade buttons ---------- */
         //Line 1
-        Button factoryBeltButtonLine1 = findViewById(R.id.factoryBeltButtonLine1);
-        factoryBeltButtonLine1.setOnClickListener(view -> {
-            int level = factory.getLine(0).getMachineLevel(0);
-            openPopupUpgrade(level, ImageContent.beltImagesId[level],0,0, factoryBeltButtonLine1);
-        });
-        Button factoryRobotButtonLine1 = findViewById(R.id.factoryRobotButtonLine1);
-        factoryRobotButtonLine1.setOnClickListener(view -> {
-            int level = factory.getLine(0).getMachineLevel(1);
-            openPopupUpgrade(level, ImageContent.robotImagesId[level],0,1, factoryRobotButtonLine1);
-        });
-        Button factoryOvenButtonLine1 = findViewById(R.id.factoryOvenButtonLine1);
-        factoryOvenButtonLine1.setOnClickListener(view -> {
-            int level = factory.getLine(0).getMachineLevel(2);
-            openPopupUpgrade(level, ImageContent.ovenImagesId[level],0,2, factoryOvenButtonLine1);
-        });
+        for (int i=0; i<3; i++){
+            int line = i;
+            Button factoryBeltButtonLine = findViewById(ViewContent.factoryBeltButtons[line]);
+            factoryBeltButtonLine.setOnClickListener(view -> {
+                int level = factory.getLine(line).getMachineLevel(0);
+                openPopupUpgrade(level, ImageContent.beltImagesId[level],line,0, factoryBeltButtonLine);
+            });
+            Button factoryRobotButtonLine = findViewById(ViewContent.factoryRobotsButtons[line]);
+            factoryRobotButtonLine.setOnClickListener(view -> {
+                int level = factory.getLine(line).getMachineLevel(1);
+                openPopupUpgrade(level, ImageContent.robotImagesId[level],line,1, factoryRobotButtonLine);
+            });
+            Button factoryOvenButtonLine = findViewById(ViewContent.factoryOvenButtons[line]);
+            factoryOvenButtonLine.setOnClickListener(view -> {
+                int level = factory.getLine(line).getMachineLevel(2);
+                openPopupUpgrade(level, ImageContent.ovenImagesId[level],line,2, factoryOvenButtonLine);
+            });
+            if (factory.getLine(line) == null){
+                factoryBeltButtonLine.setEnabled(false);
+                factoryRobotButtonLine.setEnabled(false);
+                factoryOvenButtonLine.setEnabled(false);
+                factoryBeltButtonLine.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
+                factoryRobotButtonLine.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
+                factoryOvenButtonLine.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
+            }else{
+                if(factory.getLine(line).getMachineLevel(0)==9){ factoryBeltButtonLine.setBackground(getResources().getDrawable(R.drawable.gold_button_selector)); }
+                if(factory.getLine(line).getMachineLevel(1)==9){ factoryRobotButtonLine.setBackground(getResources().getDrawable(R.drawable.gold_button_selector)); }
+                if(factory.getLine(line).getMachineLevel(2)==9){ factoryOvenButtonLine.setBackground(getResources().getDrawable(R.drawable.gold_button_selector)); }
+            }
+        }
 
-
-        if (factory.getLine(0) == null){
-            factoryBeltButtonLine1.setEnabled(false);
-            factoryRobotButtonLine1.setEnabled(false);
-            factoryOvenButtonLine1.setEnabled(false);
-            factoryBeltButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
-            factoryRobotButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
-            factoryOvenButtonLine1.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
-        }
-        //Line 2
-        Button factoryBeltButtonLine2 = findViewById(R.id.factoryBeltButtonLine2);
-        factoryBeltButtonLine2.setOnClickListener(view -> {
-            int level = factory.getLine(1).getMachineLevel(0);
-            openPopupUpgrade(level, ImageContent.beltImagesId[level],1,0, factoryBeltButtonLine2);
-        });
-        Button factoryRobotButtonLine2 = findViewById(R.id.factoryRobotButtonLine2);
-        factoryRobotButtonLine2.setOnClickListener(view -> {
-            int level = factory.getLine(1).getMachineLevel(1);
-            openPopupUpgrade(level, ImageContent.robotImagesId[level],1,1, factoryRobotButtonLine2);
-        });
-        Button factoryOvenButtonLine2 = findViewById(R.id.factoryOvenButtonLine2);
-        factoryOvenButtonLine2.setOnClickListener(view -> {
-            int level = factory.getLine(1).getMachineLevel(2);
-            openPopupUpgrade(level, ImageContent.ovenImagesId[level],1,2, factoryOvenButtonLine2);
-        });
-        if (factory.getLine(1) == null){
-            factoryBeltButtonLine2.setEnabled(false);
-            factoryRobotButtonLine2.setEnabled(false);
-            factoryOvenButtonLine2.setEnabled(false);
-            factoryBeltButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
-            factoryRobotButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
-            factoryOvenButtonLine2.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
-        }
-        //Line 3
-        Button factoryBeltButtonLine3 = findViewById(R.id.factoryBeltButtonLine3);
-        factoryBeltButtonLine3.setOnClickListener(view -> {
-            int level = factory.getLine(2).getMachineLevel(0);
-            openPopupUpgrade(level, ImageContent.beltImagesId[level],2,0, factoryBeltButtonLine3);
-        });
-        Button factoryRobotButtonLine3 = findViewById(R.id.factoryRobotButtonLine3);
-        factoryRobotButtonLine3.setOnClickListener(view -> {
-            int level = factory.getLine(2).getMachineLevel(1);
-            openPopupUpgrade(level, ImageContent.robotImagesId[level],2,1, factoryRobotButtonLine3);
-        });
-        Button factoryOvenButtonLine3 = findViewById(R.id.factoryOvenButtonLine3);
-        factoryOvenButtonLine3.setOnClickListener(view -> {
-            int level = factory.getLine(2).getMachineLevel(2);
-            openPopupUpgrade(level, ImageContent.ovenImagesId[level],2,2, factoryOvenButtonLine3);
-        });
-        if (factory.getLine(2) == null){
-            factoryBeltButtonLine3.setEnabled(false);
-            factoryRobotButtonLine3.setEnabled(false);
-            factoryOvenButtonLine3.setEnabled(false);
-            factoryBeltButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
-            factoryRobotButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
-            factoryOvenButtonLine3.setBackground(getResources().getDrawable(R.drawable.red_button_selector));
-        }
         Button factoryButtonStock = findViewById(R.id.factoryButtonStock);
         factoryButtonStock.setOnClickListener(v -> {
             int level = factory.getCapacityLevel();
             openPopupUpgrade(level, R.drawable.title,0,-1, factoryButtonStock);
         });
 
-        /* End upgrade button */
+        /* ---------- End upgrade button ---------- */
 
         Button sell = findViewById(R.id.factorySell);
         sell.setOnClickListener(v -> openPopupSell(context));
@@ -303,26 +252,15 @@ public class FactoryActivity extends AppCompatActivity {
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupCakeSelBack);
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
-        ImageButton cookieSelect = dialog.findViewById(R.id.popupCakeSelCookie);
-        cookieSelect.setOnClickListener(v -> {
-            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[0]));
-            factory.getLine(line).setCakeId(0);
-            dialog.dismiss();
-        });
-
-        ImageButton cupcakeSelect = dialog.findViewById(R.id.popupCakeSelCupcake);
-        cupcakeSelect.setOnClickListener(v -> {
-            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[1]));
-            factory.getLine(line).setCakeId(1);
-            dialog.dismiss();
-        });
-
-        ImageButton donutSelect = dialog.findViewById(R.id.popupCakeSelDonut);
-        donutSelect.setOnClickListener(v -> {
-            allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[2]));
-            factory.getLine(line).setCakeId(2);
-            dialog.dismiss();
-        });
+        for (int i=0; i<3; i++){
+            int id = i;
+            ImageButton cakeSelect = dialog.findViewById(ViewContent.popUpCakeSell[i]);
+            cakeSelect.setOnClickListener(v -> {
+                allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[id]));
+                factory.getLine(line).setCakeId(id);
+                dialog.dismiss();
+            });
+        }
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);

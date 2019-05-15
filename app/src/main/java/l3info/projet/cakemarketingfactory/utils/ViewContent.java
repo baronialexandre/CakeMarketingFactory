@@ -31,4 +31,30 @@ public class ViewContent {
             R.id.popupSellNbCupcake,
             R.id.popupSellNbDonut
     };
+    public static final int[] factoryProduction = {
+            R.id.factoryProductionButtonLine1,
+            R.id.factoryProductionButtonLine2,
+            R.id.factoryProductionButtonLine3,
+    };
+    public static final int[] factoryBeltButtons = {
+            R.id.factoryBeltButtonLine1,
+            R.id.factoryBeltButtonLine2,
+            R.id.factoryBeltButtonLine3
+    };
+    public static final int[] factoryRobotsButtons= {
+            R.id.factoryRobotButtonLine1,
+            R.id.factoryRobotButtonLine2,
+            R.id.factoryRobotButtonLine3
+
+    };
+    public static final int[] factoryOvenButtons = {
+            R.id.factoryOvenButtonLine1,
+            R.id.factoryOvenButtonLine2,
+            R.id.factoryOvenButtonLine3
+    };
+    public static final int[] popUpCakeSell = {
+            R.id.popupCakeSelCookie,
+            R.id.popupCakeSelCupcake,
+            R.id.popupCakeSelDonut
+    };
 }
