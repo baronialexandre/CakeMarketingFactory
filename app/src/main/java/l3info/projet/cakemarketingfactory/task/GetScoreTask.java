@@ -26,7 +26,6 @@ public class GetScoreTask extends AsyncTask<String, Void, Integer> {
     private final long userId;
     private final WeakReference<Context> ctx;
     private final WeakReference<TextView> score;
-
     public GetScoreTask(long userId, TextView score, Context ctx) {
         this.userId = userId;
         this.score = new WeakReference<>(score);

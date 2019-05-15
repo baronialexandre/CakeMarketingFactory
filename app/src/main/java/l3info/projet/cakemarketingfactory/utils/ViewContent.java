@@ -20,4 +20,15 @@ public class ViewContent {
             R.id.worldSign5,
             R.id.worldSign6
     };
+
+    public static final int[] sellCakeButtons = {
+            R.id.popupMarketSellCookie,
+            R.id.popupMarketSellCupcake,
+            R.id.popupMarketSellDonut
+    };
+    public static final int[] sellMarketCakeText = {
+            R.id.popupSellNbCookie,
+            R.id.popupSellNbCupcake,
+            R.id.popupSellNbDonut
+    };
 }

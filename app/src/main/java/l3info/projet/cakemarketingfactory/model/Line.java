@@ -28,7 +28,7 @@ public class Line implements Serializable {
     public void setCakeId(int cakeId) { this.cakeId = cakeId; }
     public void setMachineLevel( int index, int lvl ) { this.machineLevels.set(index,lvl); }
 
-    public int getProduction(){ return this.machineLevels.get(0)+this.machineLevels.get(1)+this.machineLevels.get(2)+3; }
+    public int getProduction(){ return 3*(this.machineLevels.get(0)+1)+3*(this.machineLevels.get(1)+1)+3*(this.machineLevels.get(2)+1); }
 
     @Override
     public String toString() {

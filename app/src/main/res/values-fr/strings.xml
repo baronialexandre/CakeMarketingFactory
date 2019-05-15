@@ -3,7 +3,7 @@
     <string name="action_settings">Paramètres</string>
     <string name="langue_test">Ceci est un test</string>
     <string name="plus">+</string>
-    <string name="unitPerSec">u/s</string>
+    <string name="unitPerSec">u/m</string>
     <string name="stock">Stock :</string>
     <string name="login">Login</string>
     <string name="password">Password</string>

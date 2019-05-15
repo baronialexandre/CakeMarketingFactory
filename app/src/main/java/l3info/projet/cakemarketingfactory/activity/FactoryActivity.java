@@ -19,14 +19,19 @@ import java.util.Objects;
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.task.GetScoreTask;
+import l3info.projet.cakemarketingfactory.task.SellStockTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
+import l3info.projet.cakemarketingfactory.utils.ViewContent;
 
 public class FactoryActivity extends AppCompatActivity {
     Context context;
     Factory factory;
+    long userId;
+    int score;
 
     TextView userScore;
+    TextView stockText;
 
     ArrayList<TextView> allProductSpeed;
     ArrayList<ImageButton> allProduction;
@@ -47,7 +52,8 @@ public class FactoryActivity extends AppCompatActivity {
 
         //access to the userId in shared preferences
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-        long userId = shr.getLong("userId",0L);
+        userId = shr.getLong("userId",0L);
+        score = shr.getInt("score",0);
 
         userScore = findViewById(R.id.factoryCapital);
         GetScoreTask getScore = new GetScoreTask(userId, userScore, context);
@@ -94,7 +100,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         for(int i = 0; i < 3; i++){
             if(factory.getLine(i) != null){
-                text = factory.getLine(i).getProduction()+"/s"; //todo : par secondes ? => minutes ! //Loïc
+                text = factory.getLine(i).getProduction()+"/m";
                 allProductSpeed.get(i).setText(text);
                 allProduction.get(i).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[factory.getLine(i).getCakeId()]));
                 allBelts.get(i).setBackground(getResources().getDrawable(ImageContent.beltImagesId[factory.getLine(i).getMachineLevel(i)]));
@@ -108,7 +114,7 @@ public class FactoryActivity extends AppCompatActivity {
                 + factory.getCurrentStocks().get(2)) +
                 "/" +
                 (factory.getCapacityLevel() + 1) * 100;
-        TextView stockText = findViewById(R.id.factoryStockText);
+        stockText = findViewById(R.id.factoryStockText);
         stockText.setText(text);
         /* --------- End pictures creation --------- */
 
@@ -266,7 +272,7 @@ public class FactoryActivity extends AppCompatActivity {
                 else if (id == 2){
                     allOvens.get(line).setImageResource(ImageContent.ovenImagesId[level+1]);
                 }
-                allProductSpeed.get(line).setText(factory.getLine(line).getProduction()+"/s");
+                allProductSpeed.get(line).setText(factory.getLine(line).getProduction()+"/m");
 
                 if (level == 8) {
                     button.setBackground(getResources().getDrawable(R.drawable.gold_button_selector));
@@ -323,36 +329,29 @@ public class FactoryActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    //exemple
     void openPopupSell(Context context)
     {
+
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_market_sell);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
-        String text; //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
+        final String[] text = new String[1]; //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
+        final String[] newText = new String[1];
+        for(int i=0; i<3; i++)
+        {
+            TextView stock = dialog.findViewById(ViewContent.sellMarketCakeText[i]);
+            text[0] = factory.getCurrentStocks().get(i)+"";
+            stock.setText(text[0]);
 
-        TextView cookieStock = dialog.findViewById(R.id.popupSellNbCookie);
-        text = factory.getCurrentStocks().get(0)+"";
-        cookieStock.setText(text);
-
-        TextView cupcakeStock = dialog.findViewById(R.id.popupSellNbCupcake);
-        text = factory.getCurrentStocks().get(1)+"";
-        cupcakeStock.setText(text);
-
-        TextView donutStock = dialog.findViewById(R.id.popupSellNbDonut);
-        text = factory.getCurrentStocks().get(2)+"";
-        donutStock.setText(text);
-
-        ImageButton cookieSell = dialog.findViewById(R.id.popupMarketSellCookie);
-        cookieSell.setOnClickListener(v -> factory.getCurrentStocks().set(0,0));
-
-        ImageButton cupcakeSell = dialog.findViewById(R.id.popupMarketSellCupcake);
-        cupcakeSell.setOnClickListener(v -> factory.getCurrentStocks().set(1,0));
-
-        ImageButton donutSell = dialog.findViewById(R.id.popupMarketSellDonut);
-        donutSell.setOnClickListener(v -> factory.getCurrentStocks().set(2,0));
+            ImageButton cakeSell = dialog.findViewById(ViewContent.sellCakeButtons[i]);
+            int cake = i;
+            cakeSell.setOnClickListener(v -> {
+                SellStockTask sellStockTask = new SellStockTask(userId, factory, cake, score, context, stock, userScore, stockText);
+                sellStockTask.execute();
+            });
+        }
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);

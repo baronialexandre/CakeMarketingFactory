@@ -4,7 +4,7 @@
     <string name="langue_test">This is a test</string>
     <string name="langue_test2" translatable="false">Message message message message message message\nMessage message message message message\nMessage message message message message message\nMessage message message\nMessage message message message message</string>
     <string name="plus">+</string>
-    <string name="unitPerSec">u/s</string>
+    <string name="unitPerSec">u/m</string>
     <string name="stock">Stock :</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
