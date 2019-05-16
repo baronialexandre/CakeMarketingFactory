@@ -57,4 +57,27 @@ public class ViewContent {
             R.id.popupCakeSelCupcake,
             R.id.popupCakeSelDonut
     };
+    public static final int[] factoryUnitPerSecond = {
+            R.id.factoryUnitPerSecondLine1,
+            R.id.factoryUnitPerSecondLine2,
+            R.id.factoryUnitPerSecondLine3
+    };
+    public static final int[] factoryProductionButton = {
+            R.id.factoryProductionButtonLine1,
+            R.id.factoryProductionButtonLine2,
+            R.id.factoryProductionButtonLine3
+    };
+    public static final int[] factoryBeltLine = {
+            R.id.factoryBeltLine1,
+            R.id.factoryBeltLine2,
+            R.id.factoryBeltLine3
+    };public static final int[] factoryRobotLine = {
+            R.id.factoryRobotLine1,
+            R.id.factoryRobotLine2,
+            R.id.factoryRobotLine3
+    };public static final int[] factoryOvenLine = {
+            R.id.factoryOvenLine1,
+            R.id.factoryOvenLine2,
+            R.id.factoryOvenLine3
+    };
 }

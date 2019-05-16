@@ -1,5 +1,6 @@
 package l3info.projet.cakemarketingfactory.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -75,25 +76,13 @@ public class FactoryActivity extends AppCompatActivity {
         ImageView wall2 = findViewById(R.id.factoryWall2);
         wall2.setImageDrawable(getResources().getDrawable(ImageContent.factoryWallId[factoryId]));
 
-        allProductSpeed.add(findViewById(R.id.factoryUnitPerSecondLine1));
-        allProductSpeed.add(findViewById(R.id.factoryUnitPerSecondLine2));
-        allProductSpeed.add(findViewById(R.id.factoryUnitPerSecondLine3));
-
-        allProduction.add(findViewById(R.id.factoryProductionButtonLine1));
-        allProduction.add(findViewById(R.id.factoryProductionButtonLine2));
-        allProduction.add(findViewById(R.id.factoryProductionButtonLine2));
-
-        allBelts.add(findViewById(R.id.factoryBeltLine1));
-        allBelts.add(findViewById(R.id.factoryBeltLine2));
-        allBelts.add(findViewById(R.id.factoryBeltLine3));
-
-        allRobots.add(findViewById(R.id.factoryRobotLine1));
-        allRobots.add(findViewById(R.id.factoryRobotLine2));
-        allRobots.add(findViewById(R.id.factoryRobotLine3));
-
-        allOvens.add(findViewById(R.id.factoryOvenLine1));
-        allOvens.add(findViewById(R.id.factoryOvenLine2));
-        allOvens.add(findViewById(R.id.factoryOvenLine3));
+        for (int i=0; i<3; i++){
+            allProductSpeed.add(findViewById(ViewContent.factoryUnitPerSecond[i]));
+            allProduction.add(findViewById(ViewContent.factoryProductionButton[i]));
+            allBelts.add(findViewById(ViewContent.factoryBeltLine[i]));
+            allRobots.add(findViewById(ViewContent.factoryRobotLine[i]));
+            allOvens.add(findViewById(ViewContent.factoryOvenLine[i]));
+        }
 
         //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
         String text;
@@ -183,6 +172,7 @@ public class FactoryActivity extends AppCompatActivity {
     }
 
     //exemple
+    @SuppressLint("SetTextI18n")
     void openPopupUpgrade(int level, int res, int line, int id, Button button)
     {
         final Dialog dialog = new Dialog(context);
@@ -276,7 +266,6 @@ public class FactoryActivity extends AppCompatActivity {
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
         final String[] text = new String[1]; //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
-        final String[] newText = new String[1];
         for(int i=0; i<3; i++)
         {
             TextView stock = dialog.findViewById(ViewContent.sellMarketCakeText[i]);
