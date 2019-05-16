@@ -30,6 +30,7 @@ public class FactoryActivity extends AppCompatActivity {
     Factory factory;
     long userId;
     int score;
+    SharedPreferences shr;
 
     TextView userScore;
     TextView stockText;
@@ -52,7 +53,7 @@ public class FactoryActivity extends AppCompatActivity {
         int factoryId = factory.getFactorySpot()-1;
 
         //access to the userId in shared preferences
-        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         userId = shr.getLong("userId",0L);
         score = shr.getInt("score",0);
 
@@ -275,6 +276,7 @@ public class FactoryActivity extends AppCompatActivity {
             ImageButton cakeSell = dialog.findViewById(ViewContent.sellCakeButtons[i]);
             int cake = i;
             cakeSell.setOnClickListener(v -> {
+                score = shr.getInt("score",0);
                 SellStockTask sellStockTask = new SellStockTask(userId, factory, cake, score, context, stock, userScore, stockText);
                 sellStockTask.execute();
             });
