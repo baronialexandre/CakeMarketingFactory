@@ -191,61 +191,37 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton cookieSelect = dialog.findViewById(R.id.popupCakeSelCookie);
         cookieSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,0,score,context);
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,0,score,
+                    findViewById(ViewContent.factoryId[factorySpot]),findViewById(ViewContent.signId[factorySpot]),findViewById(R.id.worldCapital),context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
-            switchSpot(factorySpot);
         });
 
         //clic sur cupcake
         ImageButton cupcakeSelect = dialog.findViewById(R.id.popupCakeSelCupcake);
         cupcakeSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,1,score,context);
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,1,score,
+                    findViewById(ViewContent.factoryId[factorySpot]),findViewById(ViewContent.signId[factorySpot]),findViewById(R.id.worldCapital),context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
-            switchSpot(factorySpot);
         });
 
         //clic sur donut
         ImageButton donutSelect = dialog.findViewById(R.id.popupCakeSelDonut);
         donutSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,2,score,context);
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,2,score,
+                    findViewById(ViewContent.factoryId[factorySpot]),findViewById(ViewContent.signId[factorySpot]),findViewById(R.id.worldCapital),context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
             dialog.dismiss();
-            switchSpot(factorySpot);
         });
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
-    }
-
-    //switch de panneau d'achat à usine achetée
-    public void switchSpot(int spot)
-    {
-        if(spot > 5) return; //il y a 6 usines max
-        ImageView factory = findViewById(ViewContent.factoryId[spot]);
-        factory.setImageResource(ImageContent.factoryId[spot]);
-        factory.setVisibility(View.VISIBLE);
-        factory.setOnClickListener(v -> {
-            //Entrer dans une usine
-            Toast.makeText(context, "FACTORY 1 + "+ spot, Toast.LENGTH_SHORT).show();
-
-            //access to the userId in shared preferences
-            SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-            long id = shr.getLong("userId",0L);
-            Log.i("BANDOL","spot"+spot );
-            EnterFactoryTask task = new EnterFactoryTask(id,new Factory(spot+1), context);
-            task.execute();
-        });
-
-        ImageView sign = findViewById(ViewContent.signId[spot]);
-        sign.setVisibility(View.VISIBLE);
-        sign.setClickable(false);
     }
 }

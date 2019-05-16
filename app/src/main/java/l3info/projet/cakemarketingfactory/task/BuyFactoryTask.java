@@ -2,11 +2,14 @@ package l3info.projet.cakemarketingfactory.task;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,10 +17,9 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import l3info.projet.cakemarketingfactory.R;
-import l3info.projet.cakemarketingfactory.activity.FactoryActivity;
 import l3info.projet.cakemarketingfactory.model.Factory;
-import l3info.projet.cakemarketingfactory.model.Line;
 import l3info.projet.cakemarketingfactory.utils.Contents;
+import l3info.projet.cakemarketingfactory.utils.ImageContent;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -30,14 +32,20 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
     private final int factorySpot;
     private final int productId;
     private final int score;
+    private final WeakReference<ImageView> factoryView;
+    private final WeakReference<ImageView> sign;
+    private final WeakReference<TextView> userScore;
     private final WeakReference<Context> ctx;
     private Boolean notEnoughScore = false;
 
-    public BuyFactoryTask(long userId, int factorySpot, int productId, int score, Context ctx) {
+    public BuyFactoryTask(long userId, int factorySpot, int productId, int score, ImageView factoryView, ImageView sign, TextView userScore, Context ctx) {
         this.userId = userId;
         this.factorySpot = factorySpot;
         this.productId = productId;
         this.score = score;
+        this.factoryView = new WeakReference<>(factoryView);
+        this.sign = new WeakReference<>(sign);
+        this.userScore = new WeakReference<>(userScore);
         this.ctx = new WeakReference<>(ctx);
     }
 
@@ -75,6 +83,27 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
             // Toast achat successful
             Toast.makeText(ctx, R.string.purchaseSuccesful, Toast.LENGTH_LONG).show();
             Log.i("BANDOL_BUY_FACTORYTSK", "success");
+            //switch de panneau d'achat à usine achetée
+            //public void switchSpot(int spot)
+            //{
+            //if(factorySpot > 5) return; //il y a 6 usines max
+            ImageView factoryView = this.factoryView.get();
+            factoryView.setImageResource(ImageContent.factoryId[factorySpot-1]);
+            factoryView.setVisibility(View.VISIBLE);
+            factoryView.setOnClickListener(v -> {
+                //Entrer dans une usine
+                Toast.makeText(ctx, "FACTORY 1 + "+ (factorySpot-1), Toast.LENGTH_SHORT).show();
+                EnterFactoryTask task = new EnterFactoryTask(userId,new Factory(factorySpot), ctx);
+                task.execute();
+            });
+
+            ImageView sign = this.sign.get();
+            sign.setVisibility(View.VISIBLE);
+            sign.setClickable(false);
+            //}
+            GetScoreTask getScore = new GetScoreTask(userId, userScore.get(), ctx);
+            getScore.execute();
+
             EnterFactoryTask task = new EnterFactoryTask(userId,new Factory(factorySpot), ctx);
             task.execute();
         } else {
