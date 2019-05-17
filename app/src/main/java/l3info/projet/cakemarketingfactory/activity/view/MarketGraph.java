@@ -2,6 +2,7 @@ package l3info.projet.cakemarketingfactory.activity.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -23,6 +24,9 @@ public class MarketGraph extends View
     Paint backgroundLinePaint;
     Paint backgroundLineLargePaint;
     Paint backgroundLineThinPaint;
+    Paint endLinePaint;
+    Paint endCirclePaint;
+    Paint endCircleBorderPaint;
 
     Paint insideBordersPaint;
 
@@ -65,6 +69,17 @@ public class MarketGraph extends View
         lineStagnatePaint.setColor(0xffff8800);
         lineDecreasePaint.setColor(0xffff0000);
 
+        // ENDING PAINTS
+        endLinePaint = new Paint();
+        endLinePaint.setColor(0xff00aa66);
+        endLinePaint.setStrokeWidth(7.0f);
+
+        endCirclePaint = new Paint();
+        endCirclePaint.setColor(0xff00ff99);
+        endCircleBorderPaint = new Paint();
+        endCircleBorderPaint.setColor(0xff202020);
+
+
         productIdToDisplay = 0;
     }
 
@@ -96,11 +111,17 @@ public class MarketGraph extends View
         }
 
         // VERTICAL LINES
-        float xPos = (float)(getWidth()/9);
-        for(int i = 0; i < 8; i++)
+        Paint paint;
+        float xPos = (float)(getWidth()/10);
+        for(int i = 0; i < 9; i++)
         {
-            canvas.drawLine(xPos, 0, xPos, getHeight(), backgroundLineThinPaint);
-            xPos = xPos + (float)(getWidth()/9);
+            if(i == 8)
+                paint = endLinePaint;
+            else
+                paint = backgroundLineThinPaint;
+
+            canvas.drawLine(xPos, 0, xPos, getHeight(), paint);
+            xPos = xPos + (float)(getWidth()/10);
         }
     }
 
@@ -123,13 +144,19 @@ public class MarketGraph extends View
         {
             Demand demand = demands.get(i);
 
-            float stopX = startX + (float)(getWidth()/9);
+            float stopX = startX + (float)(getWidth()/10);
             float stopY = yPosFromPrice(demand.getPrice());
 
             traceLine(startX, startY, stopX, stopY, canvas);
 
             startX = stopX;
             startY = stopY;
+
+            if(i == demands.size() - 1)
+            {
+                canvas.drawCircle(stopX,stopY,16.0f,endCircleBorderPaint);
+                canvas.drawCircle(stopX,stopY,12.0f,endCirclePaint);
+            }
         }
     }
 
