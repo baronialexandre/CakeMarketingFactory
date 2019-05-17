@@ -128,11 +128,84 @@ public class WorldActivity  extends AppCompatActivity {
         boolean soundState = shr.getBoolean("sound",true);
         boolean musicState = shr.getBoolean("music",true);
         String language = shr.getString("language", Locale.getDefault().getDisplayLanguage());
-        if(!(language.equals("fr") || language.equals("en")))
-            language="en";
 
+        if(soundState)
+            sound.setImageDrawable(getResources().getDrawable(R.drawable.ic_sound));
+        else
+            sound.setImageDrawable(getResources().getDrawable(R.drawable.ic_sound_off));
+        if(musicState)
+            music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music));
+        else
+            music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music_off));
+        assert language != null;
+        switch (language){
+            case "français":
+                flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_fr));
+                break;
+            case "english":
+                flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_en));
+                break;
+            default:
+                flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_en));
+                break;
+        }
 
+        flag.setOnClickListener(v -> {
+            SharedPreferences shr1 = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+            SharedPreferences.Editor ed = shr1.edit();
+            String languageB = shr.getString("language", Locale.getDefault().getDisplayLanguage());
 
+            assert languageB != null;
+            switch (languageB){
+                case "français":
+                    ed.putString("language","english");
+                    ed.apply();
+                    flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_en));
+                    //Locale.setDefault(new Locale("english".toLowerCase()));
+                    break;
+                case "english":
+                    ed.putString("language","français");
+                    ed.apply();
+                    flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_fr));
+                    //Locale.setDefault(new Locale("english".toLowerCase()));
+                    break;
+                default:
+                    ed.putString("language","english");
+                    ed.apply();
+                    flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_en));
+                    break;
+            }
+        });
+
+        sound.setOnClickListener(v -> {
+            SharedPreferences shr1 = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+            SharedPreferences.Editor ed = shr1.edit();
+            boolean soundStateB = shr.getBoolean("sound",true);
+            if(soundStateB) {
+                ed.putBoolean("sound", false);
+                sound.setImageDrawable(getResources().getDrawable(R.drawable.ic_sound_off));
+            }
+            else {
+                ed.putBoolean("sound", true);
+                sound.setImageDrawable(getResources().getDrawable(R.drawable.ic_sound));
+            }
+            ed.apply();
+        });
+
+        music.setOnClickListener(v -> {
+            SharedPreferences shr1 = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+            SharedPreferences.Editor ed = shr1.edit();
+            boolean musicStateB = shr.getBoolean("music",true);
+            if(musicStateB) {
+                ed.putBoolean("music", false);
+                music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music_off));
+            }
+            else {
+                ed.putBoolean("music", true);
+                music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music));
+            }
+            ed.apply();
+        });
 
         Button disconnect = dialog.findViewById(R.id.popupSettingsDisconnect);
         disconnect.setOnClickListener(v -> {
