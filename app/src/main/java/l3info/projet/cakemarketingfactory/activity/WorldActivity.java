@@ -53,38 +53,35 @@ public class WorldActivity  extends AppCompatActivity {
         getScore.execute();
 
 
-        for(int i=0; i<6; i++)
-        {
-            int factorySpot = i;
-            if(i < world.factories.size())
+        boolean[] spotMask = new boolean[]{false,false,false,false,false,false};
+        for(Factory factory : world.factories) {
+            int factorySpot = factory.getFactorySpot()-1; //a cause du putain de décalage
+            ImageView factoryV = findViewById(ViewContent.factoryId[factorySpot]);
+            factoryV.setImageResource(ImageContent.factoryId[factorySpot]);
+            factoryV.setVisibility(View.VISIBLE);
+
+            factoryV.setOnClickListener(v -> {
+                //Entrer dans une usine
+                Toast.makeText(context, "FACTORY 1 + " + factorySpot, Toast.LENGTH_SHORT).show();
+                EnterFactoryTask task = new EnterFactoryTask(userId, factory, context);
+                task.execute();
+            });
+            spotMask[factorySpot] = true;
+        }
+
+            for(int i=0; i<spotMask.length; i++)
             {
-                ImageView factory = findViewById(ViewContent.factoryId[i]);
-                factory.setImageResource(ImageContent.factoryId[i]);
-                factory.setVisibility(View.VISIBLE);
-
-                factory.setOnClickListener(v -> {
-                    //Entrer dans une usine
-                    //todo : put in task
-                    Toast.makeText(context, "FACTORY 1 + "+ factorySpot, Toast.LENGTH_SHORT).show();
-
-
-                    EnterFactoryTask task = new EnterFactoryTask(userId,world.factories.get(factorySpot), context);
-                    task.execute();
-                });
-            }
-            else
-            {
-                ImageView sign = findViewById(ViewContent.signId[i]);
-                sign.setVisibility(View.VISIBLE);
-                sign.setOnClickListener(v -> {
-                    //cliquer sur un panneau $
-                    Toast.makeText(context, "BUY sign 1 + " + factorySpot, Toast.LENGTH_SHORT).show();
-                    //montre le prix et demande si tu veux acheter
-
-
-                    openPopupSign(factorySpot,shr.getInt("score",0));
-                });
-            }
+                if(!spotMask[i]) {
+                    ImageView sign = findViewById(ViewContent.signId[i]);
+                    sign.setVisibility(View.VISIBLE);
+                    int finalI = i;
+                    sign.setOnClickListener(v -> {
+                        //cliquer sur un panneau $
+                        Toast.makeText(context, "BUY sign 1 + " + finalI, Toast.LENGTH_SHORT).show();
+                        //montre le prix et demande si tu veux acheter
+                        openPopupSign(finalI, shr.getInt("score", 0));
+                    });
+                }
         }
 
         ImageView market = findViewById(R.id.worldMarket);
