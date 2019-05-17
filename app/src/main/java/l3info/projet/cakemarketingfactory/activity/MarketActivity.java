@@ -20,6 +20,7 @@ import l3info.projet.cakemarketingfactory.model.Market;
 import l3info.projet.cakemarketingfactory.model.Votes;
 import l3info.projet.cakemarketingfactory.task.CastVoteTask;
 import l3info.projet.cakemarketingfactory.task.GetStockTask;
+import l3info.projet.cakemarketingfactory.task.SellAllStockTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.FunctionUtil;
 
@@ -28,6 +29,7 @@ public class MarketActivity extends AppCompatActivity
 
     Market market;
     Votes votes;
+    TextView userScoreDisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,7 +44,7 @@ public class MarketActivity extends AppCompatActivity
         int userScore = getIntent().getIntExtra("userScore", 0);
 
         // USER SCORE DISPLAY
-        TextView userScoreDisplay = findViewById(R.id.marketCapital);
+        userScoreDisplay = findViewById(R.id.marketCapital);
         userScoreDisplay.setText(String.format(Locale.ROOT, "%s$", FunctionUtil.scoreShorten(userScore)));
 
         // GRAPH
@@ -91,12 +93,29 @@ public class MarketActivity extends AppCompatActivity
     void openPopupSell(Context context)
     {
         final Dialog dialog = new Dialog(context);
-        dialog.setContentView(R.layout.popup_market_sell);
+        dialog.setContentView(R.layout.popup_market_sell_all);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         long userId = shr.getLong("userId",0L);
+
+        ImageButton popupMarketSellAllCookies = dialog.findViewById(R.id.popupMarketSellAllCookies);
+        ImageButton popupMarketSellAllCupcakes = dialog.findViewById(R.id.popupMarketSellAllCupcakes);
+        ImageButton popupMarketSellAllDonuts = dialog.findViewById(R.id.popupMarketSellAllDonuts);
+
+        popupMarketSellAllCookies.setOnClickListener(v -> {
+            SellAllStockTask sellAllStockTask = new SellAllStockTask(userId, 0, dialog, context, userScoreDisplay);
+            sellAllStockTask.execute();
+        });
+        popupMarketSellAllCupcakes.setOnClickListener(v -> {
+            SellAllStockTask sellAllStockTask = new SellAllStockTask(userId, 1, dialog, context, userScoreDisplay);
+            sellAllStockTask.execute();
+        });
+        popupMarketSellAllDonuts.setOnClickListener(v -> {
+            SellAllStockTask sellAllStockTask = new SellAllStockTask(userId, 2, dialog, context, userScoreDisplay);
+            sellAllStockTask.execute();
+        });
 
         GetStockTask getStockTask = new GetStockTask(userId, dialog);
         getStockTask.execute();

@@ -16,6 +16,7 @@ import java.lang.ref.WeakReference;
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.utils.Contents;
+import l3info.projet.cakemarketingfactory.utils.FunctionUtil;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -29,8 +30,9 @@ public class SellStockTask extends AsyncTask<String, Void, Integer> {
     private WeakReference<TextView> stockView;
     private WeakReference<TextView> score;
     private WeakReference<TextView> allStock;
+    private WeakReference<TextView> marketSellAlert;
 
-    public SellStockTask(long userId, Factory factory, int productId, Context ctx, TextView stock, TextView score, TextView allStock) {
+    public SellStockTask(long userId, Factory factory, int productId, Context ctx, TextView stock, TextView score, TextView allStock, TextView marketSellAlert) {
         this.userId = userId;
         this.factory = factory;
         this.productId = productId;
@@ -38,6 +40,7 @@ public class SellStockTask extends AsyncTask<String, Void, Integer> {
         this.stockView=new WeakReference<>(stock);
         this.score=new WeakReference<>(score);
         this.allStock=new WeakReference<>(allStock);
+        this.marketSellAlert = new WeakReference<>(marketSellAlert);
     }
 
     @Override
@@ -74,7 +77,8 @@ public class SellStockTask extends AsyncTask<String, Void, Integer> {
             TextView stock = stockView.get();
             stock.setText(stockText);
             allStock.get().setText(allStockText);
-            Toast.makeText(ctx, "You've sold "+scoreEarned+"$ worth of"+productId, Toast.LENGTH_SHORT).show();
+            marketSellAlert.get().setText(ctx.getString(R.string.sell_all_info, scoreEarned, FunctionUtil.idToProduct(productId)));
+            //Toast.makeText(ctx, "You've sold "+scoreEarned+"$ worth of"+ FunctionUtil.idToProduct(productId), Toast.LENGTH_SHORT).show();
             GetScoreTask getScore = new GetScoreTask(userId, score.get(), ctx);
             getScore.execute();
         }

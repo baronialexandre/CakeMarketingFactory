@@ -318,6 +318,8 @@ public class FactoryActivity extends AppCompatActivity {
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
+        TextView marketSellAlert = dialog.findViewById(R.id.marketSellAlert);
+
         final String[] text = new String[1]; //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
         for(int i=0; i<3; i++)
         {
@@ -328,7 +330,7 @@ public class FactoryActivity extends AppCompatActivity {
             ImageButton cakeSell = dialog.findViewById(ViewContent.sellCakeButtons[i]);
             int cake = i;
             cakeSell.setOnClickListener(v -> {
-                SellStockTask sellStockTask = new SellStockTask(userId, factory, cake, context, stock, userScore, stockText);
+                SellStockTask sellStockTask = new SellStockTask(userId, factory, cake, context, stock, userScore, stockText, marketSellAlert);
                 sellStockTask.execute();
             });
         }

@@ -59,4 +59,25 @@ public class FunctionUtil {
             return score+FunctionUtil.cashNotation[i];
         else return "+++"; //too much
     }
+
+    public static String idToProduct(int productId)
+    {
+        String productName;
+        switch(productId)
+        {
+            case 0:
+                productName = "cookies";
+                break;
+            case 1:
+                productName = "cupcakes";
+                break;
+            case 2:
+                productName = "donuts";
+                break;
+            default:
+                productName = "product error";
+        }
+        return productName;
+
+    }
 }

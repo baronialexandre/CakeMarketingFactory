@@ -15,6 +15,7 @@ public final class Contents {
     public static final String BUY_FACTORY_URL = "/buyfactory.php";
     public static final String BUY_LINE_URL = "/buyline.php";
     public static final String SELL_STOCK_URL = "/sellstock.php";
+    public static final String SELL__ALL_STOCK_URL = "/sellallstock.php";
     public static final String GET_STOCK_URL = "/getstock.php";
 
     public static final String API_PASS = "bandol";

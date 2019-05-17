@@ -88,15 +88,16 @@ public class MarketGraph extends View
     {
         super.onDraw(canvas);
 
-        drawBackground(canvas);
+        drawBackground(canvas, productIdToDisplay);
 
         drawProductGraph(productIdToDisplay, canvas);
 
         drawBorders(canvas);
     }
 
-    private void drawBackground(Canvas canvas)
+    private void drawBackground(Canvas canvas, int productId)
     {
+        ArrayList<Demand> demands = market.demands.get(productId);
         canvas.drawColor(0xff2a2a2a);
 
         // HORIZONTAL LINES
@@ -115,7 +116,7 @@ public class MarketGraph extends View
         float xPos = (float)(getWidth()/10);
         for(int i = 0; i < 9; i++)
         {
-            if(i == 8)
+            if(i == demands.size() - 2)
                 paint = endLinePaint;
             else
                 paint = backgroundLineThinPaint;
