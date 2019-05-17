@@ -27,6 +27,7 @@
         <activity android:name=".activity.RegistrationActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.WorldActivity"
+            android:configChanges="locale"
             android:screenOrientation="portrait"/>
         <activity android:name=".activity.MessagesActivity"
             android:screenOrientation="portrait"/>
