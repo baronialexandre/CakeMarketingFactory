@@ -41,8 +41,10 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
         try {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url(Contents.API_URL + Contents.SELL_STOCK_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId+ "&factorySpot=" + factory.getFactorySpot() + "&lineSlot=" + lineSlot + "&productId=" + productId + "&score=" + userScore)
+                    .url(Contents.API_URL + Contents.BUY_LINE_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId+ "&factorySpot=" + factory.getFactorySpot() + "&lineSlot=" + lineSlot + "&productId=" + productId + "&userScore=" + userScore)
                     .build();
+            Log.i("BANDOL_SELL_STOCK_TASK", Contents.API_URL + Contents.BUY_LINE_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId+ "&factorySpot=" + factory.getFactorySpot() + "&lineSlot=" + lineSlot + "&productId=" + productId + "&userScore=" + userScore);
+
             Response response = client.newCall(request).execute();
             String rawJson = null;
             if (response.body() != null) {
@@ -62,6 +64,8 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
         if (success==1){
             EnterFactoryTask enterFactory = new EnterFactoryTask(userId, factory, ctx);
             enterFactory.execute();
+        }else {
+            Toast.makeText(ctx, "ERROR", Toast.LENGTH_SHORT).show();
         }
     }
 }

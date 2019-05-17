@@ -19,6 +19,8 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
+import l3info.projet.cakemarketingfactory.model.Line;
+import l3info.projet.cakemarketingfactory.task.BuyLineTask;
 import l3info.projet.cakemarketingfactory.task.GetScoreTask;
 import l3info.projet.cakemarketingfactory.task.SellStockTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
@@ -121,7 +123,11 @@ public class FactoryActivity extends AppCompatActivity {
             int line = i;
             ImageButton productionLine = findViewById(ViewContent.factoryProduction[line]);
             productionLine.setOnClickListener(view -> {
-                if (factory.getLine(line) != null) { openPopupSelection(line); }
+                if (factory.getLine(line) != null) {
+                    openPopupSelection(line);
+                } else{
+                    openBuyLine(line);
+                }
             });
         }
         /* ---------- End change production ---------- */
@@ -249,6 +255,52 @@ public class FactoryActivity extends AppCompatActivity {
             cakeSelect.setOnClickListener(v -> {
                 allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[id]));
                 factory.getLine(line).setCakeId(id);
+                dialog.dismiss();
+            });
+        }
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    void openBuyLine (int line){
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.popup_question);
+        Button popupMessageCancel = dialog.findViewById(R.id.popupQuestionCancel);
+        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
+
+        TextView popupQuestionMessage = dialog.findViewById(R.id.popupQuestionMessage);
+        popupQuestionMessage.setText("Le prix c'est le prix !\nSi tu veux acheter... vends\nDU GATEAU !");
+
+        ImageView popupQuestionImage = dialog.findViewById(R.id.popupQuestionImage);
+        popupQuestionImage.setImageResource(R.drawable.world_dollard_sign);
+
+        Button popupMessageOk = dialog.findViewById(R.id.popupQuestionOk);
+        popupMessageOk.setOnClickListener(v -> {
+            openPopupSelectionNew(line);
+            dialog.dismiss();
+        });
+
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
+        dialog.setCancelable(false);
+        dialog.show();
+    }
+
+    void openPopupSelectionNew(int line)
+    {
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.popup_cake_sel);
+        ImageView popupMessageCancel = dialog.findViewById(R.id.popupCakeSelBack);
+        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
+
+        for (int i=0; i<3; i++){
+            int id = i;
+            ImageButton cakeSelect = dialog.findViewById(ViewContent.popUpCakeSell[i]);
+            cakeSelect.setOnClickListener(v -> {
+                score = shr.getInt("score",0);
+                BuyLineTask buyLine = new BuyLineTask(userId, line, id, score, context, factory);
+                buyLine.execute();
                 dialog.dismiss();
             });
         }
