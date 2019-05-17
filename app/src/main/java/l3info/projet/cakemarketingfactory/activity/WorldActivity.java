@@ -1,9 +1,12 @@
 package l3info.projet.cakemarketingfactory.activity;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +22,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.activity.manager.LanguageManager;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.model.World;
 import l3info.projet.cakemarketingfactory.task.AuthenticationTask;
@@ -120,15 +124,29 @@ public class WorldActivity  extends AppCompatActivity {
         Button close = dialog.findViewById(R.id.popupSettingsOk);
         close.setOnClickListener(v -> dialog.dismiss());
 
+        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+
+        Button disconnect = dialog.findViewById(R.id.popupSettingsDisconnect);
+        disconnect.setOnClickListener(v -> {
+            SharedPreferences.Editor ed = shr.edit();
+            ed.remove("username");
+            ed.remove("password");
+            ed.remove("userId");
+            ed.apply();
+
+            Intent intentApp = new Intent(WorldActivity.this, LoginActivity.class);
+            WorldActivity.this.startActivity(intentApp);
+        });
+
         ImageView sound = dialog.findViewById(R.id.popupSettingsSound);
         ImageView music = dialog.findViewById(R.id.popupSettingsMusic);
         ImageView flag = dialog.findViewById(R.id.popupSettingsFlag);
 
-        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         boolean soundState = shr.getBoolean("sound",true);
         boolean musicState = shr.getBoolean("music",true);
-        String language = shr.getString("language", Locale.getDefault().getDisplayLanguage());
+        String language = shr.getString("language", Locale.getDefault().getDisplayLanguage().substring(0,2));
 
+        //init start
         if(soundState)
             sound.setImageDrawable(getResources().getDrawable(R.drawable.ic_sound));
         else
@@ -139,42 +157,45 @@ public class WorldActivity  extends AppCompatActivity {
             music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music_off));
         assert language != null;
         switch (language){
-            case "français":
+            case "fr":
                 flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_fr));
                 break;
-            case "english":
+            case "en":
                 flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_en));
                 break;
             default:
                 flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_en));
                 break;
         }
+        //init end
 
         flag.setOnClickListener(v -> {
             SharedPreferences shr1 = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
             SharedPreferences.Editor ed = shr1.edit();
-            String languageB = shr.getString("language", Locale.getDefault().getDisplayLanguage());
+            String languageB = shr.getString("language", Locale.getDefault().getDisplayLanguage().substring(0,2));
 
             assert languageB != null;
             switch (languageB){
-                case "français":
-                    ed.putString("language","english");
+                case "fr":
+                    ed.putString("language","en");
                     ed.apply();
                     flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_en));
-                    //Locale.setDefault(new Locale("english".toLowerCase()));
+                    LanguageManager.changeLocale(this,"en");
                     break;
-                case "english":
-                    ed.putString("language","français");
+                case "en":
+                    ed.putString("language","fr");
                     ed.apply();
                     flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_fr));
-                    //Locale.setDefault(new Locale("english".toLowerCase()));
+                    LanguageManager.changeLocale(this,"fr");
                     break;
                 default:
-                    ed.putString("language","english");
+                    ed.putString("language","English");
                     ed.apply();
                     flag.setImageDrawable(getResources().getDrawable(R.drawable.flag_en));
+                    LanguageManager.changeLocale(this, Locale.getDefault().getDisplayLanguage().substring(0,2));
                     break;
             }
+            disconnect.setText(R.string.disconnect);
         });
 
         sound.setOnClickListener(v -> {
@@ -207,17 +228,6 @@ public class WorldActivity  extends AppCompatActivity {
             ed.apply();
         });
 
-        Button disconnect = dialog.findViewById(R.id.popupSettingsDisconnect);
-        disconnect.setOnClickListener(v -> {
-            SharedPreferences.Editor ed = shr.edit();
-            ed.remove("username");
-            ed.remove("password");
-            ed.remove("userId");
-            ed.apply();
-
-            Intent intentApp = new Intent(WorldActivity.this, LoginActivity.class);
-            WorldActivity.this.startActivity(intentApp);
-        });
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
@@ -315,5 +325,12 @@ public class WorldActivity  extends AppCompatActivity {
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
+    }
+
+    //declaré dans le manifest > android:configChanges="locale"
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        // refresh your views here
+        super.onConfigurationChanged(newConfig);
     }
 }
