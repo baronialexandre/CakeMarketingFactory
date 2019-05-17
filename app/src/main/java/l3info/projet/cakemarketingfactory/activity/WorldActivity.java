@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,11 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.model.World;
+import l3info.projet.cakemarketingfactory.task.AuthenticationTask;
 import l3info.projet.cakemarketingfactory.task.BuyFactoryTask;
 import l3info.projet.cakemarketingfactory.task.EnterFactoryTask;
 import l3info.projet.cakemarketingfactory.task.EnterMarketTask;
@@ -68,20 +71,25 @@ public class WorldActivity  extends AppCompatActivity {
             });
             spotMask[factorySpot] = true;
         }
-
-            for(int i=0; i<spotMask.length; i++)
-            {
-                if(!spotMask[i]) {
-                    ImageView sign = findViewById(ViewContent.signId[i]);
-                    sign.setVisibility(View.VISIBLE);
-                    int finalI = i;
-                    sign.setOnClickListener(v -> {
-                        //cliquer sur un panneau $
-                        Toast.makeText(context, "BUY sign 1 + " + finalI, Toast.LENGTH_SHORT).show();
-                        //montre le prix et demande si tu veux acheter
-                        openPopupSign(finalI, shr.getInt("score", 0));
-                    });
+        boolean isTheFirst = true;
+        for(int i=0; i<spotMask.length; i++)
+        {
+            if(!spotMask[i]) {
+                ImageView sign = findViewById(ViewContent.signId[i]);
+                sign.setVisibility(View.VISIBLE);
+                int finalI = i;
+                sign.setOnClickListener(v -> {
+                    //cliquer sur un panneau $
+                    Toast.makeText(context, "BUY sign 1 + " + finalI, Toast.LENGTH_SHORT).show();
+                    //montre le prix et demande si tu veux acheter
+                    openPopupSign(finalI, shr.getInt("score", 0));
+                });
+                if(isTheFirst)
+                {
+                    sign.setImageDrawable(getResources().getDrawable(R.drawable.world_dollard_sign_next));
+                    isTheFirst=false;
                 }
+            }
         }
 
         ImageView market = findViewById(R.id.worldMarket);
@@ -111,9 +119,23 @@ public class WorldActivity  extends AppCompatActivity {
         dialog.setContentView(R.layout.popup_settings);
         Button close = dialog.findViewById(R.id.popupSettingsOk);
         close.setOnClickListener(v -> dialog.dismiss());
+
+        ImageView sound = dialog.findViewById(R.id.popupSettingsSound);
+        ImageView music = dialog.findViewById(R.id.popupSettingsMusic);
+        ImageView flag = dialog.findViewById(R.id.popupSettingsFlag);
+
+        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        boolean soundState = shr.getBoolean("sound",true);
+        boolean musicState = shr.getBoolean("music",true);
+        String language = shr.getString("language", Locale.getDefault().getDisplayLanguage());
+        if(!(language.equals("fr") || language.equals("en")))
+            language="en";
+
+
+
+
         Button disconnect = dialog.findViewById(R.id.popupSettingsDisconnect);
         disconnect.setOnClickListener(v -> {
-            SharedPreferences shr = context.getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
             SharedPreferences.Editor ed = shr.edit();
             ed.remove("username");
             ed.remove("password");
