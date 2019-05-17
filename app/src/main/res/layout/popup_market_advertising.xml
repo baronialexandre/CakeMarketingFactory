@@ -82,6 +82,21 @@
                     android:layout_height="60dp"
                     android:gravity="center_horizontal"/>
 
+                <RelativeLayout
+                    android:id="@+id/popupMarketAdvertisingCookieBarBg"
+                    android:layout_width="56dp"
+                    android:layout_height="5dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/factoryButtonGreenShadow">
+                    <RelativeLayout
+                        android:id="@+id/popupMarketAdvertisingCookieBar"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/marketGraphLine"
+                        />
+                </RelativeLayout>
+
                 <ImageButton
                     android:id="@+id/popupMarketAdvertisingCookie"
                     android:layout_width="60dp"
@@ -102,6 +117,21 @@
                     android:layout_height="60dp"
                     android:gravity="center_horizontal"/>
 
+                <RelativeLayout
+                    android:id="@+id/popupMarketAdvertisingCupcakeBarBg"
+                    android:layout_width="56dp"
+                    android:layout_height="5dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/factoryButtonGreenShadow">
+                    <RelativeLayout
+                        android:id="@+id/popupMarketAdvertisingCupcakeBar"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/marketGraphLine"
+                        />
+                </RelativeLayout>
+
                 <ImageButton
                     android:id="@+id/popupMarketAdvertisingCupcake"
                     android:layout_width="60dp"
@@ -121,6 +151,21 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:gravity="center_horizontal"/>
+
+                <RelativeLayout
+                    android:id="@+id/popupMarketAdvertisingDonutBarBg"
+                    android:layout_width="56dp"
+                    android:layout_height="5dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:background="@color/factoryButtonGreenShadow">
+                    <RelativeLayout
+                        android:id="@+id/popupMarketAdvertisingDonutBar"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/marketGraphLine"
+                        />
+                </RelativeLayout>
 
                 <ImageButton
                     android:id="@+id/popupMarketAdvertisingDonut"

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -143,6 +144,24 @@ public class MarketActivity extends AppCompatActivity
         popupMarketCookieDisplay.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(0)));
         popupMarketCupcakeDisplay.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(1)));
         popupMarketDonutDisplay.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(2)));
+
+        //add bars
+        RelativeLayout cookieBarBg = dialog.findViewById(R.id.popupMarketAdvertisingCookieBarBg);
+        RelativeLayout cookieBar   = dialog.findViewById(R.id.popupMarketAdvertisingCookieBar);
+        float calcul = votes.getPercentage(0)*cookieBarBg.getLayoutParams().width/100;
+        cookieBar.getLayoutParams().width= (int) calcul;
+        //cookieBar.requestLayout();
+
+        RelativeLayout cupcakeBarBg = dialog.findViewById(R.id.popupMarketAdvertisingCupcakeBarBg);
+        RelativeLayout cupcakeBar   = dialog.findViewById(R.id.popupMarketAdvertisingCupcakeBar);
+        calcul = votes.getPercentage(1)*cupcakeBarBg.getLayoutParams().width/100;
+        cupcakeBar.getLayoutParams().width= (int) calcul;
+
+        RelativeLayout DonutBarBg = dialog.findViewById(R.id.popupMarketAdvertisingDonutBarBg);
+        RelativeLayout DonutBar   = dialog.findViewById(R.id.popupMarketAdvertisingDonutBar);
+        calcul = votes.getPercentage(2)*DonutBarBg.getLayoutParams().width/100;
+        DonutBar.getLayoutParams().width= (int) calcul;
+        //end bars
 
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         long userId = shr.getLong("userId",0L);
