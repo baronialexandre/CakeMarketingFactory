@@ -103,7 +103,7 @@ public class FactoryActivity extends AppCompatActivity {
                 + factory.getCurrentStocks().get(1)
                 + factory.getCurrentStocks().get(2)) +
                 "/" +
-                (factory.getCapacityLevel() + 1) * 100;
+                (factory.getCapacityLevel() + 1) * 1000;
         stockText = findViewById(R.id.factoryStockText);
         stockText.setText(text);
         /* --------- End pictures creation --------- */
@@ -276,8 +276,7 @@ public class FactoryActivity extends AppCompatActivity {
             ImageButton cakeSell = dialog.findViewById(ViewContent.sellCakeButtons[i]);
             int cake = i;
             cakeSell.setOnClickListener(v -> {
-                score = shr.getInt("score",0);
-                SellStockTask sellStockTask = new SellStockTask(userId, factory, cake, score, context, stock, userScore, stockText);
+                SellStockTask sellStockTask = new SellStockTask(userId, factory, cake, context, stock, userScore, stockText);
                 sellStockTask.execute();
             });
         }

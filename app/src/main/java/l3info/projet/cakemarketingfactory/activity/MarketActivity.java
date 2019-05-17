@@ -121,9 +121,9 @@ public class MarketActivity extends AppCompatActivity
         TextView popupMarketCupcakeDisplay = dialog.findViewById(R.id.popupMarketCupcakeDisplay);
         TextView popupMarketDonutDisplay = dialog.findViewById(R.id.popupMarketDonutDisplay);
 
-        popupMarketCookieDisplay.setText(String.format(Locale.ROOT,"%.1f%%", votes.getPercentage(0)));
-        popupMarketCupcakeDisplay.setText(String.format(Locale.ROOT,"%.1f%%", votes.getPercentage(1)));
-        popupMarketDonutDisplay.setText(String.format(Locale.ROOT,"%.1f%%", votes.getPercentage(2)));
+        popupMarketCookieDisplay.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(0)));
+        popupMarketCupcakeDisplay.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(1)));
+        popupMarketDonutDisplay.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(2)));
 
         SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         long userId = shr.getLong("userId",0L);
