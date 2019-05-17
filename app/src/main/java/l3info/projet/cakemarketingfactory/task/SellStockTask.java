@@ -26,7 +26,8 @@ public class SellStockTask extends AsyncTask<String, Void, Integer> {
     private WeakReference<Context> ctx;
     private Factory factory;
     private int productId;
-    private int scoreEarned;
+    private long scoreEarned;
+    private long stockSold;
     private WeakReference<TextView> stockView;
     private WeakReference<TextView> score;
     private WeakReference<TextView> allStock;
@@ -58,7 +59,8 @@ public class SellStockTask extends AsyncTask<String, Void, Integer> {
             }
             Log.i("BANDOL_SELL_STOCK_TASK", rawJson);
             JSONObject jsonObj = new JSONObject(rawJson);
-            if(jsonObj.has("scoreEarned")) scoreEarned = jsonObj.getInt("scoreEarned");
+            if(jsonObj.has("scoreEarned")) scoreEarned = jsonObj.getLong("scoreEarned");
+            if(jsonObj.has("stockSold")) stockSold = jsonObj.getLong("stockSold");
             return jsonObj.getInt("test");
         } catch (IOException | JSONException e) {
             return 0;
@@ -77,8 +79,7 @@ public class SellStockTask extends AsyncTask<String, Void, Integer> {
             TextView stock = stockView.get();
             stock.setText(stockText);
             allStock.get().setText(allStockText);
-            marketSellAlert.get().setText(ctx.getString(R.string.sell_all_info, scoreEarned, FunctionUtil.idToProduct(productId)));
-            //Toast.makeText(ctx, "You've sold "+scoreEarned+"$ worth of"+ FunctionUtil.idToProduct(productId), Toast.LENGTH_SHORT).show();
+            marketSellAlert.get().setText(ctx.getString(R.string.sell_all_info, stockSold,  FunctionUtil.idToProduct(productId),scoreEarned));
             GetScoreTask getScore = new GetScoreTask(userId, score.get(), ctx);
             getScore.execute();
         }

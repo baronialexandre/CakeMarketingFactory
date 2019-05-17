@@ -29,6 +29,7 @@ public class SellAllStockTask extends AsyncTask<String, Void, Boolean>
     private long userId;
     private int productId;
     private long earnedScore;
+    private long stockSold;
 
     private WeakReference<Dialog> dialogWeakReference;
     private WeakReference<Context> contextWeakReference;
@@ -60,7 +61,8 @@ public class SellAllStockTask extends AsyncTask<String, Void, Boolean>
             Log.i("BANDOL_SELL_ALL_TASK", rawJson);
 
             JSONObject jsonObj = new JSONObject(rawJson);
-            if(jsonObj.has("earnedScore")) earnedScore = jsonObj.getInt("earnedScore");
+            if(jsonObj.has("earnedScore")) earnedScore = jsonObj.getLong("earnedScore");
+            if(jsonObj.has("stockSold")) stockSold = jsonObj.getLong("stockSold");
             return jsonObj.getBoolean("checkSale");
         }
         catch (IOException | JSONException e)
@@ -79,7 +81,7 @@ public class SellAllStockTask extends AsyncTask<String, Void, Boolean>
         TextView marketSellAlert = dialog.findViewById(R.id.marketSellAlert);
         if(saleCheck)
         {
-            marketSellAlert.setText(ctx.getString(R.string.sell_all_info, earnedScore, FunctionUtil.idToProduct(productId)));
+            marketSellAlert.setText(ctx.getString(R.string.sell_all_info, stockSold,  FunctionUtil.idToProduct(productId),earnedScore));
             TextView popupSellNb;
             switch(productId)
             {

@@ -18,7 +18,6 @@ public class FunctionUtil {
     //getCountDown avant le reset
     public static Long getCountDown()
     {
-        // NE PAS CRITIQUER SVP :'(
         Calendar calendar = Calendar.getInstance();
         int daysInterval = Calendar.SUNDAY - calendar.get(Calendar.DAY_OF_WEEK);
         if(daysInterval < 0)

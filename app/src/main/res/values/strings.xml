@@ -60,6 +60,6 @@
     <string name="market_sell_failed">Could not sell your stocks.</string>
     <string name="market_sell_confirm">Sales confirmed !</string>
 
-    <string name="sell_all_info">You\'ve sold %1$d$ worth of %2$s.</string>
+    <string name="sell_all_info">Sold %1$d %2$s worth %3$d$.</string>
 
 </resources>
