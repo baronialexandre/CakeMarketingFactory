@@ -3,7 +3,6 @@ package l3info.projet.cakemarketingfactory.task;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +15,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.Locale;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
@@ -32,22 +32,25 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
     private final long userId;
     private final int factorySpot;
     private final int productId;
-    private final int score;
     private final WeakReference<ImageView> factoryView;
     private final WeakReference<ImageView> sign;
     private final WeakReference<TextView> userScore;
     private final WeakReference<Context> ctx;
-    private Boolean notEnoughScore = false;
 
-    public BuyFactoryTask(long userId, int factorySpot, int productId, int score, ImageView factoryView, ImageView sign, TextView userScore, Context ctx) {
+    private Boolean notEnoughScore = false;
+    private Boolean alreadyBought = false;
+    private Long requiredScore;
+
+    public BuyFactoryTask(long userId, int factorySpot, int productId,ImageView factoryView, ImageView sign, TextView userScore, Context ctx) {
         this.userId = userId;
         this.factorySpot = factorySpot;
         this.productId = productId;
-        this.score = score;
         this.factoryView = new WeakReference<>(factoryView);
         this.sign = new WeakReference<>(sign);
         this.userScore = new WeakReference<>(userScore);
         this.ctx = new WeakReference<>(ctx);
+
+        requiredScore = 0L;
     }
 
     @Override
@@ -55,9 +58,9 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
         try {
             OkHttpClient client = new OkHttpClient();
             Log.i("BANDOL_BUY_FACTORYTSK", "OKHTTP");
-            Log.i("BANDOL_BUY_FACTORYTSK", Contents.API_URL + Contents.BUY_FACTORY_URL + "?userId=" + userId + "&factorySpot=" + factorySpot + "&score=" + score + "&productId=" + productId + "&apipass=" + Contents.API_PASS);
+            Log.i("BANDOL_BUY_FACTORYTSK", Contents.API_URL + Contents.BUY_FACTORY_URL + "?userId=" + userId + "&factorySpot=" + factorySpot + "&productId=" + productId + "&apipass=" + Contents.API_PASS);
             Request request = new Request.Builder()
-                    .url(Contents.API_URL + Contents.BUY_FACTORY_URL + "?userId=" + userId + "&factorySpot=" + factorySpot + "&score=" + score + "&productId=" + productId + "&apipass=" + Contents.API_PASS)
+                    .url(Contents.API_URL + Contents.BUY_FACTORY_URL + "?userId=" + userId + "&factorySpot=" + factorySpot + "&productId=" + productId + "&apipass=" + Contents.API_PASS)
                     .build();
 
             Response response = client.newCall(request).execute();
@@ -67,9 +70,14 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
             }
             Log.i("BANDOL_BUY_FACTORYTSK", rawJson);
             JSONObject jsonObj = new JSONObject(rawJson);
-            if(jsonObj.has("notEnoughScore"))
-                notEnoughScore = jsonObj.getBoolean("notEnoughScore");
-            return jsonObj.getBoolean("success");
+
+            Boolean success = jsonObj.getBoolean("success");
+
+            if(jsonObj.has("notEnoughScore")) notEnoughScore = jsonObj.getBoolean("notEnoughScore");
+            if(jsonObj.has("alreadyBought")) alreadyBought = jsonObj.getBoolean("notEnoughScore");
+            if(jsonObj.has("requiredScore")) requiredScore = jsonObj.getLong("requiredScore");
+            return success;
+
         } catch (IOException | JSONException e) {
             Log.e(TAG, "Error while authenticating ... : " + e.getMessage(), e);
             return false;
@@ -79,15 +87,11 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
     @Override
     protected void onPostExecute(Boolean success) {
         super.onPostExecute(success);
-        SharedPreferences shr = ctx.get().getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         Context ctx = this.ctx.get();
-        Boolean sound = shr.getBoolean("sound",true);
-        MediaPlayer mediaPlayerIn = MediaPlayer.create(ctx, R.raw.in1);
-        MediaPlayer mediaPlayerOut = MediaPlayer.create(ctx, R.raw.out2);
-        if(success) {
-            if(sound) {mediaPlayerIn.start();}
+        if(success)
+        {
             // Toast achat successful
-            Toast.makeText(ctx, R.string.purchaseSuccesful, Toast.LENGTH_LONG).show();
+            Toast.makeText(ctx, R.string.purchase_succesful, Toast.LENGTH_LONG).show();
             Log.i("BANDOL_BUY_FACTORYTSK", "success");
             //switch de panneau d'achat à usine achetée
             //public void switchSpot(int spot)
@@ -112,10 +116,11 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
 
             EnterFactoryTask task = new EnterFactoryTask(userId,new Factory(factorySpot), ctx);
             task.execute();
-        } else {
-            if(sound) {mediaPlayerOut.start();}
-            if (notEnoughScore) Toast.makeText(ctx, R.string.purchaseNotEnoughScore, Toast.LENGTH_LONG).show();
-            Toast.makeText(ctx, R.string.purchaseFailure, Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            if (notEnoughScore) Toast.makeText(ctx, ctx.getString(R.string.purchase_not_enough_score, requiredScore ), Toast.LENGTH_LONG).show();
+            else Toast.makeText(ctx, R.string.purchase_failure, Toast.LENGTH_LONG).show();
         }
     }
 }

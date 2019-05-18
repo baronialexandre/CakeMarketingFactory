@@ -333,7 +333,7 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton cookieSelect = dialog.findViewById(R.id.popupCakeSelCookie);
         cookieSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,0,score,
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,0,
                     findViewById(ViewContent.factoryId[factorySpot]),findViewById(ViewContent.signId[factorySpot]),findViewById(R.id.worldCapital),context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
@@ -344,7 +344,7 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton cupcakeSelect = dialog.findViewById(R.id.popupCakeSelCupcake);
         cupcakeSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,1,score,
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,1,
                     findViewById(ViewContent.factoryId[factorySpot]),findViewById(ViewContent.signId[factorySpot]),findViewById(R.id.worldCapital),context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment
@@ -355,7 +355,7 @@ public class WorldActivity  extends AppCompatActivity {
         ImageButton donutSelect = dialog.findViewById(R.id.popupCakeSelDonut);
         donutSelect.setOnClickListener(v -> {
             /*Do something*/
-            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,2,score,
+            BuyFactoryTask task = new BuyFactoryTask(userId,factorySpot+1,2,
                     findViewById(ViewContent.factoryId[factorySpot]),findViewById(ViewContent.signId[factorySpot]),findViewById(R.id.worldCapital),context);
             task.execute();
             //bien garder le dismiss qui suit //remove this comment

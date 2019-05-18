@@ -43,9 +43,9 @@
     <string name="vote_cast">Vote enregistré.</string>
     <string name="profile_title">Profil</string>
     <string name="profile_labels">Pseudo : \nInscription : \nNiveau : \nScore Max : \nRang Max : </string>
-    <string name="purchaseSuccesful">Achat effectué!</string>
-    <string name="purchaseNotEnoughScore">Pas assez d\'argent pour acheter cette usine</string>
-    <string name="purchaseFailure">L\'achat a échoué!</string>
+    <string name="purchase_succesful">Achat effectué!</string>
+    <string name="purchase_not_enough_score">Il vous faut %1$d$ pour acheter cette usine.</string>
+    <string name="purchase_failure">L\'achat a échoué!</string>
 
     <string name="line_price">Cette ligne coûte </string>
     <string name="buy_line_error">Pas assez d\'argent pour acheter cette ligne</string>
