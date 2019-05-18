@@ -41,9 +41,11 @@ public class WorldActivity  extends AppCompatActivity {
     World world;
 
     boolean soundState;
+    boolean musicState;
     MediaPlayer mediaPlayerIn;
     MediaPlayer mediaPlayerOut;
     MediaPlayer mediaPlayerMelo;
+    MediaPlayer mediaPlayerMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +63,13 @@ public class WorldActivity  extends AppCompatActivity {
 
         //Initialisation des différents sons
         soundState = shr.getBoolean("sound", true);
+        musicState= shr.getBoolean("music", true);
         mediaPlayerIn = MediaPlayer.create(context, R.raw.in1);
         mediaPlayerOut = MediaPlayer.create(context, R.raw.out2);
         mediaPlayerMelo = MediaPlayer.create(context, R.raw.melo1);
+        mediaPlayerMusic = MediaPlayer.create(context, R.raw.cakeloop);
+        mediaPlayerMusic.setLooping(true);
+        if (musicState) { mediaPlayerMusic.start(); }
 
         TextView userScore = findViewById(R.id.worldCapital);
 
@@ -167,8 +173,6 @@ public class WorldActivity  extends AppCompatActivity {
         ImageView music = dialog.findViewById(R.id.popupSettingsMusic);
         ImageView flag = dialog.findViewById(R.id.popupSettingsFlag);
 
-        //soundState = shr.getBoolean("sound",true);
-        boolean musicState = shr.getBoolean("music",true);
         String language = shr.getString("language", Locale.getDefault().getDisplayLanguage().substring(0,2));
 
         //init start
@@ -230,7 +234,7 @@ public class WorldActivity  extends AppCompatActivity {
             boolean soundStateB = shr.getBoolean("sound",true);
             if(soundStateB) {
                 mediaPlayerOut.start();
-                soundState=false;
+                soundState = false;
                 ed.putBoolean("sound", false);
                 sound.setImageDrawable(getResources().getDrawable(R.drawable.ic_sound_off));
             }
@@ -248,10 +252,14 @@ public class WorldActivity  extends AppCompatActivity {
             SharedPreferences.Editor ed = shr1.edit();
             boolean musicStateB = shr.getBoolean("music",true);
             if(musicStateB) {
+                mediaPlayerMusic.stop();
                 ed.putBoolean("music", false);
                 music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music_off));
             }
             else {
+                mediaPlayerMusic = MediaPlayer.create(context, R.raw.cakeloop);
+                mediaPlayerMusic.setLooping(true);
+                mediaPlayerMusic.start();
                 ed.putBoolean("music", true);
                 music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music));
             }

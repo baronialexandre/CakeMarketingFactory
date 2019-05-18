@@ -66,6 +66,7 @@ public class FactoryActivity extends AppCompatActivity {
         mediaPlayerOut = MediaPlayer.create(context, R.raw.out2);
         mediaPlayerMelo = MediaPlayer.create(context, R.raw.melo1);
 
+
         //factory récupérée après le "getExtra"
         factory = (Factory) getIntent().getSerializableExtra("factory");
         int factoryId = factory.getFactorySpot()-1;
