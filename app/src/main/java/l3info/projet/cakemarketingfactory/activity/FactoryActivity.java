@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.activity.manager.SoundManager;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.task.BuyLineTask;
 import l3info.projet.cakemarketingfactory.task.GetLinePriceTask;
@@ -33,11 +33,8 @@ public class FactoryActivity extends AppCompatActivity {
     Factory factory;
     long userId;
     int score;
-    boolean sound;
+
     SharedPreferences shr;
-    MediaPlayer mediaPlayerIn;
-    MediaPlayer mediaPlayerOut;
-    MediaPlayer mediaPlayerMelo;
 
     TextView userScore;
     TextView stockText;
@@ -47,6 +44,7 @@ public class FactoryActivity extends AppCompatActivity {
     ArrayList<LinearLayout> allBelts;
     ArrayList<ImageView> allRobots;
     ArrayList<ImageView> allOvens;
+    SoundManager soundManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,18 +52,12 @@ public class FactoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_factory);
 
         context = this;
+        soundManager = new SoundManager(this);
 
         //access to the userId in shared preferences
         shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         userId = shr.getLong("userId",0L);
         score = shr.getInt("score",0);
-
-        //Initialisation des différents sons
-        sound = shr.getBoolean("sound", true);
-        mediaPlayerIn = MediaPlayer.create(context, R.raw.in1);
-        mediaPlayerOut = MediaPlayer.create(context, R.raw.out2);
-        mediaPlayerMelo = MediaPlayer.create(context, R.raw.melo1);
-
 
         //factory récupérée après le "getExtra"
         factory = (Factory) getIntent().getSerializableExtra("factory");
@@ -130,7 +122,7 @@ public class FactoryActivity extends AppCompatActivity {
         ImageView factoryBack = findViewById(R.id.factoryBack);
         factoryBack.setOnClickListener(view -> {
             //Revenir en arrière sur une activity
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             FactoryActivity.this.finish(); //"dépile" la stack d'activity
         });
 
@@ -139,7 +131,7 @@ public class FactoryActivity extends AppCompatActivity {
             int line = i;
             ImageButton productionLine = findViewById(ViewContent.factoryProduction[line]);
             productionLine.setOnClickListener(view -> {
-                if(sound) {mediaPlayerIn.start();}
+                soundManager.playSoundIn();
                 if (factory.getLine(line) != null) {
                     openPopupSelection(line);
                 } else{
@@ -155,19 +147,19 @@ public class FactoryActivity extends AppCompatActivity {
             int line = i;
             Button factoryBeltButtonLine = findViewById(ViewContent.factoryBeltButtons[line]);
             factoryBeltButtonLine.setOnClickListener(view -> {
-                if(sound) {mediaPlayerIn.start();}
+                soundManager.playSoundIn();
                 int level = factory.getLine(line).getMachineLevel(0);
                 openPopupUpgrade(level, ImageContent.beltImagesId[level],line,0, factoryBeltButtonLine);
             });
             Button factoryRobotButtonLine = findViewById(ViewContent.factoryRobotsButtons[line]);
             factoryRobotButtonLine.setOnClickListener(view -> {
-                if(sound) {mediaPlayerIn.start();}
+                soundManager.playSoundIn();
                 int level = factory.getLine(line).getMachineLevel(1);
                 openPopupUpgrade(level, ImageContent.robotImagesId[level],line,1, factoryRobotButtonLine);
             });
             Button factoryOvenButtonLine = findViewById(ViewContent.factoryOvenButtons[line]);
             factoryOvenButtonLine.setOnClickListener(view -> {
-                if(sound) {mediaPlayerIn.start();}
+                soundManager.playSoundIn();
                 int level = factory.getLine(line).getMachineLevel(2);
                 openPopupUpgrade(level, ImageContent.ovenImagesId[level],line,2, factoryOvenButtonLine);
             });
@@ -187,7 +179,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button factoryButtonStock = findViewById(R.id.factoryButtonStock);
         factoryButtonStock.setOnClickListener(v -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             int level = factory.getCapacityLevel();
             openPopupUpgrade(level, R.drawable.title,0,-1, factoryButtonStock);
         });
@@ -196,7 +188,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button sell = findViewById(R.id.factorySell);
         sell.setOnClickListener(v -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             openPopupSell(context);
         });
 
@@ -210,7 +202,7 @@ public class FactoryActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.popup_upgrade);
         Button popupUpgradeCancel = dialog.findViewById(R.id.popupUpgradeCancel);
         popupUpgradeCancel.setOnClickListener(v -> {
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 
@@ -228,7 +220,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button popupUpgradeOk = dialog.findViewById(R.id.popupUpgradeOk);
         popupUpgradeOk.setOnClickListener(v -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             if (level<=8) {
                 if (id >= 0){ factory.getLine(line).setMachineLevel(id, level + 1); }
                 else {
@@ -276,7 +268,7 @@ public class FactoryActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.popup_cake_sel);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupCakeSelBack);
         popupMessageCancel.setOnClickListener(v -> {
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 
@@ -284,7 +276,7 @@ public class FactoryActivity extends AppCompatActivity {
             int id = i;
             ImageButton cakeSelect = dialog.findViewById(ViewContent.popUpCakeSell[i]);
             cakeSelect.setOnClickListener(v -> {
-                if(sound) {mediaPlayerIn.start();}
+                soundManager.playSoundIn();
                 allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[id]));
                 factory.getLine(line).setCakeId(id);
                 dialog.dismiss();
@@ -301,7 +293,7 @@ public class FactoryActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.popup_question);
         Button popupMessageCancel = dialog.findViewById(R.id.popupQuestionCancel);
         popupMessageCancel.setOnClickListener(v -> {
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 
@@ -315,7 +307,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button popupMessageOk = dialog.findViewById(R.id.popupQuestionOk);
         popupMessageOk.setOnClickListener(v -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             openPopupSelectionNew(line);
             dialog.dismiss();
         });
@@ -355,7 +347,7 @@ public class FactoryActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.popup_market_sell);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
         popupMessageCancel.setOnClickListener(v -> {
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 
@@ -371,7 +363,7 @@ public class FactoryActivity extends AppCompatActivity {
             ImageButton cakeSell = dialog.findViewById(ViewContent.sellCakeButtons[i]);
             int cake = i;
             cakeSell.setOnClickListener(v -> {
-                if(sound) {mediaPlayerMelo.start();}
+                soundManager.playSoundSell();
                 SellStockTask sellStockTask = new SellStockTask(userId, factory, cake, context, stock, userScore, stockText, marketSellAlert);
                 sellStockTask.execute();
             });

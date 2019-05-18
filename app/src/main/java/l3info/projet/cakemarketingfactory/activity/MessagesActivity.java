@@ -3,13 +3,11 @@ package l3info.projet.cakemarketingfactory.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -18,7 +16,7 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.adapter.MessageAdapter;
-import l3info.projet.cakemarketingfactory.model.Factory;
+import l3info.projet.cakemarketingfactory.activity.manager.SoundManager;
 import l3info.projet.cakemarketingfactory.model.MessageItem;
 import l3info.projet.cakemarketingfactory.task.TopMessageTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
@@ -33,12 +31,8 @@ public class MessagesActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
     Context ctx;
+    SoundManager soundManager;
 
-    boolean sound;
-    SharedPreferences shr;
-    MediaPlayer mediaPlayerIn;
-    MediaPlayer mediaPlayerOut;
-    MediaPlayer mediaPlayerMelo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +40,12 @@ public class MessagesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_messages);
 
         ctx = this;
-
-        shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-
-        //Initialisation des différents sons
-        sound = shr.getBoolean("sound", true);
-        mediaPlayerIn = MediaPlayer.create(ctx, R.raw.in1);
-        mediaPlayerOut = MediaPlayer.create(ctx, R.raw.out2);
-        mediaPlayerMelo = MediaPlayer.create(ctx, R.raw.melo1);
+        soundManager = new SoundManager(this);
 
         ImageView ivBack = findViewById(R.id.messagesBack);
         ivBack.setOnClickListener(view -> {
+            soundManager.playSoundOut();
             //Changer d'activity
-            if (sound) { mediaPlayerOut.start(); }
             MessagesActivity.this.finish(); //dépile la stack d'activity
         });
 
@@ -84,7 +71,7 @@ public class MessagesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener(position -> {
-            if (sound) { mediaPlayerIn.start(); }
+            soundManager.playSoundIn();
             itemRead(position); //lu
             messageClicked(position); //open large
         });
@@ -106,7 +93,7 @@ public class MessagesActivity extends AppCompatActivity {
 
         ImageView ivPopupMessageClose = dialog.findViewById(R.id.popupMessageClose);
         ivPopupMessageClose.setOnClickListener(v -> {
-            if (sound) { mediaPlayerOut.start(); }
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 

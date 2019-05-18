@@ -16,6 +16,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.activity.manager.SoundManager;
 import l3info.projet.cakemarketingfactory.activity.view.MarketGraph;
 import l3info.projet.cakemarketingfactory.activity.view.MarketTimeView;
 import l3info.projet.cakemarketingfactory.model.Market;
@@ -33,10 +34,7 @@ public class MarketActivity extends AppCompatActivity
     Votes votes;
     TextView userScoreDisplay;
     SharedPreferences shr;
-    MediaPlayer mediaPlayerIn;
-    MediaPlayer mediaPlayerOut;
-    MediaPlayer mediaPlayerMelo;
-    boolean sound;
+    SoundManager soundManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,17 +43,14 @@ public class MarketActivity extends AppCompatActivity
         setContentView(R.layout.activity_market);
 
         Context context = this;
+        soundManager = new SoundManager(this);
+
+
         shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
 
         market = (Market) getIntent().getSerializableExtra("market");
         votes = (Votes) getIntent().getSerializableExtra("votes");
         int userScore = getIntent().getIntExtra("userScore", 0);
-
-        //Initialisation des différents sons
-        sound = shr.getBoolean("sound", true);
-        mediaPlayerIn = MediaPlayer.create(context, R.raw.in1);
-        mediaPlayerOut = MediaPlayer.create(context, R.raw.out2);
-        mediaPlayerMelo = MediaPlayer.create(context, R.raw.melo1);
 
         // USER SCORE DISPLAY
         userScoreDisplay = findViewById(R.id.marketCapital);
@@ -77,15 +72,15 @@ public class MarketActivity extends AppCompatActivity
         ImageButton marketDonut = findViewById(R.id.marketDonut);
 
         marketCookie.setOnClickListener(v   -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             setProductToDisplay(0, marketGraph, marketSelectedPrice);
         });
         marketCupcake.setOnClickListener(v    -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             setProductToDisplay(1, marketGraph, marketSelectedPrice);
         });
         marketDonut.setOnClickListener(v  -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             setProductToDisplay(2, marketGraph, marketSelectedPrice);
         });
 
@@ -94,7 +89,7 @@ public class MarketActivity extends AppCompatActivity
         // COUNTDOWN
         MarketTimeView marketTimeView = findViewById(R.id.marketTimeView);
         marketTimeView.setOnClickListener(v -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             openPopupTimeInfo(context);
         });
         marketTimeView.start();
@@ -103,20 +98,20 @@ public class MarketActivity extends AppCompatActivity
 
         Button sellAll = findViewById(R.id.marketSell);
         sellAll.setOnClickListener(v -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             openPopupSell(context);
         });
 
         Button advertising = findViewById(R.id.marketAdvertising);
         advertising.setOnClickListener(v -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             openPopupAds(context, votes);
         });
 
         ImageView marketBack = findViewById(R.id.marketBack);
         marketBack.setOnClickListener(view -> {
             //Changer d'activity
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             MarketActivity.this.finish(); //dépile la stack d'activity
         });
     }
@@ -129,7 +124,7 @@ public class MarketActivity extends AppCompatActivity
         dialog.setContentView(R.layout.popup_market_sell_all);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
         popupMessageCancel.setOnClickListener(v -> {
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 
@@ -141,17 +136,17 @@ public class MarketActivity extends AppCompatActivity
         ImageButton popupMarketSellAllDonuts = dialog.findViewById(R.id.popupMarketSellAllDonuts);
 
         popupMarketSellAllCookies.setOnClickListener(v -> {
-            if(sound) {mediaPlayerMelo.start();}
+            soundManager.playSoundSell();
             SellAllStockTask sellAllStockTask = new SellAllStockTask(userId, 0, dialog, context, userScoreDisplay);
             sellAllStockTask.execute();
         });
         popupMarketSellAllCupcakes.setOnClickListener(v -> {
-            if(sound) {mediaPlayerMelo.start();}
+            soundManager.playSoundSell();
             SellAllStockTask sellAllStockTask = new SellAllStockTask(userId, 1, dialog, context, userScoreDisplay);
             sellAllStockTask.execute();
         });
         popupMarketSellAllDonuts.setOnClickListener(v -> {
-            if(sound) {mediaPlayerMelo.start();}
+            soundManager.playSoundSell();
             SellAllStockTask sellAllStockTask = new SellAllStockTask(userId, 2, dialog, context, userScoreDisplay);
             sellAllStockTask.execute();
         });
@@ -171,13 +166,13 @@ public class MarketActivity extends AppCompatActivity
         dialog.setContentView(R.layout.popup_market_advertising);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketAdvertisingBack);
         popupMessageCancel.setOnClickListener(v -> {
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 
         ImageButton infos = dialog.findViewById(R.id.popupMarketAdvertisingInfo);
         infos.setOnClickListener(v -> {
-            if(sound) {mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             openInfos(context);
         });
 
@@ -239,7 +234,7 @@ public class MarketActivity extends AppCompatActivity
         dialog.setContentView(R.layout.popup_notification);
         Button popupMessageCancel = dialog.findViewById(R.id.popupNotificationOk);
         popupMessageCancel.setOnClickListener(v -> {
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 
@@ -262,7 +257,7 @@ public class MarketActivity extends AppCompatActivity
         dialog.setContentView(R.layout.popup_notification);
         Button popupMessageCancel = dialog.findViewById(R.id.popupNotificationOk);
         popupMessageCancel.setOnClickListener(v -> {
-            if(sound) {mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.activity.manager.SoundManager;
 import l3info.projet.cakemarketingfactory.task.RegistrationTask;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -17,32 +18,30 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        SoundManager soundManager = new SoundManager(this);
+
         Button registerCancel = findViewById(R.id.registrationCancel);
-        registerCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Changer d'activity
-                Intent intentApp = new Intent(RegistrationActivity.this, LoginActivity.class);
-                startActivity(intentApp);
-            }
+        registerCancel.setOnClickListener(view -> {
+            soundManager.playSoundOut();
+            //Changer d'activity
+            Intent intentApp = new Intent(RegistrationActivity.this, LoginActivity.class);
+            startActivity(intentApp);
         });
 
         Button registerValidate = findViewById(R.id.registrationValidate);
-        registerValidate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText emailField = (EditText) findViewById(R.id.registrationEmail);
-                EditText usernameField = (EditText) findViewById(R.id.registrationUsername);
-                EditText passwordField = (EditText) findViewById(R.id.registrationPassword);
-                TextView feedbackTextView = (TextView) findViewById(R.id.registrationFeedbackMessage);
+        registerValidate.setOnClickListener(view -> {
+            soundManager.playSoundIn();
+            EditText emailField = findViewById(R.id.registrationEmail);
+            EditText usernameField = findViewById(R.id.registrationUsername);
+            EditText passwordField = findViewById(R.id.registrationPassword);
+            TextView feedbackTextView = findViewById(R.id.registrationFeedbackMessage);
 
-                String email = emailField.getText().toString();
-                String username = usernameField.getText().toString();
-                String password = passwordField.getText().toString();
+            String email = emailField.getText().toString();
+            String username = usernameField.getText().toString();
+            String password = passwordField.getText().toString();
 
-                RegistrationTask task = new RegistrationTask(email,username,password,feedbackTextView, RegistrationActivity.this);
-                task.execute();
-            }
+            RegistrationTask task = new RegistrationTask(email,username,password,feedbackTextView, RegistrationActivity.this);
+            task.execute();
         });
     }
 }

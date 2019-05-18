@@ -1,17 +1,13 @@
 package l3info.projet.cakemarketingfactory.activity;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -24,9 +20,9 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.manager.LanguageManager;
+import l3info.projet.cakemarketingfactory.activity.manager.SoundManager;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.model.World;
-import l3info.projet.cakemarketingfactory.task.AuthenticationTask;
 import l3info.projet.cakemarketingfactory.task.BuyFactoryTask;
 import l3info.projet.cakemarketingfactory.task.EnterFactoryTask;
 import l3info.projet.cakemarketingfactory.task.EnterMarketTask;
@@ -38,13 +34,11 @@ import l3info.projet.cakemarketingfactory.utils.ViewContent;
 
 public class WorldActivity  extends AppCompatActivity {
     Context context;
+    SoundManager soundManager;
     World world;
 
-    boolean soundState;
     boolean musicState;
-    MediaPlayer mediaPlayerIn;
-    MediaPlayer mediaPlayerOut;
-    MediaPlayer mediaPlayerMelo;
+    boolean soundState;
     MediaPlayer mediaPlayerMusic;
 
     @Override
@@ -52,6 +46,7 @@ public class WorldActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_world);
         context = this;
+        soundManager = new SoundManager(this);
 
         //Log.i("BANDOL",getIntent().getSerializableExtra("world").toString());
         world = (World) getIntent().getSerializableExtra("world");
@@ -62,11 +57,8 @@ public class WorldActivity  extends AppCompatActivity {
         //Log.i("BANDOL","world sharedprefid:"+userId );
 
         //Initialisation des différents sons
-        soundState = shr.getBoolean("sound", true);
         musicState= shr.getBoolean("music", true);
-        mediaPlayerIn = MediaPlayer.create(context, R.raw.in1);
-        mediaPlayerOut = MediaPlayer.create(context, R.raw.out2);
-        mediaPlayerMelo = MediaPlayer.create(context, R.raw.melo1);
+        soundState = shr.getBoolean("sound",true);
         mediaPlayerMusic = MediaPlayer.create(context, R.raw.cakeloop);
         mediaPlayerMusic.setLooping(true);
         if (musicState) { mediaPlayerMusic.start(); }
@@ -85,7 +77,7 @@ public class WorldActivity  extends AppCompatActivity {
             factoryV.setVisibility(View.VISIBLE);
 
             factoryV.setOnClickListener(v -> {
-                if(soundState){ mediaPlayerIn.start();}
+                soundManager.playSoundIn();
                 //Entrer dans une usine
                 Toast.makeText(context, "FACTORY 1 + " + factorySpot, Toast.LENGTH_SHORT).show();
                 EnterFactoryTask task = new EnterFactoryTask(userId, factory, context);
@@ -101,7 +93,7 @@ public class WorldActivity  extends AppCompatActivity {
                 sign.setVisibility(View.VISIBLE);
                 int finalI = i;
                 sign.setOnClickListener(v -> {
-                    if(soundState){ mediaPlayerIn.start();}
+                    soundManager.playSoundIn();
                     //cliquer sur un panneau $
                     Toast.makeText(context, "BUY sign 1 + " + finalI, Toast.LENGTH_SHORT).show();
                     //montre le prix et demande si tu veux acheter
@@ -117,7 +109,7 @@ public class WorldActivity  extends AppCompatActivity {
 
         ImageView market = findViewById(R.id.worldMarket);
         market.setOnClickListener(view -> {
-            if(soundState){ mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             //Changer d'activity
             EnterMarketTask enterMarketTask = new EnterMarketTask(userId, context);
             enterMarketTask.execute();
@@ -125,7 +117,7 @@ public class WorldActivity  extends AppCompatActivity {
 
         ImageView messages = findViewById(R.id.worldLetter);
         messages.setOnClickListener(view -> {
-            if(soundState){ mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             //Changer d'activity
             EnterMessagesTask enterMessagesTask = new EnterMessagesTask(context);
             enterMessagesTask.execute();
@@ -133,13 +125,13 @@ public class WorldActivity  extends AppCompatActivity {
 
         ImageView settings = findViewById(R.id.worldSettings);
         settings.setOnClickListener(view -> {
-            if(soundState){ mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             openSettingsPopup();
         });
 
         ImageView profile = findViewById(R.id.worldProfile);
         profile.setOnClickListener(view -> {
-            if(soundState){ mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             openProfilePopup();
         });
     }
@@ -150,7 +142,7 @@ public class WorldActivity  extends AppCompatActivity {
         dialog.setContentView(R.layout.popup_settings);
         Button close = dialog.findViewById(R.id.popupSettingsOk);
         close.setOnClickListener(v -> {
-            if(soundState){ mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 
@@ -158,7 +150,7 @@ public class WorldActivity  extends AppCompatActivity {
 
         Button disconnect = dialog.findViewById(R.id.popupSettingsDisconnect);
         disconnect.setOnClickListener(v -> {
-            if(soundState){ mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             SharedPreferences.Editor ed = shr.edit();
             ed.remove("username");
             ed.remove("password");
@@ -199,7 +191,7 @@ public class WorldActivity  extends AppCompatActivity {
         //init end
 
         flag.setOnClickListener(v -> {
-            if(soundState){ mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             SharedPreferences shr1 = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
             SharedPreferences.Editor ed = shr1.edit();
             String languageB = shr.getString("language", Locale.getDefault().getDisplayLanguage().substring(0,2));
@@ -229,25 +221,26 @@ public class WorldActivity  extends AppCompatActivity {
         });
 
         sound.setOnClickListener(v -> {
+            soundManager.playSoundIn();
             SharedPreferences shr1 = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
             SharedPreferences.Editor ed = shr1.edit();
             boolean soundStateB = shr.getBoolean("sound",true);
             if(soundStateB) {
-                mediaPlayerOut.start();
                 soundState = false;
                 ed.putBoolean("sound", false);
                 sound.setImageDrawable(getResources().getDrawable(R.drawable.ic_sound_off));
             }
             else {
-                mediaPlayerIn.start();
                 soundState=true;
                 ed.putBoolean("sound", true);
                 sound.setImageDrawable(getResources().getDrawable(R.drawable.ic_sound));
             }
             ed.apply();
+            soundManager.setSound(soundState);
         });
 
         music.setOnClickListener(v -> {
+            soundManager.playSoundIn();
             SharedPreferences shr1 = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
             SharedPreferences.Editor ed = shr1.edit();
             boolean musicStateB = shr.getBoolean("music",true);
@@ -291,7 +284,7 @@ public class WorldActivity  extends AppCompatActivity {
 
         Button popupMessageClose = dialog.findViewById(R.id.popupProfileOk);
         popupMessageClose.setOnClickListener(v -> {
-            if(soundState){ mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
@@ -305,7 +298,7 @@ public class WorldActivity  extends AppCompatActivity {
         dialog.setContentView(R.layout.popup_question);
         Button popupMessageCancel = dialog.findViewById(R.id.popupQuestionCancel);
         popupMessageCancel.setOnClickListener(v -> {
-            if(soundState){ mediaPlayerOut.start();}
+            soundManager.playSoundOut();
             dialog.dismiss();
         });
 
@@ -318,7 +311,7 @@ public class WorldActivity  extends AppCompatActivity {
         Button popupMessageOk = dialog.findViewById(R.id.popupQuestionOk);
         popupMessageOk.setOnClickListener(v -> {
             //Propose de selectionner le gateau de la 1ere ligne lors de l'achat
-            if(soundState){ mediaPlayerIn.start();}
+            soundManager.playSoundIn();
             openPopupSelection(factorySpot,score);
             dialog.dismiss();
         });
