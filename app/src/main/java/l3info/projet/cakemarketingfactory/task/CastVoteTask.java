@@ -1,6 +1,9 @@
 package l3info.projet.cakemarketingfactory.task;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -25,12 +28,14 @@ public class CastVoteTask extends AsyncTask<String, Void, Boolean>
 
     private int productId;
     private long userId;
+    private WeakReference<Context> ctx;
 
-    public CastVoteTask(int productId, long userId, Dialog dialog)
+    public CastVoteTask(int productId, long userId, Dialog dialog, Context ctx)
     {
         this.productId = productId;
         this.userId = userId;
         this.dialogWeakReference = new WeakReference<>(dialog);
+        this.ctx = new WeakReference<>(ctx);
     }
 
     @Override
@@ -67,9 +72,18 @@ public class CastVoteTask extends AsyncTask<String, Void, Boolean>
         super.onPostExecute(voteCheck);
         final Dialog dialog = dialogWeakReference.get();
         TextView marketVoteCastAlert = dialog.findViewById(R.id.marketVoteCastAlert);
-        if(!voteCheck)
+        SharedPreferences shr = ctx.get().getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        Context ctx = this.ctx.get();
+        Boolean sound = shr.getBoolean("sound",true);
+        MediaPlayer mediaPlayerMelo = MediaPlayer.create(ctx, R.raw.melo1);
+        MediaPlayer mediaPlayerOut = MediaPlayer.create(ctx, R.raw.out2);
+        if(!voteCheck) {
+            if (sound) { mediaPlayerOut.start(); }
             marketVoteCastAlert.setText(R.string.vote_already_cast);
-        else
+        }
+        else {
+            if (sound) { mediaPlayerMelo.start(); }
             marketVoteCastAlert.setText(R.string.vote_cast);
+        }
     }
 }

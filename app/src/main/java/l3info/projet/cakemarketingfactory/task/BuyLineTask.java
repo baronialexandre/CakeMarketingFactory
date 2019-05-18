@@ -28,7 +28,7 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
     private int lineSlot;
     private int productId;
     private int userScore;
-    private FactoryActivity activity;
+    private WeakReference<FactoryActivity> activity;
 
     public BuyLineTask(long userId, int lineSlot, int productId, int userScore, Context ctx, Factory factory, FactoryActivity activity) {
         this.userId = userId;
@@ -37,7 +37,7 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
         this.userScore = userScore;
         this.ctx = new WeakReference<>(ctx);
         this.factory = factory;
-        this.activity = activity;
+        this.activity = new WeakReference<>(activity);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
 
         if (success==1){
             if(sound) {mediaPlayerIn.start();}
-            activity.finish();
+            activity.get().finish();
             EnterFactoryTask enterFactory = new EnterFactoryTask(userId, factory, ctx);
             enterFactory.execute();
         }else {
