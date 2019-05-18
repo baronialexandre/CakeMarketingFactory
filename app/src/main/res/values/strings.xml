@@ -56,6 +56,8 @@
     <string name="purchaseNotEnoughScore">Not enough money to buy this factory</string>
     <string name="purchaseFailure">Purchase failure</string>
 
+    <string name="buy_line_error">Not enough money to buy this line</string>
+
     <string name="market_sell_error">Error when trying to retrieve stocks.</string>
     <string name="market_sell_failed">Could not sell your stocks.</string>
     <string name="market_sell_confirm">Sales confirmed !</string>

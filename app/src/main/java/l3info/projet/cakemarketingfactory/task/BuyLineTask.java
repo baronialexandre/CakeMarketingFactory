@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 
+import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.FactoryActivity;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.utils.Contents;
@@ -68,7 +69,7 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
             EnterFactoryTask enterFactory = new EnterFactoryTask(userId, factory, ctx);
             enterFactory.execute();
         }else {
-            Toast.makeText(ctx, "ERROR", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, R.string.buy_line_error, Toast.LENGTH_SHORT).show();
         }
     }
 }
