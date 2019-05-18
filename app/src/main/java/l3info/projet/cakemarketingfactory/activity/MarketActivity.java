@@ -104,7 +104,7 @@ public class MarketActivity extends AppCompatActivity
 
         Button advertising = findViewById(R.id.marketAdvertising);
         advertising.setOnClickListener(v -> {
-            soundManager.playSoundIn();
+            soundManager.playSoundVote();
             openPopupAds(context, votes);
         });
 
