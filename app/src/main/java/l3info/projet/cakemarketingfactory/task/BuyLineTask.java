@@ -65,8 +65,8 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
     protected void onPostExecute(Integer success) {
         super.onPostExecute(success);
         SharedPreferences shr = ctx.get().getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-        Boolean sound = shr.getBoolean("sound",true);
         Context ctx = this.ctx.get();
+        Boolean sound = shr.getBoolean("sound",true);
         MediaPlayer mediaPlayerIn = MediaPlayer.create(ctx, R.raw.in1);
         MediaPlayer mediaPlayerOut = MediaPlayer.create(ctx, R.raw.out2);
 

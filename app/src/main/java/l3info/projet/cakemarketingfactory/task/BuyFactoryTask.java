@@ -3,6 +3,7 @@ package l3info.projet.cakemarketingfactory.task;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -78,8 +79,13 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
     @Override
     protected void onPostExecute(Boolean success) {
         super.onPostExecute(success);
+        SharedPreferences shr = ctx.get().getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         Context ctx = this.ctx.get();
+        Boolean sound = shr.getBoolean("sound",true);
+        MediaPlayer mediaPlayerIn = MediaPlayer.create(ctx, R.raw.in1);
+        MediaPlayer mediaPlayerOut = MediaPlayer.create(ctx, R.raw.out2);
         if(success) {
+            if(sound) {mediaPlayerIn.start();}
             // Toast achat successful
             Toast.makeText(ctx, R.string.purchaseSuccesful, Toast.LENGTH_LONG).show();
             Log.i("BANDOL_BUY_FACTORYTSK", "success");
@@ -107,6 +113,7 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
             EnterFactoryTask task = new EnterFactoryTask(userId,new Factory(factorySpot), ctx);
             task.execute();
         } else {
+            if(sound) {mediaPlayerOut.start();}
             if (notEnoughScore) Toast.makeText(ctx, R.string.purchaseNotEnoughScore, Toast.LENGTH_LONG).show();
             Toast.makeText(ctx, R.string.purchaseFailure, Toast.LENGTH_LONG).show();
         }
