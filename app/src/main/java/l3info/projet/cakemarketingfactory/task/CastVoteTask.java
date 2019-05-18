@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.activity.manager.SoundManager;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -74,15 +75,15 @@ public class CastVoteTask extends AsyncTask<String, Void, Boolean>
         TextView marketVoteCastAlert = dialog.findViewById(R.id.marketVoteCastAlert);
         SharedPreferences shr = ctx.get().getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         Context ctx = this.ctx.get();
-        Boolean sound = shr.getBoolean("sound",true);
-        MediaPlayer mediaPlayerMelo = MediaPlayer.create(ctx, R.raw.melo1);
-        MediaPlayer mediaPlayerOut = MediaPlayer.create(ctx, R.raw.out2);
+        SoundManager soundManager = new SoundManager(ctx);
+
+
         if(!voteCheck) {
-            if (sound) { mediaPlayerOut.start(); }
+            soundManager.playSoundOut();
             marketVoteCastAlert.setText(R.string.vote_already_cast);
         }
         else {
-            if (sound) { mediaPlayerMelo.start(); }
+            soundManager.playSoundVote();
             marketVoteCastAlert.setText(R.string.vote_cast);
         }
     }
