@@ -24,6 +24,7 @@ import l3info.projet.cakemarketingfactory.task.BuyLineTask;
 import l3info.projet.cakemarketingfactory.task.GetLinePriceTask;
 import l3info.projet.cakemarketingfactory.task.GetScoreTask;
 import l3info.projet.cakemarketingfactory.task.SellStockTask;
+import l3info.projet.cakemarketingfactory.task.UpgradeMachineTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
 import l3info.projet.cakemarketingfactory.utils.ViewContent;
@@ -222,7 +223,11 @@ public class FactoryActivity extends AppCompatActivity {
         popupUpgradeOk.setOnClickListener(v -> {
             soundManager.playSoundIn();
             if (level<=8) {
-                if (id >= 0){ factory.getLine(line).setMachineLevel(id, level + 1); }
+                if (id >= 0){
+                    UpgradeMachineTask task = new UpgradeMachineTask(userId, line, id, score, context, factory);
+                    task.execute();
+                    factory.getLine(line).setMachineLevel(id, level + 1);
+                }
                 else {
                     factory.setCapacityLevel( level+1 );
                     TextView stock = findViewById(R.id.factoryStockText);

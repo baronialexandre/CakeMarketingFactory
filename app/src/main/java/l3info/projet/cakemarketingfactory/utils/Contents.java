@@ -18,6 +18,7 @@ public final class Contents {
     public static final String SELL__ALL_STOCK_URL = "/sellallstock.php";
     public static final String GET_STOCK_URL = "/getstock.php";
     public static final String GET_LINE_PRICE_URL = "/getlineprice.php";
+    public static final String UP_MACHINE_URL = "/upgrademachine.php";
 
     public static final String API_PASS = "bandol";
     public static final String SHRD_PREF = "dolban";
