@@ -253,6 +253,7 @@ public class WorldActivity  extends AppCompatActivity {
             boolean musicStateB = shr.getBoolean("music",true);
             if(musicStateB) {
                 mediaPlayerMusic.stop();
+                musicState = false;
                 ed.putBoolean("music", false);
                 music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music_off));
             }
@@ -260,6 +261,7 @@ public class WorldActivity  extends AppCompatActivity {
                 mediaPlayerMusic = MediaPlayer.create(context, R.raw.cakeloop);
                 mediaPlayerMusic.setLooping(true);
                 mediaPlayerMusic.start();
+                musicState = true;
                 ed.putBoolean("music", true);
                 music.setImageDrawable(getResources().getDrawable(R.drawable.ic_music));
             }
