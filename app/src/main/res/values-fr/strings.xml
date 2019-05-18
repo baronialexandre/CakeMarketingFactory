@@ -47,6 +47,7 @@
     <string name="purchaseNotEnoughScore">Pas assez d\'argent pour acheter cette usine</string>
     <string name="purchaseFailure">L\'achat a échoué!</string>
 
+    <string name="line_price">Cette ligne coûte </string>
     <string name="buy_line_error">Pas assez d\'argent pour acheter cette ligne</string>
 
     <string name="market_sell_error">Erreur lors de l\'obtention des stocks.</string>

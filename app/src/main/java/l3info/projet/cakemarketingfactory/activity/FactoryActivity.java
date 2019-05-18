@@ -20,6 +20,7 @@ import java.util.Objects;
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.task.BuyLineTask;
+import l3info.projet.cakemarketingfactory.task.GetLinePriceTask;
 import l3info.projet.cakemarketingfactory.task.GetScoreTask;
 import l3info.projet.cakemarketingfactory.task.SellStockTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
@@ -273,10 +274,12 @@ public class FactoryActivity extends AppCompatActivity {
         popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
 
         TextView popupQuestionMessage = dialog.findViewById(R.id.popupQuestionMessage);
-        popupQuestionMessage.setText("Le prix c'est le prix !\nSi tu veux acheter... vends\nDU GATEAU !");
+        popupQuestionMessage.setText(R.string.line_price);
+        GetLinePriceTask getLinePrice = new GetLinePriceTask(factory.getFactorySpot(), line, popupQuestionMessage, context);
+        getLinePrice.execute();
 
         ImageView popupQuestionImage = dialog.findViewById(R.id.popupQuestionImage);
-        popupQuestionImage.setImageResource(R.drawable.world_dollard_sign);
+        popupQuestionImage.setImageResource(R.drawable.ic_cadena);
 
         Button popupMessageOk = dialog.findViewById(R.id.popupQuestionOk);
         popupMessageOk.setOnClickListener(v -> {
