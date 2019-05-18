@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -32,7 +33,11 @@ public class FactoryActivity extends AppCompatActivity {
     Factory factory;
     long userId;
     int score;
+    boolean sound;
     SharedPreferences shr;
+    MediaPlayer mediaPlayerIn;
+    MediaPlayer mediaPlayerOut;
+    MediaPlayer mediaPlayerMelo;
 
     TextView userScore;
     TextView stockText;
@@ -50,14 +55,20 @@ public class FactoryActivity extends AppCompatActivity {
 
         context = this;
 
-        //factory récupérée après le "getExtra"
-        factory = (Factory) getIntent().getSerializableExtra("factory");
-        int factoryId = factory.getFactorySpot()-1;
-
         //access to the userId in shared preferences
         shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
         userId = shr.getLong("userId",0L);
         score = shr.getInt("score",0);
+
+        //Initialisation des différents sons
+        sound = shr.getBoolean("sound", true);
+        mediaPlayerIn = MediaPlayer.create(context, R.raw.in1);
+        mediaPlayerOut = MediaPlayer.create(context, R.raw.out2);
+        mediaPlayerMelo = MediaPlayer.create(context, R.raw.melo1);
+
+        //factory récupérée après le "getExtra"
+        factory = (Factory) getIntent().getSerializableExtra("factory");
+        int factoryId = factory.getFactorySpot()-1;
 
         userScore = findViewById(R.id.factoryCapital);
         GetScoreTask getScore = new GetScoreTask(userId, userScore, context);
@@ -100,7 +111,7 @@ public class FactoryActivity extends AppCompatActivity {
             }
         }
         if(factory.getLine(1)==null && factory.getLine(2)==null){
-            allProduction.get(2).setBackgroundColor(000);
+            allProduction.get(2).setBackgroundColor(0);
             allProduction.get(2).setEnabled(false);
         }
 
@@ -118,6 +129,7 @@ public class FactoryActivity extends AppCompatActivity {
         ImageView factoryBack = findViewById(R.id.factoryBack);
         factoryBack.setOnClickListener(view -> {
             //Revenir en arrière sur une activity
+            if(sound) {mediaPlayerOut.start();}
             FactoryActivity.this.finish(); //"dépile" la stack d'activity
         });
 
@@ -126,6 +138,7 @@ public class FactoryActivity extends AppCompatActivity {
             int line = i;
             ImageButton productionLine = findViewById(ViewContent.factoryProduction[line]);
             productionLine.setOnClickListener(view -> {
+                if(sound) {mediaPlayerIn.start();}
                 if (factory.getLine(line) != null) {
                     openPopupSelection(line);
                 } else{
@@ -141,16 +154,19 @@ public class FactoryActivity extends AppCompatActivity {
             int line = i;
             Button factoryBeltButtonLine = findViewById(ViewContent.factoryBeltButtons[line]);
             factoryBeltButtonLine.setOnClickListener(view -> {
+                if(sound) {mediaPlayerIn.start();}
                 int level = factory.getLine(line).getMachineLevel(0);
                 openPopupUpgrade(level, ImageContent.beltImagesId[level],line,0, factoryBeltButtonLine);
             });
             Button factoryRobotButtonLine = findViewById(ViewContent.factoryRobotsButtons[line]);
             factoryRobotButtonLine.setOnClickListener(view -> {
+                if(sound) {mediaPlayerIn.start();}
                 int level = factory.getLine(line).getMachineLevel(1);
                 openPopupUpgrade(level, ImageContent.robotImagesId[level],line,1, factoryRobotButtonLine);
             });
             Button factoryOvenButtonLine = findViewById(ViewContent.factoryOvenButtons[line]);
             factoryOvenButtonLine.setOnClickListener(view -> {
+                if(sound) {mediaPlayerIn.start();}
                 int level = factory.getLine(line).getMachineLevel(2);
                 openPopupUpgrade(level, ImageContent.ovenImagesId[level],line,2, factoryOvenButtonLine);
             });
@@ -170,6 +186,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button factoryButtonStock = findViewById(R.id.factoryButtonStock);
         factoryButtonStock.setOnClickListener(v -> {
+            if(sound) {mediaPlayerIn.start();}
             int level = factory.getCapacityLevel();
             openPopupUpgrade(level, R.drawable.title,0,-1, factoryButtonStock);
         });
@@ -177,7 +194,10 @@ public class FactoryActivity extends AppCompatActivity {
         /* ---------- End upgrade button ---------- */
 
         Button sell = findViewById(R.id.factorySell);
-        sell.setOnClickListener(v -> openPopupSell(context));
+        sell.setOnClickListener(v -> {
+            if(sound) {mediaPlayerIn.start();}
+            openPopupSell(context);
+        });
 
     }
 
@@ -188,7 +208,10 @@ public class FactoryActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_upgrade);
         Button popupUpgradeCancel = dialog.findViewById(R.id.popupUpgradeCancel);
-        popupUpgradeCancel.setOnClickListener(v -> dialog.dismiss());
+        popupUpgradeCancel.setOnClickListener(v -> {
+            if(sound) {mediaPlayerOut.start();}
+            dialog.dismiss();
+        });
 
         String text; //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
 
@@ -204,6 +227,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button popupUpgradeOk = dialog.findViewById(R.id.popupUpgradeOk);
         popupUpgradeOk.setOnClickListener(v -> {
+            if(sound) {mediaPlayerIn.start();}
             if (level<=8) {
                 if (id >= 0){ factory.getLine(line).setMachineLevel(id, level + 1); }
                 else {
@@ -250,12 +274,16 @@ public class FactoryActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_cake_sel);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupCakeSelBack);
-        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
+        popupMessageCancel.setOnClickListener(v -> {
+            if(sound) {mediaPlayerOut.start();}
+            dialog.dismiss();
+        });
 
         for (int i=0; i<3; i++){
             int id = i;
             ImageButton cakeSelect = dialog.findViewById(ViewContent.popUpCakeSell[i]);
             cakeSelect.setOnClickListener(v -> {
+                if(sound) {mediaPlayerIn.start();}
                 allProduction.get(line).setImageDrawable(getResources().getDrawable(ImageContent.cakeImageId[id]));
                 factory.getLine(line).setCakeId(id);
                 dialog.dismiss();
@@ -271,7 +299,10 @@ public class FactoryActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_question);
         Button popupMessageCancel = dialog.findViewById(R.id.popupQuestionCancel);
-        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
+        popupMessageCancel.setOnClickListener(v -> {
+            if(sound) {mediaPlayerOut.start();}
+            dialog.dismiss();
+        });
 
         TextView popupQuestionMessage = dialog.findViewById(R.id.popupQuestionMessage);
         popupQuestionMessage.setText(R.string.line_price);
@@ -283,6 +314,7 @@ public class FactoryActivity extends AppCompatActivity {
 
         Button popupMessageOk = dialog.findViewById(R.id.popupQuestionOk);
         popupMessageOk.setOnClickListener(v -> {
+            if(sound) {mediaPlayerIn.start();}
             openPopupSelectionNew(line);
             dialog.dismiss();
         });
@@ -321,7 +353,10 @@ public class FactoryActivity extends AppCompatActivity {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_market_sell);
         ImageView popupMessageCancel = dialog.findViewById(R.id.popupMarketSellBack);
-        popupMessageCancel.setOnClickListener(v -> dialog.dismiss());
+        popupMessageCancel.setOnClickListener(v -> {
+            if(sound) {mediaPlayerOut.start();}
+            dialog.dismiss();
+        });
 
         TextView marketSellAlert = dialog.findViewById(R.id.marketSellAlert);
 
@@ -335,6 +370,7 @@ public class FactoryActivity extends AppCompatActivity {
             ImageButton cakeSell = dialog.findViewById(ViewContent.sellCakeButtons[i]);
             int cake = i;
             cakeSell.setOnClickListener(v -> {
+                if(sound) {mediaPlayerMelo.start();}
                 SellStockTask sellStockTask = new SellStockTask(userId, factory, cake, context, stock, userScore, stockText, marketSellAlert);
                 sellStockTask.execute();
             });

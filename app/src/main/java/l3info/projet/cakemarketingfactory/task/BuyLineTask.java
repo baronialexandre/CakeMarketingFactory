@@ -1,6 +1,8 @@
 package l3info.projet.cakemarketingfactory.task;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -10,7 +12,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.activity.FactoryActivity;
@@ -63,12 +64,20 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
     @Override
     protected void onPostExecute(Integer success) {
         super.onPostExecute(success);
+        SharedPreferences shr = ctx.get().getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+        Boolean sound = shr.getBoolean("sound",true);
         Context ctx = this.ctx.get();
+        MediaPlayer mediaPlayerIn = MediaPlayer.create(ctx, R.raw.in1);
+        MediaPlayer mediaPlayerOut = MediaPlayer.create(ctx, R.raw.out2);
+
+
         if (success==1){
+            if(sound) {mediaPlayerIn.start();}
             activity.finish();
             EnterFactoryTask enterFactory = new EnterFactoryTask(userId, factory, ctx);
             enterFactory.execute();
         }else {
+            if(sound) {mediaPlayerOut.start();}
             Toast.makeText(ctx, R.string.buy_line_error, Toast.LENGTH_SHORT).show();
         }
     }
