@@ -3,7 +3,6 @@ package l3info.projet.cakemarketingfactory.task;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -13,6 +12,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 
+import l3info.projet.cakemarketingfactory.activity.FactoryActivity;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import okhttp3.OkHttpClient;
@@ -26,14 +26,16 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
     private int lineSlot;
     private int productId;
     private int userScore;
+    private FactoryActivity activity;
 
-    public BuyLineTask(long userId, int lineSlot, int productId, int userScore, Context ctx, Factory factory) {
+    public BuyLineTask(long userId, int lineSlot, int productId, int userScore, Context ctx, Factory factory, FactoryActivity activity) {
         this.userId = userId;
         this.lineSlot = lineSlot;
         this.productId = productId;
         this.userScore = userScore;
         this.ctx = new WeakReference<>(ctx);
         this.factory = factory;
+        this.activity = activity;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
             Request request = new Request.Builder()
                     .url(Contents.API_URL + Contents.BUY_LINE_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId+ "&factorySpot=" + factory.getFactorySpot() + "&lineSlot=" + lineSlot + "&productId=" + productId + "&userScore=" + userScore)
                     .build();
-            Log.i("BANDOL_SELL_STOCK_TASK", Contents.API_URL + Contents.BUY_LINE_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId+ "&factorySpot=" + factory.getFactorySpot() + "&lineSlot=" + lineSlot + "&productId=" + productId + "&userScore=" + userScore);
+            Log.i("BANDOL_BUY_LINE_TASK", Contents.API_URL + Contents.BUY_LINE_URL + "?apipass=" + Contents.API_PASS + "&userId="+userId+ "&factorySpot=" + factory.getFactorySpot() + "&lineSlot=" + lineSlot + "&productId=" + productId + "&userScore=" + userScore);
 
             Response response = client.newCall(request).execute();
             String rawJson = null;
@@ -51,7 +53,7 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
                 rawJson = response.body().string();
             }
             JSONObject jsonObj = new JSONObject(rawJson);
-            return jsonObj.getInt("succes");
+            return jsonObj.getInt("success");
         } catch (IOException | JSONException e) {
             return 0;
         }
@@ -62,6 +64,7 @@ public class BuyLineTask extends AsyncTask<String, Void, Integer> {
         super.onPostExecute(success);
         Context ctx = this.ctx.get();
         if (success==1){
+            activity.finish();
             EnterFactoryTask enterFactory = new EnterFactoryTask(userId, factory, ctx);
             enterFactory.execute();
         }else {

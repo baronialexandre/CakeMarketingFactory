@@ -19,7 +19,6 @@ import java.util.Objects;
 
 import l3info.projet.cakemarketingfactory.R;
 import l3info.projet.cakemarketingfactory.model.Factory;
-import l3info.projet.cakemarketingfactory.model.Line;
 import l3info.projet.cakemarketingfactory.task.BuyLineTask;
 import l3info.projet.cakemarketingfactory.task.GetScoreTask;
 import l3info.projet.cakemarketingfactory.task.SellStockTask;
@@ -87,7 +86,6 @@ public class FactoryActivity extends AppCompatActivity {
             allOvens.add(findViewById(ViewContent.factoryOvenLine[i]));
         }
 
-        //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
         String text;
 
         for(int i = 0; i < 3; i++){
@@ -99,6 +97,10 @@ public class FactoryActivity extends AppCompatActivity {
                 allRobots.get(i).setImageResource(ImageContent.robotImagesId[factory.getLine(i).getMachineLevel(i)]);
                 allOvens.get(i).setImageResource(ImageContent.ovenImagesId[factory.getLine(i).getMachineLevel(i)]);
             }
+        }
+        if(factory.getLine(1)==null && factory.getLine(2)==null){
+            allProduction.get(2).setBackgroundColor(000);
+            allProduction.get(2).setEnabled(false);
         }
 
         text = (factory.getCurrentStocks().get(0)
@@ -299,7 +301,7 @@ public class FactoryActivity extends AppCompatActivity {
             ImageButton cakeSelect = dialog.findViewById(ViewContent.popUpCakeSell[i]);
             cakeSelect.setOnClickListener(v -> {
                 score = shr.getInt("score",0);
-                BuyLineTask buyLine = new BuyLineTask(userId, line, id, score, context, factory);
+                BuyLineTask buyLine = new BuyLineTask(userId, line+1, id, score, context, factory, FactoryActivity.this);
                 buyLine.execute();
                 dialog.dismiss();
             });
