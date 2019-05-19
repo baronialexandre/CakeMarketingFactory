@@ -1,8 +1,11 @@
 package l3info.projet.cakemarketingfactory.utils;
 
+import android.content.res.Configuration;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class FunctionUtil {
 
@@ -44,18 +47,26 @@ public class FunctionUtil {
     };
 
     public static String scoreShorten(long score) {
+
         if(score < 0) return "---";
+        if(score < 1000) return String.format(Locale.ROOT,"%d", score);
         boolean locker = true;
         int i = 0;
         while (locker) {
-            if (1000 <= score) {
+            if (1000000 <= score) {
                 score /= 1000;
                 i++;
             }
             else locker = false;
         }
+        String formatted;
         if(i<cashNotation.length)
-            return score+FunctionUtil.cashNotation[i];
+        {
+            formatted =  String.format(Locale.ROOT, "%1.3f", (score/1000.0))+FunctionUtil.cashNotation[i];
+            formatted = formatted.replaceAll("\\.", " ");
+            return formatted;
+        }
+
         else return "+++"; //too much
     }
 
