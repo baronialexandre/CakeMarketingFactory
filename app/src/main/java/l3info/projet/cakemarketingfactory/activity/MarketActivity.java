@@ -3,7 +3,6 @@ package l3info.projet.cakemarketingfactory.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
@@ -44,7 +43,6 @@ public class MarketActivity extends AppCompatActivity
 
         Context context = this;
         soundManager = new SoundManager(this);
-
 
         shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
 

@@ -42,11 +42,13 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <FrameLayout
-            android:id="@+id/designerDrawingFrame"
+        <RelativeLayout
+            android:id="@+id/designerFrame"
             android:layout_width="300dp"
             android:layout_height="match_parent"
-            android:background="@drawable/popup" />
+            android:background="@drawable/popup"
+            android:gravity="center">
+        </RelativeLayout>
     </RelativeLayout>
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -61,26 +63,17 @@
             android:padding="5dp">
 
             <ImageButton
-                android:id="@+id/designerToolUndo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/empty"
-                android:src="@android:drawable/ic_menu_revert" />
-
-            <ImageButton
-                android:id="@+id/designerToolRedo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/empty"
-                android:src="@android:drawable/ic_menu_revert"
-                android:scaleX="-1"/>
-
-            <ImageButton
                 android:id="@+id/designerToolCake"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:contentDescription="@string/empty"
                 android:src="@android:drawable/ic_popup_sync" />
+            <ImageButton
+                android:id="@+id/designerTool0"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_cadena"
+                android:contentDescription="@string/empty" />
             <ImageButton
                 android:id="@+id/designerTool1"
                 android:layout_width="60dp"
@@ -105,15 +98,22 @@
                 android:layout_height="60dp"
                 android:src="@drawable/ic_cadena"
                 android:contentDescription="@string/empty" />
-
-            <ImageButton
-                android:id="@+id/designerToolClear"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:contentDescription="@string/empty"
-                android:src="@android:drawable/ic_delete" />
         </LinearLayout>
     </HorizontalScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/designerLayerCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/factoryButtonGreen"
+            />
+    </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

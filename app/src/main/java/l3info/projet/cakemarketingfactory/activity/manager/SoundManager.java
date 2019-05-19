@@ -66,4 +66,5 @@ public class SoundManager {
     public void setSound(boolean soundState) {
         sound = soundState;
     }
+
 }

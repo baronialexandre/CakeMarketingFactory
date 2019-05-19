@@ -70,4 +70,26 @@ public class ImageContent {
             R.drawable.ic_cupcake,
             R.drawable.ic_donut
     };
+    //a redesign
+    public static final int[] backgroundImageId = {
+            R.drawable.design_cookie,
+            R.drawable.design_cupcake,
+            R.drawable.design_donut
+    };
+    //a redesign
+    public static final int[] toolsImageId = {
+            R.drawable.design_choco1,
+            R.drawable.design_choco2,
+            R.drawable.design_redcandy,
+            R.drawable.design_greencandy,
+            R.drawable.design_bluecandy
+    };
+    //a design
+    public static int[] toolsMiniImageId = {
+            R.drawable.ic_cadena,
+            R.drawable.ic_cadena,
+            R.drawable.ic_cadena,
+            R.drawable.ic_cadena,
+            R.drawable.ic_cadena
+    };
 }

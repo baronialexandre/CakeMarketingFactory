@@ -3,6 +3,9 @@ package l3info.projet.cakemarketingfactory.utils;
 public final class Contents {
     public static final String API_URL = "http://cake-marketing-factory.com/app_api";
 
+    //unused
+    public static final String RESULT_IMAGE_URL = "http://cake-marketing-factory.com/resultImages";
+
     public static final String AUTH_API_URL = "/auth.php";
     public static final String REG_API_URL = "/reg.php";
     public static final String ENTER_WORLD_URL = "/enterworld.php";
@@ -18,6 +21,12 @@ public final class Contents {
     public static final String SELL__ALL_STOCK_URL = "/sellallstock.php";
     public static final String GET_STOCK_URL = "/getstock.php";
     public static final String GET_LINE_PRICE_URL = "/getlineprice.php";
+
+    //unused
+    public static final String UPLOAD_IMAGE = "/uploadimage.php";
+    //unused
+    public static final String SAVE_FILE = "/savefile.php";
+
 
     public static final String API_PASS = "bandol";
     public static final String SHRD_PREF = "dolban";

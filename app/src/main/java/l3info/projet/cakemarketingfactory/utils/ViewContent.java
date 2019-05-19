@@ -80,4 +80,12 @@ public class ViewContent {
             R.id.factoryOvenLine2,
             R.id.factoryOvenLine3
     };
+
+    public static final int[] tools = {
+            R.id.designerTool0,
+            R.id.designerTool1,
+            R.id.designerTool2,
+            R.id.designerTool3,
+            R.id.designerTool4
+    };
 }
