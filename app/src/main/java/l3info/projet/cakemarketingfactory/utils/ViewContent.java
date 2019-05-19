@@ -31,6 +31,26 @@ public class ViewContent {
             R.id.popupSellNbCupcake,
             R.id.popupSellNbDonut
     };
+    public static final int[] popupMarketAdvertisingCakeImage = {
+            R.id.popupMarketAdvertisingCookie,
+            R.id.popupMarketAdvertisingCupcake,
+            R.id.popupMarketAdvertisingDonut
+    };
+    public static final int[] marketAdvertisingCakeText = {
+            R.id.popupMarketCookieDisplay,
+            R.id.popupMarketCupcakeDisplay,
+            R.id.popupMarketDonutDisplay
+    };
+    public static final int[] marketAdvertisingVoteBarBg = {
+            R.id.popupMarketAdvertisingCookieBarBg,
+            R.id.popupMarketAdvertisingCupcakeBarBg,
+            R.id.popupMarketAdvertisingDonutBarBg
+    };
+    public static final int[] marketAdvertisingVoteBar = {
+            R.id.popupMarketAdvertisingCookieBar,
+            R.id.popupMarketAdvertisingCupcakeBar,
+            R.id.popupMarketAdvertisingDonutBar
+    };
     public static final int[] factoryProduction = {
             R.id.factoryProductionButtonLine1,
             R.id.factoryProductionButtonLine2,

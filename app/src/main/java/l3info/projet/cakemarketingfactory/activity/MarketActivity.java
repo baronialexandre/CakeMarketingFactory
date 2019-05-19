@@ -25,6 +25,7 @@ import l3info.projet.cakemarketingfactory.task.GetStockTask;
 import l3info.projet.cakemarketingfactory.task.SellAllStockTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.FunctionUtil;
+import l3info.projet.cakemarketingfactory.utils.ViewContent;
 
 public class MarketActivity extends AppCompatActivity
 {
@@ -114,8 +115,6 @@ public class MarketActivity extends AppCompatActivity
         });
     }
 
-
-    //exemple
     void openPopupSell(Context context)
     {
         final Dialog dialog = new Dialog(context);
@@ -174,52 +173,30 @@ public class MarketActivity extends AppCompatActivity
             openInfos(context);
         });
 
-        TextView popupMarketCookieDisplay = dialog.findViewById(R.id.popupMarketCookieDisplay);
-        TextView popupMarketCupcakeDisplay = dialog.findViewById(R.id.popupMarketCupcakeDisplay);
-        TextView popupMarketDonutDisplay = dialog.findViewById(R.id.popupMarketDonutDisplay);
 
-        popupMarketCookieDisplay.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(0)));
-        popupMarketCupcakeDisplay.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(1)));
-        popupMarketDonutDisplay.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(2)));
+        for(int i = 0; i < 3; i++)
+        {
+            SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
+            long userId = shr.getLong("userId",0L);
 
-        //add bars
-        RelativeLayout cookieBarBg = dialog.findViewById(R.id.popupMarketAdvertisingCookieBarBg);
-        RelativeLayout cookieBar   = dialog.findViewById(R.id.popupMarketAdvertisingCookieBar);
-        float calcul = votes.getPercentage(0)*cookieBarBg.getLayoutParams().width/100;
-        cookieBar.getLayoutParams().width= (int) calcul;
-        //cookieBar.requestLayout();
+            // Votes percentage
+            TextView marketAdvertisingCakeText = dialog.findViewById(ViewContent.marketAdvertisingCakeText[i]);
+            marketAdvertisingCakeText.setText(String.format(Locale.ROOT,"%.0f%%", votes.getPercentage(i)));
 
-        RelativeLayout cupcakeBarBg = dialog.findViewById(R.id.popupMarketAdvertisingCupcakeBarBg);
-        RelativeLayout cupcakeBar   = dialog.findViewById(R.id.popupMarketAdvertisingCupcakeBar);
-        calcul = votes.getPercentage(1)*cupcakeBarBg.getLayoutParams().width/100;
-        cupcakeBar.getLayoutParams().width= (int) calcul;
+            // Vote bar
+            RelativeLayout barBg = dialog.findViewById(ViewContent.marketAdvertisingVoteBarBg[i]);
+            RelativeLayout bar = dialog.findViewById(ViewContent.marketAdvertisingVoteBar[i]);
+            float barWidth = votes.getPercentage(i)*barBg.getLayoutParams().width/100;
+            bar.getLayoutParams().width = (int)barWidth;
 
-        RelativeLayout DonutBarBg = dialog.findViewById(R.id.popupMarketAdvertisingDonutBarBg);
-        RelativeLayout DonutBar   = dialog.findViewById(R.id.popupMarketAdvertisingDonutBar);
-        calcul = votes.getPercentage(2)*DonutBarBg.getLayoutParams().width/100;
-        DonutBar.getLayoutParams().width= (int) calcul;
-        //end bars
-
-        SharedPreferences shr = getSharedPreferences(Contents.SHRD_PREF, Context.MODE_PRIVATE);
-        long userId = shr.getLong("userId",0L);
-
-        ImageView popupMarketAdvertisingCookie = dialog.findViewById(R.id.popupMarketAdvertisingCookie);
-        ImageView popupMarketAdvertisingCupcake = dialog.findViewById(R.id.popupMarketAdvertisingCupcake);
-        ImageView popupMarketAdvertisingDonut = dialog.findViewById(R.id.popupMarketAdvertisingDonut);
-
-        popupMarketAdvertisingCookie.setOnClickListener(v -> {
-            CastVoteTask castVoteTask = new CastVoteTask(0, userId, dialog, context);
-            castVoteTask.execute();
-        });
-        popupMarketAdvertisingCupcake.setOnClickListener(v -> {
-            CastVoteTask castVoteTask = new CastVoteTask(1, userId, dialog, context);
-            castVoteTask.execute();
-        });
-        popupMarketAdvertisingDonut.setOnClickListener(v -> {
-            CastVoteTask castVoteTask = new CastVoteTask(2, userId, dialog, context);
-            castVoteTask.execute();
-        });
-
+            // Image buttons
+            ImageView popupMarketAdvertisingCakeImage = dialog.findViewById(ViewContent.popupMarketAdvertisingCakeImage[i]);
+            int finalI = i;
+            popupMarketAdvertisingCakeImage.setOnClickListener(v -> {
+                CastVoteTask castVoteTask = new CastVoteTask(finalI, userId, dialog, context, votes);
+                castVoteTask.execute();
+            });
+        }
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
         dialog.show();
