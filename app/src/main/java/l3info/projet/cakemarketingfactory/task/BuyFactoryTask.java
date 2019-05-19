@@ -1,8 +1,6 @@
 package l3info.projet.cakemarketingfactory.task;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -15,9 +13,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.Locale;
 
 import l3info.projet.cakemarketingfactory.R;
+import l3info.projet.cakemarketingfactory.activity.manager.SoundManager;
 import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
@@ -41,6 +39,8 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
     private Boolean alreadyBought = false;
     private Long requiredScore;
 
+    private SoundManager soundManager;
+
     public BuyFactoryTask(long userId, int factorySpot, int productId,ImageView factoryView, ImageView sign, TextView userScore, Context ctx) {
         this.userId = userId;
         this.factorySpot = factorySpot;
@@ -49,7 +49,7 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
         this.sign = new WeakReference<>(sign);
         this.userScore = new WeakReference<>(userScore);
         this.ctx = new WeakReference<>(ctx);
-
+        soundManager = new SoundManager(ctx);
         requiredScore = 0L;
     }
 
@@ -90,6 +90,7 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
         Context ctx = this.ctx.get();
         if(success)
         {
+            soundManager.playSoundIn();
             // Toast achat successful
             Toast.makeText(ctx, R.string.purchase_succesful, Toast.LENGTH_LONG).show();
             Log.i("BANDOL_BUY_FACTORYTSK", "success");
@@ -101,6 +102,7 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
             factoryView.setImageResource(ImageContent.factoryId[factorySpot-1]);
             factoryView.setVisibility(View.VISIBLE);
             factoryView.setOnClickListener(v -> {
+                soundManager.playSoundIn();
                 //Entrer dans une usine
                 Toast.makeText(ctx, "FACTORY 1 + "+ (factorySpot-1), Toast.LENGTH_SHORT).show();
                 EnterFactoryTask task = new EnterFactoryTask(userId,new Factory(factorySpot), ctx);
@@ -119,8 +121,13 @@ public class BuyFactoryTask extends AsyncTask<String, Void, Boolean>{
         }
         else
         {
-            if (notEnoughScore) Toast.makeText(ctx, ctx.getString(R.string.purchase_not_enough_score, requiredScore ), Toast.LENGTH_LONG).show();
-            else Toast.makeText(ctx, R.string.purchase_failure, Toast.LENGTH_LONG).show();
+            soundManager.playSoundOut();
+            if (notEnoughScore) {
+                Toast.makeText(ctx, ctx.getString(R.string.purchase_not_enough_score, requiredScore ), Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(ctx, R.string.purchase_failure, Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
