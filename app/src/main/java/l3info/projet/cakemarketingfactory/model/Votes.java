@@ -10,10 +10,9 @@ public class Votes implements Serializable
         this.votes = new int[productAmount];
     }
 
-    public void addVote(int productId, int voteAmount)
-    {
-        votes[productId] = voteAmount;
-    }
+    public void setVote(int productId, int voteAmount) { votes[productId] = voteAmount; }
+
+    public void addVote(int productId, int voteAmount) { votes[productId] += voteAmount; }
 
     public float getPercentage(int productId)
     {

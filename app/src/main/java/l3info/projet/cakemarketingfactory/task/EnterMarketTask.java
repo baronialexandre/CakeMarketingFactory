@@ -87,7 +87,7 @@ public class EnterMarketTask extends AsyncTask<String, Void, Market>
                 JSONObject vote = votesArray.getJSONObject(i);
                 int productId = vote.getInt("productId");
                 int voteAmount = vote.getInt("voteAmount");
-                votes.addVote(productId, voteAmount);
+                votes.setVote(productId, voteAmount);
             }
 
             return market;

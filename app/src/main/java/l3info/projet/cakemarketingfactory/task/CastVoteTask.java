@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -85,7 +86,6 @@ public class CastVoteTask extends AsyncTask<String, Void, Boolean>
         if(!voteCheck) {
             soundManager.playSoundOut();
             marketVoteCastAlert.setText(R.string.vote_already_cast);
-
         }
         else {
             soundManager.playSoundVote();
@@ -100,9 +100,10 @@ public class CastVoteTask extends AsyncTask<String, Void, Boolean>
                 RelativeLayout barBg = dialog.findViewById(ViewContent.marketAdvertisingVoteBarBg[i]);
                 RelativeLayout bar = dialog.findViewById(ViewContent.marketAdvertisingVoteBar[i]);
                 float barWidth = votes.getPercentage(i)*barBg.getLayoutParams().width/100;
-                bar.getLayoutParams().width = (int)barWidth;
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) bar.getLayoutParams();
+                params.width = (int) barWidth;
+                bar.setLayoutParams(params);
             }
-
         }
     }
 }
