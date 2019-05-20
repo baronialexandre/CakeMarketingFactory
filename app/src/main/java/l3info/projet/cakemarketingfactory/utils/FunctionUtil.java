@@ -1,5 +1,6 @@
 package l3info.projet.cakemarketingfactory.utils;
 
+import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 
 import java.text.SimpleDateFormat;
@@ -13,7 +14,7 @@ public class FunctionUtil {
     public static String getCurrent(String pattern)
     {
         Calendar now = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
         return simpleDateFormat.format(now.getTime());
     }
 
@@ -90,4 +91,5 @@ public class FunctionUtil {
         return productName;
 
     }
+
 }

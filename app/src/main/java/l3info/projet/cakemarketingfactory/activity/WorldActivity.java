@@ -303,7 +303,7 @@ public class WorldActivity  extends AppCompatActivity {
         });
 
         TextView popupQuestionMessage = dialog.findViewById(R.id.popupQuestionMessage);
-        popupQuestionMessage.setText("Le prix c'est le prix !\nSi tu veux acheter... vends\nDU GATEAU !");
+        popupQuestionMessage.setText(getString(R.string.factory_buy_alert, Factory.getFactoryPrice(factorySpot+1)));
 
         ImageView popupQuestionImage = dialog.findViewById(R.id.popupQuestionImage);
         popupQuestionImage.setImageResource(R.drawable.world_dollard_sign);

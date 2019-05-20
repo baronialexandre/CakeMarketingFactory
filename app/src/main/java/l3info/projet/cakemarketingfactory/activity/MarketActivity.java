@@ -215,11 +215,7 @@ public class MarketActivity extends AppCompatActivity
 
         TextView message = dialog.findViewById(R.id.popupNotificationMessage);
 
-        String string = "Vous ne pouvez voter que pour un seul gateau par heure !\n" +
-                "A la fin de l'heure, le gateau ayant le plus de vote aura droit à une publicité !\n" +
-                "Les ventes des gateaux ayant une publicité vous rapporteront plus.\n" +
-                "Le gateau ayant le moins de votes sera le produit le moins populaire et redescendra dans les ventes...\n";
-        message.setText(string);
+        message.setText(R.string.market_votes_info);
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent); //contours couleur
         dialog.setCancelable(false);
@@ -238,11 +234,7 @@ public class MarketActivity extends AppCompatActivity
 
         TextView message = dialog.findViewById(R.id.popupNotificationMessage);
 
-        String string = "Temps restant avant la fin de la semaine.\n" +
-                "A la fin de chaque semaine, toutes les entreprises sont remises à zéro : capital, usines, stocks ...\n" +
-                "Les 3 meilleurs joueurs auront une place dans la galerie des gagnants.\n" +
-                "Votre meilleur capital est conservé, et votre niveau augmente en fonction de votre capital final.";
-        message.setText(string);
+        message.setText(R.string.market_time_info);
 
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);

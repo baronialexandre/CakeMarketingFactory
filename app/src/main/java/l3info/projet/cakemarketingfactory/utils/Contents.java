@@ -22,6 +22,7 @@ public final class Contents {
     public static final String GET_STOCK_URL = "/getstock.php";
     public static final String GET_LINE_PRICE_URL = "/getlineprice.php";
     public static final String UP_MACHINE_URL = "/upgrademachine.php";
+    public static final String UP_CAPACITY_URL = "/upgradecapacity.php";
 
     //unused
     public static final String UPLOAD_IMAGE = "/uploadimage.php";

@@ -53,7 +53,7 @@
     <string name="profile_labels">Username : \nRegistered : \nLevel : \nTop Score : \nBest Rank : </string>
     <string name="profile_values" translatable="false">%1$s\n%2$s\n%3$d\n%4$d\n%5$d</string>
     <string name="purchase_succesful">Factory purchase was successful!</string>
-    <string name="purchase_not_enough_score">You need %1$d$ to buy this factory.</string>
+    <string name="purchase_not_enough_score">You need %1$d$ to buy this.</string>
     <string name="purchase_failure">Purchase failure</string>
 
     <string name="line_price">This line costs </string>
@@ -64,5 +64,18 @@
     <string name="market_sell_confirm">Sales confirmed !</string>
 
     <string name="sell_all_info">Sold %1$d %2$s worth %3$d$.</string>
+
+    <string name="factory_stock_display" translatable="false">%1$d/%2$d</string>
+    <string name="factory_buy_alert">Do you really want to buy this factory for %1$d$ ?</string>
+
+    <string name="market_time_info">Time remaining before the end of the week.\n
+                At the end of every week, all companies are reset back to zero : factories, stocks, money …\n
+                The 3 best players will have a place in the winner\'s gallery.\n
+                Your best score is recorded, and your level increases depending on your final score.</string>
+
+    <string name="market_votes_info">You can only vote for one cake per hour !\n
+                When the hour ends, the cake with the most votes will be advertised !\n
+                The price of advertised cakes will rise, and earn you more money.\n
+                The cake with the least amount of votes will become less popular, and see its price fall…\n</string>
 
 </resources>

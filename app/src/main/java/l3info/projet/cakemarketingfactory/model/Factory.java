@@ -1,9 +1,10 @@
 package l3info.projet.cakemarketingfactory.model;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-@SuppressWarnings("WeakerAccess")
 public class Factory implements Serializable {
     private int factorySpot;
     private int capacityLevel;
@@ -21,14 +22,15 @@ public class Factory implements Serializable {
     public Factory(Integer factorySpot) {
         this.factorySpot = factorySpot;
         this.capacityLevel = 0;
-        this.currentStocks = new ArrayList<Integer>();
-        this.lines = new ArrayList<Line>();
+        this.currentStocks = new ArrayList<>();
+        this.lines = new ArrayList<>();
         for(int i = 0; i<3; ++i) {
             this.lines.add(null);
             this.currentStocks.add(0);
         }
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Factory{" +
@@ -37,6 +39,19 @@ public class Factory implements Serializable {
                 ", currentStocks=" + currentStocks +
                 ", lines=" + lines +
                 '}';
+    }
+
+    public static int getCapacityPrice(int capacityLevel)
+    {
+        return capacityLevel*2500;
+    }
+
+    public static long getFactoryPrice(int factorySpot)
+    {
+        double expo = Math.exp((double)factorySpot);
+        long price = (long) (factorySpot*300*expo);
+        price = ((price+100)/100)*100;
+        return price;
     }
 
     public int getFactorySpot() { return factorySpot; }

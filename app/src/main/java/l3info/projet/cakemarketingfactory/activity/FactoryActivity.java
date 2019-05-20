@@ -23,7 +23,9 @@ import l3info.projet.cakemarketingfactory.model.Factory;
 import l3info.projet.cakemarketingfactory.task.BuyLineTask;
 import l3info.projet.cakemarketingfactory.task.GetLinePriceTask;
 import l3info.projet.cakemarketingfactory.task.GetScoreTask;
+import l3info.projet.cakemarketingfactory.task.GetStockTask;
 import l3info.projet.cakemarketingfactory.task.SellStockTask;
+import l3info.projet.cakemarketingfactory.task.UpgradeCapacityTask;
 import l3info.projet.cakemarketingfactory.task.UpgradeMachineTask;
 import l3info.projet.cakemarketingfactory.utils.Contents;
 import l3info.projet.cakemarketingfactory.utils.ImageContent;
@@ -197,7 +199,7 @@ public class FactoryActivity extends AppCompatActivity {
 
     //exemple
     @SuppressLint("SetTextI18n")
-    void openPopupUpgrade(int level, int res, int line, int id, Button button)
+    void openPopupUpgrade(int initLevel, int res, int line, int id, Button button)
     {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.popup_upgrade);
@@ -210,10 +212,19 @@ public class FactoryActivity extends AppCompatActivity {
         String text; //pour le warning : on ne doit pas avoir de concaténation dans le xxx.setText(xxx);
 
         TextView popupUpgradeMessage = dialog.findViewById(R.id.popupUpgradeMessage);
-        text = getString(R.string.upgrade_valid)+" "+(level*1000)+" $";
+        if(id == -1)
+        {
+            text = getString(R.string.upgrade_valid)+" "+Factory.getCapacityPrice(initLevel+1)+" $";
+        }
+        else
+        {
+            text = getString(R.string.upgrade_valid)+" "+(initLevel *1000)+" $";
+        }
+
         popupUpgradeMessage.setText(text);
 
-        if(level == 9){
+
+        if(initLevel == 9){
             popupUpgradeMessage.setText(R.string.max_level);
             popupUpgradeCancel.setVisibility(View.INVISIBLE);
             popupUpgradeCancel.setClickable(false);
@@ -222,30 +233,33 @@ public class FactoryActivity extends AppCompatActivity {
         Button popupUpgradeOk = dialog.findViewById(R.id.popupUpgradeOk);
         popupUpgradeOk.setOnClickListener(v -> {
             soundManager.playSoundIn();
-            if (level<=8) {
+            if (initLevel <=8) {
                 if (id >= 0){
                     UpgradeMachineTask task = new UpgradeMachineTask(userId, line, id, score, context, factory);
                     task.execute();
-                    factory.getLine(line).setMachineLevel(id, level + 1);
+                    factory.getLine(line).setMachineLevel(id, initLevel + 1);
                 }
-                else {
-                    factory.setCapacityLevel( level+1 );
-                    TextView stock = findViewById(R.id.factoryStockText);
-                    stock.setText(factory.getCurrentStocks().get(0)+factory.getCurrentStocks().get(1)+factory.getCurrentStocks().get(2)+"/"+(factory.getCapacityLevel()+1)*100);
+                else // CAPACITY UPGRADE
+                    {
+                    TextView capacityView = findViewById(R.id.factoryStockText);
+                    UpgradeCapacityTask upgradeCapacityTask = new UpgradeCapacityTask(factory, context, capacityView, userId, initLevel);
+                    upgradeCapacityTask.execute();
+                    GetScoreTask getScoreTask = new GetScoreTask(userId, userScore, context);
+                    getScoreTask.execute();
                 }
 
                 if (id == 0) {
-                    allBelts.get(line).setBackground(getResources().getDrawable(ImageContent.beltImagesId[level+1]));
+                    allBelts.get(line).setBackground(getResources().getDrawable(ImageContent.beltImagesId[initLevel +1]));
                 }
                 else if (id == 1) {
-                    allRobots.get(line).setImageResource(ImageContent.robotImagesId[level+1]);
+                    allRobots.get(line).setImageResource(ImageContent.robotImagesId[initLevel +1]);
                 }
                 else if (id == 2){
-                    allOvens.get(line).setImageResource(ImageContent.ovenImagesId[level+1]);
+                    allOvens.get(line).setImageResource(ImageContent.ovenImagesId[initLevel +1]);
                 }
                 allProductSpeed.get(line).setText(factory.getLine(line).getProduction()+"/m");
 
-                if (level == 8) {
+                if (initLevel == 8) {
                     button.setBackground(getResources().getDrawable(R.drawable.gold_button_selector));
                     button.setText("M");
                 }
@@ -255,7 +269,7 @@ public class FactoryActivity extends AppCompatActivity {
         });
 
         TextView popupUpgradeLevel = dialog.findViewById(R.id.popupUpgradeLevel);
-        String levelText = getString(R.string.level) + level;
+        String levelText = getString(R.string.level) + initLevel;
         popupUpgradeLevel.setText(levelText);
 
 

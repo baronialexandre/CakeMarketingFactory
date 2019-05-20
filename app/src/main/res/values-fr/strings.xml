@@ -6,7 +6,7 @@
     <string name="unitPerSec">u/m</string>
     <string name="stock">Stock :</string>
     <string name="login">Login</string>
-    <string name="password">Password</string>
+    <string name="password">Mot de Passe</string>
     <string name="register">S\'enregistrer</string>
     <string name="connection">Se connecter</string>
     <string name="empty" />
@@ -44,7 +44,7 @@
     <string name="profile_title">Profil</string>
     <string name="profile_labels">Pseudo : \nInscription : \nNiveau : \nScore Max : \nRang Max : </string>
     <string name="purchase_succesful">Achat effectué!</string>
-    <string name="purchase_not_enough_score">Il vous faut %1$d$ pour acheter cette usine.</string>
+    <string name="purchase_not_enough_score">Il vous faut %1$d$ pour cet achat.</string>
     <string name="purchase_failure">L\'achat a échoué!</string>
 
     <string name="line_price">Cette ligne coûte </string>
@@ -55,4 +55,15 @@
     <string name="market_sell_confirm">Vente confirmée !</string>
 
     <string name="sell_all_info">Vente de %1$d %2$s pour %3$d$.</string>
+    <string name="factory_buy_alert">Voulez-vous vraiment acheter cette usine pour %1$d$ ?</string>
+
+    <string name="market_time_info">Temps restant avant la fin de la semaine.\n
+                A la fin de chaque semaine, toutes les entreprises sont remises à zéro : capital, usines, stocks …\n
+                Les 3 meilleurs joueurs auront une place dans la galerie des gagnants.\n
+                Votre meilleur capital est conservé, et votre niveau augmente en fonction de votre capital final.</string>
+
+    <string name="market_votes_info">Vous ne pouvez voter que pour un seul gateau par heure !\n
+                A la fin de l\'heure, le gateau ayant le plus de vote aura droit à une publicité !\n
+                Les ventes des gateaux ayant une publicité vous rapporteront plus.\n
+                Le gateau ayant le moins de votes sera le produit le moins populaire et redescendra dans les ventes…\n</string>
 </resources>
